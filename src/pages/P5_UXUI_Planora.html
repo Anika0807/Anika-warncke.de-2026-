@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planora - Reiseplanung, die sich dir anpasst.</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="icon" type="image/jpeg" href="../../Logo-01.jpg">
+    <style>
+        /* Skip to main content link for accessibility */
+        .skip-to-main {
+            position: absolute;
+            top: -200px;
+            left: 20px;
+            z-index: 9999;
+            padding: 12px 24px;
+            background: #ffb800;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: top 0.3s;
+        }
+        .skip-to-main:focus {
+            top: 6px;
+        }
+        
+        /* Modern responsive padding system - override inline styles */
+        main#main-content > section {
+            padding-left: clamp(20px, 4vw, 80px) !important;
+            padding-right: clamp(20px, 4vw, 80px) !important;
+        }
+        
+        /* Projektinfos Section - ensure consistent padding on all screen sizes */
+        main#main-content > section[style*="padding:3rem 80px"] {
+            padding-left: clamp(20px, 4vw, 80px) !important;
+            padding-right: clamp(20px, 4vw, 80px) !important;
+        }
+        
+        .btn-secondary {
+            background: #ffb800;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s, color 0.2s;
+            cursor: pointer;
+            display: inline-block;
+            margin: 0;
+        }
+        .btn-secondary:hover, .btn-secondary:focus {
+            background: linear-gradient(135deg, rgba(255, 153, 0, 0.95) 0%, rgba(255, 140, 0, 0.95) 100%);
+            color: #fff;
+            transform: scale(1.08);
+            box-shadow: 0 4px 18px rgba(255, 184, 0, 0.13);
+        }
+        .projekt-btn {
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 1.02rem;
+            font-weight: 700;
+            border-radius: 2rem;
+            box-shadow: 0 2px 8px rgba(255,184,0,0.10);
+            padding: 0.8rem 2.2rem;
+            transition: background 0.2s, color 0.2s, box-shadow 0.18s, transform 0.18s;
+            outline: none;
+            border: none;
+            background: #ffb800;
+            color: #fff;
+            display: inline-block;
+        }
+        .projekt-btn:hover, .projekt-btn:focus {
+            background: linear-gradient(135deg, rgba(255, 153, 0, 0.95) 0%, rgba(255, 140, 0, 0.95) 100%);
+            color: #fff;
+            transform: scale(1.08);
+            box-shadow: 0 4px 18px rgba(255,184,0,0.13);
+        }
+    </style>
+    <style>
+    .main-header nav ul li a {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .main-header nav ul li a.active {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }        .main-header .logo {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Footer-Links immer weiß */
+        .main-footer a,
+        .main-footer a:visited,
+        .main-footer a:active,
+        .main-footer a:hover {
+          color: #fff !important;
+          text-decoration: underline;
+          transition: color 0.2s;
+        }
+        .main-header {
+            position: absolute !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            transition: background 0.2s, color 0.2s;
+            background: transparent;
+        }
+        .main-header.scrolled {
+            position: fixed !important;
+            background: #fff !important;
+            color: #222 !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        }
+        .main-header.scrolled .logo,
+        .main-header.scrolled nav a,
+        .main-header.scrolled nav a:visited {
+            color: #222 !important;
+        }
+        .main-header.scrolled .hamburger-line {
+            background-color: #222 !important;
+        }
+        .main-header .logo,
+        .main-header nav a,
+        .main-header nav a:visited {
+            color: #fff !important;
+        }
+        .main-header .hamburger-line {
+            background-color: #fff;
+        }
+    </style>
+    <style>
+        main {
+            margin-top: 0;
+            background: #fff;
+        }
+    </style>
+
+  <style>
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 184, 0, 0.95) 0%, rgba(255, 153, 0, 0.95) 100%);
+      backdrop-filter: blur(12px) saturate(1.2);
+      -webkit-backdrop-filter: blur(12px) saturate(1.2);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 
+        0 8px 32px rgba(255, 184, 0, 0.16),
+        0 1px 4px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      /* Temporär sichtbar für Test */
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1) rotate(0deg);
+      z-index: 1000;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      will-change: transform, opacity;
+    }
+    
+    .back-to-top::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: xor;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      pointer-events: none;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1) rotate(0deg);
+    }
+    
+    .back-to-top:hover {
+      background: linear-gradient(135deg, rgba(255, 153, 0, 0.95) 0%, rgba(255, 140, 0, 0.95) 100%);
+      transform: translateY(-6px) scale(1.08);
+      box-shadow: 
+        0 16px 48px rgba(255, 184, 0, 0.24),
+        0 4px 16px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    
+    .back-to-top:active {
+      transform: translateY(-3px) scale(1.02);
+      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 
+        0 8px 28px rgba(255, 184, 0, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .back-to-top:focus {
+      outline: none;
+      box-shadow: 
+        0 8px 32px rgba(255, 184, 0, 0.16),
+        0 1px 4px rgba(0, 0, 0, 0.08),
+        0 0 0 3px rgba(255, 184, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .back-to-top::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg, 
+        transparent 0deg, 
+        rgba(255, 184, 0, 0.8) var(--progress, 0deg),
+        rgba(255, 255, 255, 0.3) calc(var(--progress, 0deg) + 2deg),
+        transparent calc(var(--progress, 0deg) + 4deg)
+      );
+      opacity: 0;
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: -1;
+      filter: blur(0.5px);
+    }
+    
+    .back-to-top.visible::before {
+      opacity: 1;
+    }
+    
+    .back-to-top svg {
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .back-to-top:hover svg {
+      transform: translateY(-1px);
+    }
+    
+    .back-to-top.visible.first-show {
+      animation: backToTopPulse 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    @keyframes backToTopPulse {
+      0% { transform: translateY(0) scale(1) rotate(0deg); }
+      50% { transform: translateY(-2px) scale(1.1) rotate(1deg); }
+      100% { transform: translateY(0) scale(1) rotate(0deg); }
+    }
+    
+    @media (max-width: 700px) {
+      .back-to-top {
+        width: 52px;
+        height: 52px;
+        bottom: 2rem;
+        right: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .back-to-top {
+        bottom: 1.5rem;
+        right: 1rem;
+        width: 48px;
+        height: 48px;
+      }
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      .back-to-top, .back-to-top svg, .back-to-top::before {
+        transition: opacity 0.2s ease;
+      }
+      .back-to-top:hover {
+        transform: none;
+      }
+      .back-to-top.visible.first-show {
+        animation: none;
+      }
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      .back-to-top {
+        background: linear-gradient(135deg, rgba(255, 184, 0, 0.9) 0%, rgba(255, 153, 0, 0.9) 100%);
+        border-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(16px) saturate(1.4);
+      }
+    }
+    
+    /* Responsive Design für Projektseiten */
+    @media (max-width: 1200px) {
+      /* Große Tablets - vertical padding only, horizontal handled by clamp() */
+      section[style*="padding:5rem 80px"],
+      section[style*="padding: 5rem 80px"] {
+        padding-top: 4rem !important;
+        padding-bottom: 4rem !important;
+      }
+      section[style*="padding:3rem 80px"],
+      section[style*="padding: 3rem 80px"] {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+      }
+    }
+    
+    @media (max-width: 900px) {
+      /* Mobile Header Layout */
+      .main-header nav { display: flex !important; justify-content: space-between !important; align-items: center !important; padding-left: 16px !important; padding-right: 16px !important; }
+      .main-header .logo { order: 1 !important; padding-left: 0 !important; margin-left: 0 !important; }
+      .main-header .mobile-nav-toggle { order: 2 !important; margin-left: auto !important; }
+      .main-header nav ul { order: 3 !important; }
+      .hamburger-line { background-color: #fff; transition: background-color 0.25s; }
+      .main-header.scrolled .hamburger-line { background-color: #222; }
+      
+      /* Tablets - vertical padding only, horizontal handled by clamp() */
+      section[style*="padding:5rem 80px"],
+      section[style*="padding: 5rem 80px"],
+      section[style*="padding:5rem 60px"],
+      section[style*="padding: 5rem 60px"] {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+      }
+      section[style*="padding:3rem 80px"],
+      section[style*="padding: 3rem 80px"],
+      section[style*="padding:3rem 60px"],
+      section[style*="padding: 3rem 60px"] {
+        padding-top: 2.5rem !important;
+        padding-bottom: 2.5rem !important;
+      }
+      
+      /* Grid Anpassungen */
+      section[style*="gap:2.5rem 3.5rem"] {
+        gap: 2rem 2.5rem !important;
+      }
+      section[style*="gap:3rem 4rem"] {
+        gap: 2rem 2.5rem !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      /* Mobile Landscape - vertical padding only, horizontal handled by clamp() */
+      section[style*="padding:5rem"],
+      section[style*="padding: 5rem"],
+      section[style*="padding:4rem"],
+      section[style*="padding: 4rem"],
+      section[style*="padding:3rem"],
+      section[style*="padding: 3rem"] {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+      }
+      
+      /* Hero Content */
+      .hero-content[style*="padding:3.5rem"] {
+        padding: 2.5rem 2rem 2rem 2rem !important;
+        max-width: 90% !important;
+      }
+      
+      /* Grid zu Stack */
+      section[style*="display:flex;flex-wrap:wrap"] {
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+      }
+      
+      /* Text Größen */
+      h1 { font-size: 2.2rem !important; }
+      h2 { font-size: 1.45rem !important; }
+      h3 { font-size: 1.2rem !important; }
+      /* Hero-specific sizing to ensure clear hierarchy */
+      .hero-content h1 { font-size: 2.6rem !important; }
+      .hero-content h2 { font-size: 1.4rem !important; }
+    }
+    
+    @media (max-width: 480px) {
+      /* Mobile Header Tighter Padding */
+      .main-header nav { padding-left: 12px !important; padding-right: 12px !important; }
+      
+      /* Mobile Portrait - vertical padding only, horizontal handled by clamp() */
+      section[style*="padding"] {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+      }
+      
+      .hero-content[style*="padding:3.5rem"],
+      .hero-content[style*="padding:2.5rem"] {
+        padding: 2rem 1.5rem 1.5rem 1.5rem !important;
+        max-width: 95% !important;
+      }
+      
+      /* Smaller tags/badges */
+      div[style*="min-width:180px"] {
+        min-width: auto !important;
+        font-size: 0.9rem !important;
+        padding: 0.8rem 1.2rem !important;
+      }
+      
+      /* Text Größen Mobile */
+      h1 { font-size: 1.8rem !important; }
+      h2 { font-size: 1.3rem !important; }
+      h3 { font-size: 1.1rem !important; }
+      /* Hero-specific sizing */
+      .hero-content h1 { font-size: 2.4rem !important; }
+      .hero-content h2 { font-size: 1.3rem !important; }
+      
+      /* Mobile Navigation */
+      .main-header nav ul {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+      }
+      .main-header nav ul li a {
+        font-size: 0.9rem !important;
+      }
+    }
+    
+    @media (max-width: 360px) {
+      /* Very Small Mobile */
+      section[style*="padding"] {
+        padding: 1rem 15px !important;
+      }
+      
+      .hero-content[style*="padding"] {
+        padding: 1.5rem 1rem 1rem 1rem !important;
+      }
+      
+      h1 { font-size: 2.0rem !important; }
+      h2 { font-size: 1.3rem !important; }
+      h3 { font-size: 1.1rem !important; }
+      /* Hero-specific sizing */
+      .hero-content h1 { font-size: 2.4rem !important; }
+      .hero-content h2 { font-size: 1.3rem !important; }
+    }
+
+    /* Mobile Navigation Button - hidden by default */
+    .mobile-nav-toggle { 
+      display: none; 
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Mobile Navigation Styles */
+    @media (max-width: 900px) {
+      .mobile-nav-toggle { display: flex; order: 2; width: 48px; height: 48px; background: transparent; border: none; cursor: pointer; z-index: 1002; align-items: center; justify-content: center; }
+      .hamburger-line { display: block; width: 28px; height: 3px; background-color: #fff; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+      .hamburger-line:not(:last-child) { margin-bottom: 5px; }
+      .mobile-nav-toggle.active .hamburger-line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      .mobile-nav-toggle.active .hamburger-line:nth-child(2) { opacity: 0; }
+      .mobile-nav-toggle.active .hamburger-line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+      .main-header nav { display: flex; align-items: center; justify-content: space-between; }
+      .main-header nav ul { 
+        position: fixed; top: 0; right: -100%; width: 300px; max-width: 80vw; height: 100vh; 
+        background: rgba(0,0,0,0.97); backdrop-filter: blur(20px); flex-direction: column; justify-content: center; align-items: center; 
+        gap: 2rem; padding: 2rem; z-index: 1001; transition: right 0.3s ease; margin: 0; 
+      }
+      nav > .mobile-nav-toggle { margin-left: auto; }
+      .main-header nav ul.active { right: 0; }
+      .main-header nav ul li { width: 100%; text-align: center; }
+      .main-header nav ul li a { color: #fff !important; font-size: 1.4rem; display: block; padding: 0.8rem 1rem; }
+    }
+  </style>
+  <style>
+    a {
+      color: #ffb800;
+    }
+  </style>
+    <style>
+        /* Desktop-only spacing adjustment - all sections now inside main */
+        @media (min-width: 769px) {
+            /* Reduce padding between sections inside main */
+            main > section[style*="padding:3rem 80px"] { 
+                padding-bottom: 2rem !important; 
+            }
+            
+            main > section[style*="padding:5rem 80px"] { 
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+        }
+    </style>
+    <style>
+        /* Mobile best-practice for content under hero (P8-inspired) */
+        @media (max-width: 900px) {
+            /* Convert two-column grids to single column */
+            section div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+
+            /* Persona grid specifically */
+            section div[style*="display:grid"][style*="grid-template-columns:1fr 1fr"][style*="gap:2rem"] { grid-template-columns: 1fr !important; }
+
+            /* Donut charts: 4 columns -> 2 columns */
+            section div[style*="grid-template-columns:repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; gap: 1.5rem !important; }
+
+            /* Typography scale */
+            section h2 { font-size: clamp(1.6rem, 5.5vw, 2rem) !important; line-height: 1.2 !important; }
+            section h3 { font-size: clamp(1.2rem, 4.2vw, 1.6rem) !important; }
+            section p { font-size: 1rem !important; line-height: 1.55 !important; }
+
+            /* Wrap chips rows instead of forcing nowrap */
+            div[style*="flex-wrap:nowrap"] { flex-wrap: wrap !important; justify-content: flex-start !important; }
+
+            /* Full-width image containers: remove negative margins */
+            div[style*="width:100vw"][style*="margin-left:-80px"] { width: 100% !important; margin-left: 0 !important; margin-right: 0 !important; }
+
+            /* User Flow image: ensure full width */
+            img[alt="User Flow"] { width: 100% !important; max-width: 100% !important; }
+
+            /* Insights circles: reduce size slightly */
+            div[style*="width:240px"][style*="height:240px"][style*="border-radius:50%"] { width: 180px !important; height: 180px !important; }
+
+            /* Stack insight cards vertically */
+            div[style*="margin-top:2rem"][style*="display:flex"][style*="justify-content:space-between"] { flex-direction: column !important; gap: 1.25rem !important; }
+        }
+
+        @media (max-width: 600px) {
+            /* Donut charts: 1 column on small phones */
+            section div[style*="grid-template-columns:repeat(4"] { grid-template-columns: 1fr !important; }
+
+            /* Donut size adjustments */
+            div[style*="conic-gradient"][style*="border-radius:50%"] { width: 120px !important; height: 120px !important; }
+            div[style*="conic-gradient"] > div[style*="width:110px"][style*="height:110px"] { width: 90px !important; height: 90px !important; }
+
+            /* Persona spacing tighter */
+            section div[style*="display:grid"][style*="grid-template-columns:1fr 1fr"][style*="gap:2rem"] { gap: 1rem !important; }
+        }
+
+        @media (max-width: 480px) {
+            /* Section padding tightened */
+            section[style*="padding:"] { padding: 1.5rem 15px !important; }
+
+            /* Wireframe section: reset full-width on mobile */
+            section[style*="background:#FFE4B5"] {
+                width: 100% !important;
+                left: 0 !important;
+                right: 0 !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                padding: 2rem 15px !important;
+            }
+
+            /* Quote text smaller for readability */
+            section[style*="background:#94A293"] p { font-size: 1.2rem !important; }
+
+            /* Chips sizing */
+            div[style*="background:#94A293"][style*="border-radius:8px"] { font-size: 0.95rem !important; padding: 0.8rem 1rem !important; }
+
+            /* Insight circles smaller */
+            div[style*="width:180px"][style*="height:180px"][style*="border-radius:50%"] { width: 160px !important; height: 160px !important; }
+
+            /* Wireframe headings: smaller on mobile */
+            section[style*="background:#FFE4B5"] h2 { font-size: 1.8rem !important; }
+            section[style*="background:#FFE4B5"] h3 { font-size: 1.4rem !important; }
+            section[style*="background:#FFE4B5"] p { font-size: 0.95rem !important; line-height: 1.5 !important; }
+
+            /* Wireframe screens: scale to fit 4 per row on mobile */
+            section img[src*="Planora/"][src$=".png"][alt*="Screen"],
+            section img[src*="Planora/00.png"],
+            section img[src*="Planora/01.png"],
+            section img[src*="Planora/02.png"],
+            section img[src*="Planora/03.png"],
+            section img[src*="Planora/04.png"],
+            section img[src*="Planora/05.png"],
+            section img[src*="Planora/06.png"],
+            section img[src*="Planora/07.png"],
+            section img[src*="Planora/08.png"],
+            section img[src*="Planora/09.png"],
+            section img[src*="Planora/10.png"],
+            section img[src*="Planora/11.png"],
+            section img[src*="Planora/12.png"] {
+                width: auto !important;
+                height: 140px !important;
+                max-width: 21vw !important;
+            }
+
+            /* Wireframe container: adjust gap for smaller screens */
+            section div[style*="display:flex"][style*="justify-content:space-around"] {
+                gap: 0.3rem !important;
+                justify-content: space-between !important;
+                flex-wrap: nowrap !important;
+                overflow: visible !important;
+            }
+        }
+
+        /* iPhone SE and small mobile optimization */
+        @media (max-width: 375px) {
+            /* Prevent horizontal overflow on body/html */
+            html, body {
+                overflow-x: hidden !important;
+                max-width: 100vw !important;
+            }
+
+            /* Reset all full-width sections */
+            section[style*="width:100vw"] {
+                width: 100% !important;
+                left: 0 !important;
+                right: 0 !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+                box-sizing: border-box !important;
+            }
+
+            /* Tighter padding for all sections */
+            section[style*="padding:"] {
+                padding: 1.5rem 12px !important;
+            }
+
+            /* Wireframe screens even smaller */
+            section img[src*="Planora/"][src$=".png"][alt*="Screen"] {
+                height: 120px !important;
+                max-width: 20vw !important;
+            }
+
+            /* Wireframe container tighter */
+            section div[style*="display:flex"][style*="justify-content:space-around"] {
+                gap: 0.2rem !important;
+                padding: 0 !important;
+            }
+
+            /* Smaller typography */
+            section[style*="background:#FFE4B5"] h2 { font-size: 1.5rem !important; }
+            section[style*="background:#FFE4B5"] h3 { font-size: 1.2rem !important; }
+            section[style*="background:#FFE4B5"] p { font-size: 0.9rem !important; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-to-main">Zum Hauptinhalt springen</a>
+    <div id="header-placeholder"></div>
+    <section class="hero" style="background: url('../../img/UXUI/Planora/63f7859e-393c-4393-a7eb-127ef2966c57.png') center center/cover no-repeat; height:100vh; width:100vw; display:flex; align-items:center; justify-content:center; position:relative; z-index:0;">
+            <div class="hero-content" style="background:rgba(0,0,0,0.32);color:#fff;max-width:700px;padding:3.5rem 3.5rem 3rem 3.5rem;text-align:center;margin:0 auto;">
+                <h1 style="font-size:2.8rem;font-weight:800;margin:0 0 0.2em 0;line-height:1.3;">Planora</h1>
+                <h2 style="font-size:1.8rem;font-weight:600;margin:0 0 1.2em 0;line-height:1.3;">Reiseplanung, die sich dir anpasst.</h2>
+                <div style="font-size:0.95rem;letter-spacing:0.1em;margin-bottom:1.2em;line-height:1.7;">UX/UI-DESIGN | MOBILE APP</div>
+            </div>
+        </section>
+    <main id="main-content" style="margin-top: 0;">
+        <!-- Projektinfos wie in P1_... -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:3rem 80px 3rem 80px;display:flex;flex-wrap:wrap;gap:2.5rem 3.5rem;justify-content:flex-start;box-sizing:border-box;">
+            <div style="flex:1 1 0;min-width:180px;">
+                <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">MEINE ROLLE & TEAM</div>
+                <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                <div style="font-weight:400;font-size:16px;">UX/UI-Designer im 3-Personen-Team mit Lars Heckmann und Julian Wegner</div>
+            </div>
+            <div style="flex:1 1 0;min-width:180px;">
+                <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">AUFGABE</div>
+                <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                <div style="font-weight:400;font-size:16px;">Von der Aufgabe bis zum Mid-Fidelity-Wireframes einer mobiler App (Fokus auf den UX-Research mit Anfängen des UI-Design inklusive Prototyping)</div>
+            </div>
+            <div style="flex:1 1 0;min-width:180px;">
+                <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">PROJEKTZEITRAUM & -RAHMEN</div>
+                <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                <div style="font-weight:400;font-size:16px;">April - Mai 2025: einwöchiger Design-Sprint im Rahmen des UX/UI-Bootcamps bei neuefische</div>
+            </div>
+            <div style="flex:1 1 0;min-width:180px;">
+                <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">TOOLS</div>
+                <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                <div style="font-weight:400;font-size:16px;">Figma, FigJam, Notion, ChatGPT, Gemini</div>
+            </div>
+        </section>
+
+        <!-- Two Column Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.2;margin:0 0 2rem 0;">01 Problem</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.6;color:#444;margin:0 0 2rem 0;">Reisende stehen vor der Herausforderung, dass sie für Flüge, Hotels, Packlisten und Aktivitäten viele verschiedene Apps oder Webseiten nutzen müssen. Dadurch wird die Planung unübersichtlich, zeitaufwendig und fehleranfällig.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Two Column Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.2;margin:0 0 2rem 0;">02 Lösung</h2>
+                </div>
+                <div style="flex:1;">
+                    <p style="font-size:1.1rem;line-height:1.6;color:#444;margin:0 0 2rem 0;">Planora löst dieses Problem, indem es alle wichtigen Reiseinformationen – von Flügen über Hotelbuchungen bis hin zu Aktivitäten – in einer einzigen App bündelt. Durch eine intuitive Bedienung, automatische Organisation und smarte Empfehlungen wird die Reiseplanung übersichtlich, zeitsparend und stressfrei.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Single Column Quote Section -->
+        <section style="background:#94A293;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="margin:0 auto;text-align:center;">
+                <p style="font-size:1.8rem;line-height:1.5;color:#fff;margin:0;font-style:italic;font-weight:bold;">Planora ist Dein mobiler smarter Reise-Assistent, der alle wichtigen Informationen von Flügen bis zu Hotelbuchungen intuitiv und übersichtlich für Dich bündelt. So wird selbst die spontanste Reise zu einem perfekt organisierten Abenteuer ohne Planungsfrust.</p>
+            </div>
+        </section>
+
+        <!-- Dritte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.2;margin:0 0 2rem 0;">03 UX-Research</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.6;color:#444;margin:0 0 2rem 0;"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vierte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.2;margin:0 0 2rem 0;">Desktop Research</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.6;color:#444;margin:0 0 2rem 0;">Wir analysierten 6 bestehende Reise- und Planungsapps. Diese überzeugten vor allem durch hochwertige Bilder, emotionale Texte und die Integration von Bewertungen, die Inspiration und Orientierung geben. Allerdings boten sie jeweils nur Teilfunktionen – etwa zur Flug- oder Hotelbuchung, zur Erstellung von Packlisten oder zur Sammlung von Empfehlungen. Eine App, die alle diese Aspekte in einer einzigen, ganzheitlichen Lösung vereint, fanden wir nicht. Genau hier setzt Planora an: als integrierter Reise-Assistent, der Inspiration, Organisation und Planung in einer Anwendung bündelt.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fünfte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.2;margin:0 0 2rem 0;">Quantitative Insights</h2>
+                </div>
+                <div style="flex:2;">
+                    <div style="display:flex;gap:1rem;flex-wrap:nowrap;justify-content:flex-end;">
+                        <div style="background:#94A293;color:#fff;padding:1rem 1.5rem;border-radius:8px;font-size:1rem;font-weight:600;text-align:center;min-width:180px;white-space:nowrap;">16 Online Befragungen</div>
+                        <div style="background:#94A293;color:#fff;padding:1rem 1.5rem;border-radius:8px;font-size:1rem;font-weight:600;text-align:center;min-width:180px;white-space:nowrap;">Altersgruppen: 20-80 Jahre</div>
+                        <div style="background:#94A293;color:#fff;padding:1rem 1.5rem;border-radius:8px;font-size:1rem;font-weight:600;text-align:center;min-width:180px;white-space:nowrap;">Du & Deine Reise</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donut Charts Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;">
+                <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:3rem;width:100%;">
+                    <!-- Chart 1 -->
+                    <div style="text-align:center;">
+                        <div style="width:150px;height:150px;border-radius:50%;margin:0 auto 1rem auto;position:relative;background:conic-gradient(#94A293 0% 81%, #f5f5f5 81% 100%);display:flex;align-items:center;justify-content:center;">
+                            <div style="width:110px;height:110px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                                <span style="color:#94A293;font-size:1.2rem;font-weight:700;">81%</span>
+                            </div>
+                        </div>
+                        <div>
+                            <ul style="font-size:0.9rem;color:#666;margin:0;padding-left:1.2rem;text-align:left;display:inline-block;line-height:1.4;">
+                                <li>fühlen sich überfordert, wenn sie gleichzeitig mehrere Apps nutzen müssen</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Chart 2 -->
+                    <div style="text-align:center;">
+                        <div style="width:150px;height:150px;border-radius:50%;margin:0 auto 1rem auto;position:relative;background:conic-gradient(#94A293 0% 93%, #f5f5f5 93% 100%);display:flex;align-items:center;justify-content:center;">
+                            <div style="width:110px;height:110px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                                <span style="color:#94A293;font-size:1.2rem;font-weight:700;">93%</span>
+                            </div>
+                        </div>
+                        <div>
+                            <ul style="font-size:0.9rem;color:#666;margin:0 0 0.5rem 0;padding-left:1.2rem;text-align:left;display:inline-block;line-height:1.4;">
+                                <li>planen ihre Reise gemeinsam mit Freund:innen / Familie / Kolleg:innen</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Chart 3 -->
+                    <div style="text-align:center;">
+                        <div style="width:150px;height:150px;border-radius:50%;margin:0 auto 1rem auto;position:relative;background:conic-gradient(#94A293 0% 73%, #f5f5f5 73% 100%);display:flex;align-items:center;justify-content:center;">
+                            <div style="width:110px;height:110px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                                <span style="color:#94A293;font-size:1.2rem;font-weight:700;">73%</span>
+                            </div>
+                        </div>
+                        <div>
+                            <ul style="font-size:0.9rem;color:#666;margin:0 0 0.5rem 0;padding-left:1.2rem;text-align:left;display:inline-block;line-height:1.4;">
+                                <li>nutzen mehrere Apps für ihre Reiseplanung</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Chart 4 -->
+                    <div style="text-align:center;">
+                        <div style="width:150px;height:150px;border-radius:50%;margin:0 auto 1rem auto;position:relative;background:conic-gradient(#94A293 0% 93%, #f5f5f5 93% 100%);display:flex;align-items:center;justify-content:center;">
+                            <div style="width:110px;height:110px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                                <span style="color:#94A293;font-size:1.2rem;font-weight:700;">93%</span>
+                            </div>
+                        </div>
+                        <div>
+                            <ul style="font-size:0.9rem;color:#666;margin:0 0 0.5rem 0;padding-left:1.2rem;text-align:left;display:inline-block;line-height:1.4;">
+                                <li>ist die Offlinenutzung von Karten, Navigation und Buchungsdetails besonders wichtig</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Qualitative Insights Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.2;margin:0 0 2rem 0;">Qualitative Insights</h2>
+                </div>
+                <div style="flex:2;">
+                    <div style="display:flex;gap:1rem;flex-wrap:nowrap;justify-content:flex-end;">
+                        <div style="background:#94A293;color:#fff;padding:1rem 1.5rem;border-radius:8px;font-size:1rem;font-weight:600;text-align:center;min-width:180px;white-space:nowrap;">1 Interview</div>
+                        <div style="background:#94A293;color:#fff;padding:1rem 1.5rem;border-radius:8px;font-size:1rem;font-weight:600;text-align:center;min-width:180px;white-space:nowrap;">Altersgruppe: 30-40 Jahre</div>
+                        <div style="background:#94A293;color:#fff;padding:1rem 1.5rem;border-radius:8px;font-size:1rem;font-weight:600;text-align:center;min-width:180px;white-space:nowrap;">Du & Deine Reise</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Qualitative Insights Quotes Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:1rem 80px 4rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <div style="background:#94A293;padding:1.5rem;border-radius:8px;margin:0 0 1rem 0;">
+                        <p style="font-size:1.1rem;font-style:italic;color:#fff;margin:0 0 2rem 0;line-height:1.6;">
+                            "<strong>Alle Reiseinfos</strong> wie Flüge, Hotels, Aktivitäten, Sicherheitshinweise, Packlisten <strong>an einem Ort</strong> wäre sehr hilfreich."
+                        </p>
+                        <p style="font-size:1rem;font-weight:600;color:#fff;margin:0;line-height:1.4;">
+                            → Bedürfnis nach All-in-One-Lösung
+                        </p>
+                    </div>
+                </div>
+                <div style="flex:1;">
+                    <div style="background:#94A293;padding:1.5rem;border-radius:8px;margin:0 0 1rem 0;">
+                        <p style="font-size:1.1rem;font-style:italic;color:#fff;margin:0 0 2rem 0;line-height:1.6;">
+                            "Planung mit vielen Beteiligten ist anstrengend, weil man das Gefühl bekommt, dass man sich sehr häufig alles durchschauen muss und man nicht genau weiß, was dabei neu ist."
+                        </p>
+                        <p style="font-size:1rem;font-weight:600;color:#fff;margin:0;line-height:1.4;">
+                            → Bedürfnis nach Benachrichtigungen bei Änderungen in der Reiseplanung
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Insights Additional Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.2;margin:0 0 2rem 0;">Research Insights</h2>
+                </div>
+                <div style="flex:1;">
+                </div>
+            </div>
+
+            <!-- Full-width button container -->
+            <div style="margin-top:2rem;display:flex;gap:2rem;justify-content:space-between;width:100%;">
+                <!-- Insight 1 -->
+                <div style="flex:1;text-align:center;">
+                    <div style="width:240px;height:240px;border-radius:50%;background:#94A293;margin:0 auto 1rem auto;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:1.5rem;">
+                        <div style="font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:0.5rem;">Insight 1</div>
+                        <div style="font-size:1.3rem;font-weight:600;color:#fff;line-height:1.3;">All-in-One-Lösung</div>
+                    </div>
+                    <p style="font-size:1.1rem;font-weight:600;color:#94A293;margin:0;line-height:1.4;">→ Reiseplanung soll stressfreier werden.</p>
+                </div>
+
+                <!-- Insight 2 -->
+                <div style="flex:1;text-align:center;">
+                    <div style="width:240px;height:240px;border-radius:50%;background:#94A293;margin:0 auto 1rem auto;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:1.5rem;">
+                        <div style="font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:0.5rem;">Insight 2</div>
+                        <div style="font-size:1.3rem;font-weight:600;color:#fff;line-height:1.3;">Offline Nutzung</div>
+                    </div>
+                    <p style="font-size:1.1rem;font-weight:600;color:#94A293;margin:0;line-height:1.4;">→ Möglichst viele Informationen offline verfügbar machen.</p>
+                </div>
+
+                <!-- Insight 3 -->
+                <div style="flex:1;text-align:center;">
+                    <div style="width:240px;height:240px;border-radius:50%;background:#94A293;margin:0 auto 1rem auto;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:1.5rem;">
+                        <div style="font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:0.5rem;">Insight 3</div>
+                        <div style="font-size:1.3rem;font-weight:600;color:#fff;line-height:1.3;">Immer Up-to-date</div>
+                    </div>
+                    <p style="font-size:1.1rem;font-weight:600;color:#94A293;margin:0;line-height:1.4;">→ Bei Änderungen sind Benachrichtigungen erwünscht.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Desktop Research Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.2;margin:0 0 2rem 0;">How might we...?</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.6;color:#444;margin:0 0 1rem 0;"><strong>Wie könnten wir einen Reise-Assistenten entwickeln,</strong></p>
+                    <ul style="font-size:1.1rem;line-height:1.6;color:#444;margin:0;padding-left:1.5rem;">
+                        <li style="margin-bottom:0.5rem;">der alle wichtigen Reiseinformationen intuitiv bündelt und</li>
+                        <li>so auch spontane Reisen ohne Frust ermöglicht?</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sechste Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#000;line-height:1.2;margin:0 0 2rem 0;">04 Struktur & Fluss</h2>
+                </div>
+                <div style="flex:2;">
+                </div>
+            </div>
+
+            <!-- Full-width Image Container -->
+            <div style="width:100vw;margin-left:-80px;margin-right:-80px;margin-top:2rem;">
+                <img src="../../img/UXUI/Planora/Sitemap.jpg" alt="Struktur & Fluss - Sitemap" style="width:100%;height:auto;max-width:100%;display:block;" loading="lazy" decoding="async">
+            </div>
+        </section>
+
+        <!-- User Flow Image Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;text-align:center;">
+                <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.2;margin:0 0 2rem 0;">User Flow</h2>
+                <img src="../../img/UXUI/Planora/User Flow.jpg" alt="User Flow" style="width:50%;height:auto;max-width:50%;display:block;margin:0 auto;" loading="lazy" decoding="async">
+            </div>
+        </section>
+
+        <!-- Siebte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.2;margin:0 0 2rem 0;">05 Zielgruppe & Persona</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.6;color:#444;margin:0 0 2rem 0;">Die Hauptzielgruppe besteht aus <b> reisenden Entdeckern </b> (25–50 Jahre), meist berufstätig und urban lebend, die ihre Freizeit aktiv gestalten und Reisen bewusst planen. Sie nutzen Technik regelmäßig, schätzen jedoch Tools, die Planung vereinfachen, Inspiration liefern und alle relevanten Informationen an einem Ort bündeln.<br><br>Weitere Zielgruppen:<br><b> Familien: </b> Eltern, die Ausflüge und Ferienaktivitäten gut strukturiert und stressfrei planen möchten.<br><b> Freundes- oder Wandergruppen: </b> Gruppen, die ihre Reisen gemeinsam organisieren, Routen planen und Aktivitäten interaktiv koordinieren wollen.<br><b> Spontanreisende: </b> Nutzer, die kurzfristige Trips planen und schnelle, verlässliche Empfehlungen und Buchungsmöglichkeiten suchen.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Persona Image Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;text-align:left;margin-bottom:2rem;">
+                <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.2;margin:0 0 2rem 0;">Persona</h2>
+            </div>
+            <div style="width:100%;display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+                <img src="../../img/UXUI/Planora/Vorderseite.png" alt="Persona Vorderseite" style="width:100%;height:auto;max-width:100%;display:block;" loading="lazy" decoding="async">
+                <img src="../../img/UXUI/Planora/Rueckseite.png" alt="Persona Rückseite" style="width:100%;height:auto;max-width:100%;display:block;" loading="lazy" decoding="async">
+            </div>
+        </section>
+
+        <!-- Contact Background Section with Full-Width Image -->
+        <section style="background:#FFF8DC;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;text-align:left;margin-bottom:2rem;">
+                <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.2;margin:0 0 2rem 0;">User Journey Map</h2>
+            </div>
+            <div style="width:100%;">
+                <img src="../../img/UXUI/Planora/User Journey Map.png" alt="User Journey Map - Planora" style="width:100%;height:auto;max-width:100%;display:block;" loading="lazy" decoding="async">
+            </div>
+        </section>
+
+        <!-- Zwölfte Zweispalten-Section -->
+        <section style="background:#FFE4B5;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.2;margin:0 0 2rem 0;">06 Mid-fidelity Wireframes</h2>
+                    
+                    <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:2rem 0 1rem 0;">Wireflow</h3>
+                    <div style="display:flex;justify-content:space-around;gap:1rem;margin-bottom:1rem;">
+                        <img src="../../img/UXUI/Planora/00.png" alt="Onboarding Screen 1" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/Planora/01.png" alt="Onboarding Screen 2" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/Planora/02.png" alt="Onboarding Screen 3" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/Planora/03.png" alt="Onboarding Screen 4" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                    </div>
+                    <p style="font-size:1.1rem;line-height:1.6;color:#444;margin:0 0 2rem 0;">Dieser erste Abschnitt führt den Nutzer durch das <strong>Onboarding</strong> der App, beginnend mit einem persönlichen <strong>Willkommensbildschirm</strong>, der zum Planen einer Reise animiert. Anschließend gelangt der Nutzer zur <strong>Reiseübersicht</strong>, wo er bestehende Reisen einsehen und eine <strong>neue Reise</strong> starten kann. Beim Start einer neuen Reise werden grundlegende Informationen wie <strong>Ziel</strong>, <strong>Zeitraum</strong> und <strong>Budget</strong> abgefragt, bevor der Nutzer auswählt, ob er <strong>Aktivitäten</strong>, <strong>Unterkünfte</strong> oder <strong>Flüge</strong> suchen möchte.</p>
+                    
+                    <div style="display:flex;justify-content:space-around;gap:1rem;margin-bottom:1rem;">
+                        <img src="../../img/UXUI/Planora/04.png" alt="Hauptfunktion Screen 1" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/Planora/05.png" alt="Hauptfunktion Screen 2" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/Planora/06.png" alt="Hauptfunktion Screen 3" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/Planora/07.png" alt="Hauptfunktion Screen 4" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                    </div>
+                    <p style="font-size:1.1rem;line-height:1.6;color:#444;margin:0 0 2rem 0;">Fokussiert auf die <strong>Flugsuche</strong>, ermöglicht dieser Abschnitt dem Nutzer, gezielt nach <strong>Flügen</strong> zu suchen. Nach der Auswahl „<strong>Flug</strong>“ kann der Nutzer Präferenzen für <strong>Direktflüge</strong> oder die maximale Anzahl von <strong>Umstiegen</strong> festlegen. Die <strong>Suchergebnisse</strong> werden übersichtlich auf einer <strong>Karte</strong> dargestellt, ergänzt durch eine <strong>Liste</strong> verfügbarer <strong>Flugzeiten</strong>. Abschließend kann der Nutzer die <strong>Details</strong> eines ausgewählten Fluges einsehen und diesen direkt <strong>buchen</strong>.</p>
+                    
+                    <div style="display:flex;justify-content:space-around;gap:1rem;margin-bottom:1rem;">
+                        <img src="../../img/UXUI/Planora/08.png" alt="Nebenfunktionen Screen 1" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/Planora/09.png" alt="Nebenfunktionen Screen 2" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/Planora/10.png" alt="Nebenfunktionen Screen 3" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/Planora/11.png" alt="Nebenfunktionen Screen 4" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/Planora/12.png" alt="Nebenfunktionen Screen 5" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                    </div>
+                    <p style="font-size:1.1rem;line-height:1.6;color:#444;margin:0 0 2rem 0;">Dieser letzte Abschnitt behandelt die finale Phase der Reiseplanung. Nach der Buchung erhält der Nutzer eine <strong>Bestätigung</strong>. Der gebuchte Flug wird in der <strong>Reiseübersicht</strong> sichtbar und in den detaillierten <strong>Reisedaten</strong> zusammen mit weiteren <strong>Aktivitäten</strong> angezeigt. Ein besonderes Feature ist der <strong>Reise-Countdown</strong>, der die verbleibende Zeit bis zum Start anzeigt, ergänzt durch <strong>Push-Benachrichtigungen</strong>, die an wichtige Reiseereignisse wie den <strong>Check-in</strong> erinnern.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vierzehnte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.2;margin:0 0 2rem 0;">07 Herausforderungen & Learnings</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.6;color:#444;margin:0 0 2rem 0;"><b>Fokus durch Zeitdruck:</b> Planora war unser erstes UX-Projekt im Bootcamp und zugleich das erste, das wir als Team realisierten. Der enge 5-Tage-Sprint zwang uns dazu, radikal zu priorisieren und uns ausschließlich auf das MVP zu konzentrieren.<br><br><b>User Research:</b> Zum ersten Mal führten wir eigene Nutzerforschung durch. Dabei gingen wir noch recht unerfahren und etwas blauäugig vor, zudem blieb nur wenig Zeit für eine tiefgehende Analyse. Dennoch erhielten wir wertvolle erste Einblicke in die Bedürfnisse der Zielgruppe.</p>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;margin-top:4rem;">
+                <div style="flex:1;">
+                    <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:0 0 1rem 0;">Meine persönlichen Learnings</h3>
+                </div>
+                <div style="flex:1;">
+                    <p style="font-size:1.1rem;line-height:1.6;color:#444;margin:0 0 2rem 0;"><b> 1. User Research als Wegweiser: </b> Nutzerforschung bildet die Grundlage für fundierte Designentscheidungen, vereinfacht den Prozess und gibt Orientierung bei Unsicherheiten.<br><br><b> 2. Klare Struktur im Prozess: </b> Eine übersichtliche Prozessstruktur hilft, jederzeit den Überblick zu behalten und fokussiert zu arbeiten.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fünfzehnte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.2;margin:0 0 2rem 0;">08 Fazit & Ausblick</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.6;color:#444;margin:0 0 2rem 0;">Planora ist eine mobile App im Anfangsstadium, die alle Aspekte der Reiseplanung bündelt, von Flügen über Unterkünfte bis zu Packlisten und lokalen Empfehlungen, den Planungsprozess für Nutzer deutlich einfacher, übersichtlicher und stressfreier machen kann.</p>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;margin-top:4rem;">
+                <div style="flex:1;">
+                    <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:0 0 1rem 0;">Mein Fazit als Designer</h3>
+                </div>
+                <div style="flex:1;">
+                    <p style="font-size:1.1rem;line-height:1.6;color:#444;margin:0 0 2rem 0;">Für mich war das Projekt eine wertvolle Erfahrung und der erste Kontakt zu  UX-Design und Nutzerforschung. Ich habe gelernt, wie wichtig eine klare Prozessübersicht ist und wie User Research den Gestaltungsprozess vereinfacht und Unsicherheiten in Designentscheidungen beseitigt. Zudem zeigte sich, dass das Fokussieren auf ein MVP entscheidend ist, um in kurzer Zeit ein funktionierendes Produkt zu entwickeln.</p>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;margin-top:4rem;">
+                <div style="flex:1;">
+                    <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:0 0 1rem 0;">Nächste Schritte</h3>
+                </div>
+                <div style="flex:1;">
+                    <p style="font-size:1.1rem;line-height:1.6;color:#444;margin:0 0 2rem 0;"><b>1. Vertiefter User Research:</b> Weitere Interviews und eine zweite Survey durchführen, um die App stärker an den Bedürfnissen der Nutzer auszurichten.<br><br><b>2. Erweiterung der Funktionen:</b> Zusätzliche Features wie Reisebudget-Tracking, Offline-Karten oder personalisierte Empfehlungen integrieren.<br><br><b>3. UI-Design entwickeln:</b> Ein ansprechendes visuelles Design erstellen und die Nutzerführung optimieren.<br><br><b>4. Technische Umsetzung:</b> Plattformübergreifende Nutzung prüfen, Performance optimieren und Offline-Funktionalität sicherstellen.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation: Letztes/Nächstes Projekt -->
+        <section class="projekt-nav-section">
+            <div class="projekt-nav-row">
+                <div class="projekt-nav-btn projekt-nav-btn-left">
+                    <a href="P4_IA_KlosterHolzen.html" class="btn-secondary projekt-btn" style="display: flex !important; align-items: center !important;">
+                        <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px; flex-shrink: 0;">
+                            <path d="M76 48L20 48M20 48L44 24M20 48L44 72" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        LETZTES PROJEKT
+                    </a>
+                    <div class="projekt-vorschau">
+                        <img src="../../img/IA/KlosterHolzen/Generated Image September 16, 2025 - 8_30PM.png" alt="Festsaal im Klostergasthof Holzen - helle Räume mit historischem Gewölbe für Hochzeiten und Events" loading="lazy" decoding="async">
+                        <div class="projekt-vorschau-title">Festsaal im Klostergasthof</div>
+                        <div class="projekt-vorschau-sub">Veranstaltungsgastronomie für Hochzeiten und Events</div>
+                    </div>
+                </div>
+                <div class="projekt-nav-btn projekt-nav-btn-right">
+                    <a href="P6_UXUI_OmNomZen.html" class="btn-secondary projekt-btn" style="display: flex !important; align-items: center !important;">
+                        NÄCHSTES PROJEKT
+                        <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 8px; flex-shrink: 0;">
+                            <path d="M20 48L76 48M76 48L52 24M76 48L52 72" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <div class="projekt-vorschau">
+                        <img src="../../img/UXUI/OmNomZen/7b38899a-5ebc-45eb-8080-a8089353c808 (1).png" alt="OmNomZen Bio-Ashwagandha-Gummibärchen - natürliche Nahrungsergänzung für Stressabbau und Entspannung" loading="lazy" decoding="async">
+                        <div class="projekt-vorschau-title">OmNomZen</div>
+                        <div class="projekt-vorschau-sub">Stressabbau mit Bio-Ashwagandha-Gummibärchen</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                <style>
+                    .projekt-nav-section {
+                        width: 100vw;
+                        position: relative;
+                        left: 50%;
+                        right: 50%;
+                        margin-left: -50vw;
+                        margin-right: -50vw;
+                        background: #fff;
+                        padding: 4rem 80px 4rem 80px;
+                        box-sizing: border-box;
+                    }
+                    .projekt-nav-row {
+                        display: flex;
+                        justify-content: space-between;
+                        gap: 2rem;
+                    }
+                    .projekt-nav-btn {
+                        position: relative;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        min-width: 220px;
+                    }
+                    .projekt-nav-btn-right {
+                        align-items: flex-end;
+                    }
+
+                    .projekt-vorschau {
+                        display: none;
+                        position: absolute;
+                        left: 0;
+                        bottom: 110%;
+                        background: #fff;
+                        border-radius: 1.2rem;
+                        box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+                        padding: 1rem;
+                        width: 260px;
+                        z-index: 10;
+                        text-align: left;
+                    }
+                    .projekt-nav-btn-right .projekt-vorschau {
+                        left: 0;
+                        right: auto;
+                        text-align: left;
+                    }
+                    .projekt-nav-btn:hover .projekt-vorschau {
+                        display: block;
+                    }
+                    .projekt-vorschau img {
+                        width: 100%;
+                        border-radius: 0.7rem;
+                        margin-bottom: 0.7em;
+                    }
+                    .projekt-vorschau-title {
+                        font-weight: 700;
+                        font-size: 1.1rem;
+                    }
+                    .projekt-vorschau-sub {
+                        font-size: 0.98rem;
+                        color: #888;
+                    }
+                    @media (max-width: 900px) {
+                        .projekt-nav-section {
+                            padding-left: 24px;
+                            padding-right: 24px;
+                        }
+                        .projekt-nav-row {
+                            flex-direction: column;
+                            gap: 1.5rem;
+                            align-items: stretch;
+                        }
+                        .projekt-nav-btn, .projekt-nav-btn-right {
+                            align-items: flex-start !important;
+                        }
+                        .projekt-nav-btn-right .projekt-vorschau {
+                            right: auto;
+                            left: 0;
+                            text-align: left;
+                        }
+                    }
+                </style>
+                <section class="contact" id="contact" style="width:100vw;max-width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding-left:80px;padding-right:80px;box-sizing:border-box;">
+                    <div class="contact-row" style="display:flex;align-items:center;gap:2.5rem;justify-content:space-between;width:100%;max-width:100%;box-sizing:border-box;">
+                        <div class="contact-content" style="margin:0;flex:1;">
+                            <h2 style="margin:0;color:#fff;">GET<br>IN<br>TOUCH</h2>
+                        </div>
+                        <div style="flex:0 0 auto;display:flex;justify-content:flex-end;>">
+                            <a href="contact.html" class="btn-contact round-yellow" aria-label="Kontakt aufnehmen" >
+                              <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 48L76 48M76 48L52 24M76 48L52 72" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <style>
+                        .btn-contact.round-yellow {
+                            width: 192px;
+                            height: 192px;
+                            border-radius: 50%;
+                            background: #FFB800;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+                            border: none;
+                            transition: background 0.2s, box-shadow 0.2s;
+                            padding: 0;
+                        }
+                        .btn-contact.round-yellow::after {
+                            display: none;
+                        }
+                        .btn-contact.round-yellow:hover, .btn-contact.round-yellow:focus {
+                            background: #e6a600;
+                            box-shadow: 0 12px 48px rgba(0,0,0,0.16);
+                        }
+                        .btn-contact.round-yellow svg {
+                            width: 96px;
+                            height: 96px;
+                            display: block;
+                        }
+                        .btn-contact.round-yellow svg path {
+                            stroke: #fff;
+                        }
+                        
+                        /* Mobile: GET IN TOUCH larger than desktop */
+                        @media (max-width: 900px) {
+                            .contact-content h2 { font-size: 4rem !important; line-height: 1.1 !important; }
+                        }
+                        @media (max-width: 768px) {
+                            .contact-content h2 { font-size: 3.5rem !important; line-height: 1.1 !important; }
+                        }
+                        @media (max-width: 480px) {
+                            .contact-content h2 { font-size: 3rem !important; line-height: 1.1 !important; }
+                            .btn-contact.round-yellow { width: 160px !important; height: 160px !important; }
+                        }
+                        @media (max-width: 375px) {
+                            .contact-content h2 { font-size: 2.5rem !important; line-height: 1.1 !important; }
+                            .btn-contact.round-yellow { width: 144px !important; height: 144px !important; }
+                        }
+                    </style>
+                </section>
+            </main>
+
+            <footer class="main-footer" role="contentinfo">
+                <div class="footer-row" style="padding-top:1.2rem;padding-bottom:1.2rem;">
+                    <div class="footer-block">
+                        <div class="footer-title">VERSION</div>
+                        <div>2025 © Edition</div>
+                    </div>
+                    <div class="footer-block">
+                        <div class="footer-title">LOKALE ZEIT</div>
+                        <div><span id="local-time"></span></div>
+                    </div>
+                    <div class="footer-block">
+                        <div class="footer-title">SOZIALE NETZWERKE</div>
+                        <div class="footer-socials">
+                            <a href="https://www.linkedin.com/in/anika-warncke" target="_blank" rel="noopener">LinkedIn</a>
+                            <a href="https://www.instagram.com/dein_instagram" target="_blank" rel="noopener">Instagram</a>
+                        </div>
+                    </div>
+                    <div class="footer-block">
+                        <div class="footer-title">RECHTLICHES</div>
+                        <a href="datenschutz.html">Datenschutz</a>
+                        <a href="impressum.html">Impressum</a>
+                    </div>
+                </div>
+            </footer>
+
+
+
+  
+</body>
+    
+  <button class="back-to-top" aria-label="Nach oben scrollen" role="button" tabindex="0" style="--progress: 0deg">
+    <svg width="24" height="24" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M48 76L48 20M48 20L24 44M48 20L72 44" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <script>
+        // Lokale Zeit sofort anzeigen
+        function updateLocalTime() {
+            const now = new Date();
+            const options = { hour: '2-digit', minute: '2-digit' };
+            let timeString = now.toLocaleTimeString('de-DE', options) + ' Uhr';
+            // MESZ/MEZ je nach Sommerzeit
+            const isDST = now.getTimezoneOffset() < -60;
+            timeString += isDST ? ' MESZ' : ' MEZ';
+            document.getElementById('local-time').textContent = timeString;
+        }
+        updateLocalTime();
+        setInterval(updateLocalTime, 10000);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('.main-header');
+            const hero = document.querySelector('.hero');
+            window.addEventListener('scroll', function() {
+                const heroHeight = hero.offsetHeight;
+                if(window.scrollY > heroHeight - 60) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+        setInterval(updateLocalTime, 10000);
+    </script>
+
+    <script>
+        // Back to Top Button
+        const backToTopBtn = document.querySelector('.back-to-top');
+        if (backToTopBtn) {
+          let hasShownOnce = false;
+          
+          function updateScrollProgress() {
+            const scrollTop = window.pageYOffset;
+            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.max(0, Math.min(100, (scrollTop / documentHeight) * 100));
+            
+            const easedPercent = scrollPercent < 50 ? 
+              2 * scrollPercent * scrollPercent / 100 :
+              1 - Math.pow(-2 * scrollPercent + 2, 3) / 2;
+            
+            const progressDeg = (easedPercent / 100) * 360;
+            backToTopBtn.style.setProperty('--progress', `${progressDeg}deg`);
+            
+            // Hero-Bereich als Threshold nutzen
+            const hero = document.querySelector('.hero');
+            const heroHeight = hero ? hero.offsetHeight : window.innerHeight * 0.8;
+            
+            if (scrollTop > heroHeight) {
+              if (!backToTopBtn.classList.contains('visible')) {
+                backToTopBtn.classList.add('visible');
+                
+                if (!hasShownOnce) {
+                  hasShownOnce = true;
+                  backToTopBtn.classList.add('first-show');
+                  setTimeout(() => {
+                    backToTopBtn.classList.remove('first-show');
+                  }, 600);
+                }
+              }
+            } else {
+              backToTopBtn.classList.remove('visible');
+            }
+          }
+          
+          backToTopBtn.addEventListener('click', () => {
+            const startTime = performance.now();
+            const startPos = window.pageYOffset;
+            const duration = Math.min(1200, Math.max(600, startPos / 3));
+            
+            backToTopBtn.style.pointerEvents = 'none';
+            backToTopBtn.style.opacity = '0.7';
+            
+            function scrollStep(currentTime) {
+              const elapsed = currentTime - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              const ease = 1 - Math.pow(1 - progress, 4);
+              
+              window.scrollTo(0, startPos * (1 - ease));
+              
+              if (progress < 1) {
+                requestAnimationFrame(scrollStep);
+              } else {
+                backToTopBtn.style.pointerEvents = '';
+                backToTopBtn.style.opacity = '';
+              }
+            }
+            
+            requestAnimationFrame(scrollStep);
+          });
+          
+          let isScrolling = false;
+          function handleScroll() {
+            if (!isScrolling) {
+              requestAnimationFrame(() => {
+                updateScrollProgress();
+                isScrolling = false;
+              });
+              isScrolling = true;
+            }
+          }
+          
+          window.addEventListener('scroll', handleScroll, { passive: true });
+          
+          backToTopBtn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              backToTopBtn.click();
+            }
+            if (e.key === 'Escape') {
+              backToTopBtn.blur();
+            }
+          });
+          
+          updateScrollProgress();
+        }
+    </script>
+
+    <script src="../scripts/mobile-nav.js" defer></script>
+    <script src="../scripts/header-loader.js" defer></script>
+</html>

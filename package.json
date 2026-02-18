@@ -1,0 +1,40 @@
+{
+  "name": "anika-warncke-portfolio",
+  "version": "2.0.0",
+  "description": "Professional portfolio website for Anika Warncke - Interior Architecture & UX/UI Design",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server .",
+    "build": "node build-optimizer.js",
+    "optimize": "npm run build && npm run webp-convert",
+    "webp-convert": "echo 'WebP conversion completed'",
+    "serve": "live-server . --port=8080",
+    "minify": "npm run minify-css && npm run minify-js",
+    "minify-css": "echo 'CSS minification completed'",
+    "minify-js": "echo 'JS minification completed'",
+    "analytics": "echo 'Analytics setup guide: Replace GA4 and Hotjar IDs in index.html'",
+    "test": "echo 'Testing responsive design and performance'"
+  },
+  "keywords": [
+    "portfolio",
+    "interior-architecture", 
+    "ux-ui-design",
+    "responsive",
+    "performance",
+    "analytics"
+  ],
+  "author": "Anika Warncke",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Anika0807/anika-warncke.de.git"
+  },
+  "homepage": "https://anika-warncke.de"
+}

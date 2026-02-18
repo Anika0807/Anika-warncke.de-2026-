@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <style>
+    /* Skip to main content link for accessibility */
+    .skip-to-main {
+        position: absolute;
+        top: -200px;
+        left: 20px;
+        z-index: 9999;
+        padding: 12px 24px;
+        background: #ffb800;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: top 0.3s;
+    }
+    .skip-to-main:focus {
+        top: 6px;
+    }
+    
+    /* Modern responsive padding system - override inline styles */
+    main#main-content > section {
+        padding-left: clamp(20px, 4vw, 80px) !important;
+        padding-right: clamp(20px, 4vw, 80px) !important;
+    }
+    
+    /* Projektinfos Section - ensure consistent padding on all screen sizes */
+    main#main-content > section[style*="padding:3rem 80px"] {
+        padding-left: clamp(20px, 4vw, 80px) !important;
+        padding-right: clamp(20px, 4vw, 80px) !important;
+    }
+    
+    /* Hero Section */
+    .hero-flavorfusion {
+      background: url('../../img/UXUI/FlavorFusion/01f31bcc-fba0-4fba-b249-4b24feb24397.png') center center/cover no-repeat;
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .main-header nav ul li a {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .main-header nav ul li a.active {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 184, 0, 0.95) 0%, rgba(255, 153, 0, 0.95) 100%);
+      backdrop-filter: blur(12px) saturate(1.2);
+      -webkit-backdrop-filter: blur(12px) saturate(1.2);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 
+        0 8px 32px rgba(255, 184, 0, 0.16),
+        0 1px 4px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1) rotate(0deg);
+      z-index: 1000;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      will-change: transform, opacity;
+    }
+    
+    .back-to-top::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: xor;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      pointer-events: none;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1) rotate(0deg);
+    }
+    
+    .back-to-top:hover {
+      background: linear-gradient(135deg, rgba(255, 153, 0, 0.95) 0%, rgba(255, 140, 0, 0.95) 100%);
+      transform: translateY(-6px) scale(1.08);
+      box-shadow: 
+        0 16px 48px rgba(255, 184, 0, 0.24),
+        0 4px 16px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    
+    .back-to-top:active {
+      transform: translateY(-3px) scale(1.02);
+      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 
+        0 8px 28px rgba(255, 184, 0, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .back-to-top:focus {
+      outline: none;
+      box-shadow: 
+        0 8px 32px rgba(255, 184, 0, 0.16),
+        0 1px 4px rgba(0, 0, 0, 0.08),
+        0 0 0 3px rgba(255, 184, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .back-to-top::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg, 
+        transparent 0deg, 
+        rgba(255, 184, 0, 0.8) var(--progress, 0deg),
+        rgba(255, 255, 255, 0.3) calc(var(--progress, 0deg) + 2deg),
+        transparent calc(var(--progress, 0deg) + 4deg)
+      );
+      opacity: 0;
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: -1;
+      filter: blur(0.5px);
+    }
+    
+    .back-to-top.visible::before {
+      opacity: 1;
+    }
+    
+    .back-to-top svg {
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .back-to-top:hover svg {
+      transform: translateY(-1px);
+    }
+    
+    .back-to-top.visible.first-show {
+      animation: backToTopPulse 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    @keyframes backToTopPulse {
+      0% { transform: translateY(0) scale(1) rotate(0deg); }
+      50% { transform: translateY(-2px) scale(1.1) rotate(1deg); }
+      100% { transform: translateY(0) scale(1) rotate(0deg); }
+    }
+    
+    @media (max-width: 700px) {
+      .back-to-top {
+        width: 52px;
+        height: 52px;
+        bottom: 2rem;
+        right: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .back-to-top {
+        bottom: 1.5rem;
+        right: 1rem;
+        width: 48px;
+        height: 48px;
+      }
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      .back-to-top, .back-to-top svg, .back-to-top::before {
+        transition: opacity 0.2s ease;
+      }
+      .back-to-top:hover {
+        transform: none;
+      }
+      .back-to-top.visible.first-show {
+        animation: none;
+      }
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      .back-to-top {
+        background: linear-gradient(135deg, rgba(255, 184, 0, 0.9) 0%, rgba(255, 153, 0, 0.9) 100%);
+        border-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(16px) saturate(1.4);
+      }
+    }
+    
+    /* Einheitliches seitliches Padding für alle Inhalte unter dem Hero */
+    main > section {
+      padding-left: 80px !important;
+      padding-right: 80px !important;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    
+    /* Mobile Header Padding Override - Logo ganz links */
+    @media (max-width: 900px) {
+      .main-header nav {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+      .main-header .logo {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+      }
+    }
+    @media (max-width: 480px) {
+      .main-header nav {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+      }
+    }
+    
+    /* Responsive Design für Projektseiten */
+    @media (max-width: 1200px) {
+      /* Vertical padding only, horizontal handled by clamp() */
+      section[style*="padding:5rem 80px"], section[style*="padding: 5rem 80px"] { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+      section[style*="padding:3rem 80px"], section[style*="padding: 3rem 80px"] { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+    }
+    @media (max-width: 900px) {
+      /* Vertical padding only, horizontal handled by clamp() */
+      section[style*="padding:5rem"], section[style*="padding:4rem"], section[style*="padding:3rem"] { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+      section[style*="gap:2.5rem 3.5rem"], section[style*="gap:3rem 4rem"] { gap: 2rem 2.5rem !important; }
+    }
+    @media (max-width: 768px) {
+      /* Vertical padding only, horizontal handled by clamp() */
+      section[style*="padding"] { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+      .hero-content[style*="padding:3.5rem"] { padding: 2.5rem 2rem 2rem 2rem !important; max-width: 90% !important; }
+      section[style*="display:flex;flex-wrap:wrap"] { flex-direction: column !important; gap: 1.5rem !important; }
+      /* Grid zu single column */
+      [style*="grid-template-columns:1fr 1fr"],
+      [style*="grid-template-columns:200px 1fr"],
+      [style*="grid-template-columns:repeat(2, 1fr)"],
+      [style*="grid-template-columns:repeat(3, 1fr)"] {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+      }
+      h1 { font-size: 2.2rem !important; }
+      h2 { font-size: 1.8rem !important; }
+      h3 { font-size: 1.4rem !important; }
+      /* Hero-specific sizing to ensure clear hierarchy */
+      .hero-flavorfusion .hero-content h1 { font-size: 2.6rem !important; }
+      .hero-flavorfusion .hero-content h2 { font-size: 1.4rem !important; }
+      /* Video iframe responsive */
+      .video-container iframe {
+        height: 400px !important;
+      }
+    }
+    @media (max-width: 480px) {
+      /* Vertical padding only, horizontal handled by clamp() */
+      section[style*="padding"] { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+      .hero-content[style*="padding"] { padding: 2rem 1.5rem 1.5rem 1.5rem !important; max-width: 95% !important; }
+      div[style*="min-width:180px"] { min-width: auto !important; font-size: 0.9rem !important; padding: 0.8rem 1.2rem !important; }
+      h1 { font-size: 1.8rem !important; }
+      h2 { font-size: 1.5rem !important; }
+      h3 { font-size: 1.2rem !important; }
+      p { font-size: 0.95rem !important; line-height: 1.6 !important; }
+      /* Hero-specific sizing */
+      .hero-flavorfusion .hero-content h1 { font-size: 2.2rem !important; }
+      .hero-flavorfusion .hero-content h2 { font-size: 1.2rem !important; }
+      .main-header nav ul { flex-direction: column !important; gap: 0.5rem !important; }
+      .btn-secondary, .projekt-btn {
+        padding: 0.7rem 1.5rem !important;
+        font-size: 0.9rem !important;
+      }
+
+      /* Research Insights: stack circles vertically on mobile */
+      div[style*="display:flex;gap:2rem;justify-content:space-between"] {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 2.5rem !important;
+      }
+
+      /* Research Insights circles: smaller on mobile */
+      div[style*="width:240px"][style*="height:240px"][style*="border-radius:50%"] {
+        width: 200px !important;
+        height: 200px !important;
+        padding: 1.2rem !important;
+      }
+
+      /* Research Insights text sizing */
+      div[style*="border-radius:50%"] div[style*="font-size:1.6rem"] {
+        font-size: 1.3rem !important;
+      }
+
+      div[style*="border-radius:50%"] div[style*="font-size:1.3rem"] {
+        font-size: 1.1rem !important;
+      }
+
+      /* Research Insights description text */
+      div[style*="flex:1;text-align:center"] p {
+        font-size: 0.95rem !important;
+      }
+      /* Video iframe mobile */
+      .video-container iframe {
+        height: 250px !important;
+      }
+    }
+    @media (max-width: 360px) {
+      section[style*="padding"] { padding: 1rem 15px !important; }
+      .hero-content[style*="padding"] { padding: 1.5rem 1rem 1rem 1rem !important; }
+      h1 { font-size: 1.6rem !important; }
+      h2 { font-size: 1.3rem !important; }
+      h3 { font-size: 1.1rem !important; }
+      /* Hero-specific sizing */
+      .hero-flavorfusion .hero-content h1 { font-size: 2.0rem !important; }
+      .hero-flavorfusion .hero-content h2 { font-size: 1.1rem !important; }
+      /* Video iframe very small mobile */
+      .video-container iframe {
+        height: 220px !important;
+      }
+    }
+        .main-header {
+            position: absolute !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            transition: background 0.2s, color 0.2s;
+            background: transparent;
+        }
+        .main-header.scrolled {
+            position: fixed !important;
+            background: #fff !important;
+            color: #222 !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        }
+        .main-header.scrolled .logo,
+        .main-header.scrolled nav a,
+        .main-header.scrolled nav a:visited {
+            color: #222 !important;
+        }
+        .main-header.scrolled .mobile-nav-toggle .hamburger-line {
+            background-color: #222 !important;
+        }
+        .main-header .logo,
+        .main-header nav a,
+        .main-header nav a:visited {
+            color: #fff !important;
+        }
+        .main-header .mobile-nav-toggle .hamburger-line {
+            background-color: #fff;
+        }
+        .main-header nav ul li a {
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+            position: relative;
+        }
+        .main-header nav ul li a.active {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+        .main-header .logo {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Contact Button Styles */
+        .btn-contact.round-yellow {
+          width: 192px;
+          height: 192px;
+          border-radius: 50%;
+          background: #FFB800;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+          border: none;
+          transition: background 0.2s, box-shadow 0.2s;
+          padding: 0;
+        }
+        .btn-contact.round-yellow::after {
+          display: none;
+        }
+        .btn-contact.round-yellow:hover, .btn-contact.round-yellow:focus {
+          background: #e6a600;
+          box-shadow: 0 12px 48px rgba(0,0,0,0.16);
+        }
+        .btn-contact.round-yellow svg {
+          width: 96px;
+          height: 96px;
+          display: block;
+        }
+        .btn-contact.round-yellow svg path {
+          stroke: #fff;
+        }
+        
+        /* Mobile: GET IN TOUCH larger than desktop */
+        @media (max-width: 900px) {
+          .contact-content h2 { font-size: 4rem !important; line-height: 1.1 !important; }
+        }
+        @media (max-width: 768px) {
+          .contact-content h2 { font-size: 3.5rem !important; line-height: 1.1 !important; }
+        }
+        @media (max-width: 480px) {
+          .contact-content h2 { font-size: 3rem !important; line-height: 1.1 !important; }
+          .btn-contact.round-yellow { width: 160px !important; height: 160px !important; }
+        }
+        @media (max-width: 375px) {
+          .contact-content h2 { font-size: 2.5rem !important; line-height: 1.1 !important; }
+          .btn-contact.round-yellow { width: 144px !important; height: 144px !important; }
+        }
+
+        .projekt-nav-section {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            background: #fff;
+            padding: 4rem 80px 4rem 80px;
+            box-sizing: border-box;
+        }
+        .projekt-nav-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .projekt-nav-btn {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-width: 220px;
+        }
+        .projekt-nav-btn-right {
+            align-items: flex-end;
+        }
+        .projekt-vorschau {
+            display: none;
+            position: absolute;
+            left: 0;
+            bottom: 110%;
+            background: #fff;
+            border-radius: 1.2rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+            padding: 1rem;
+            width: 260px;
+            z-index: 10;
+            text-align: left;
+        }
+        .projekt-nav-btn-right .projekt-vorschau {
+            left: 0;
+            right: auto;
+            text-align: left;
+        }
+        .projekt-nav-btn:hover .projekt-vorschau {
+            display: block;
+        }
+        .projekt-vorschau img {
+            width: 100%;
+            border-radius: 0.7rem;
+            margin-bottom: 0.7em;
+        }
+        .projekt-vorschau-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .projekt-vorschau-sub {
+            font-size: 0.98rem;
+            color: #888;
+        }
+        @media (max-width: 900px) {
+            .projekt-nav-section {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            .projekt-nav-row {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .projekt-nav-btn {
+                min-width: unset;
+                width: 100%;
+            }
+            .projekt-nav-btn-right {
+                align-items: flex-start;
+            }
+        }
+
+        /* Footer-Links immer weiß */
+        .main-footer a,
+        .main-footer a:visited,
+        .main-footer a:active,
+        .main-footer a:hover {
+          color: #fff !important;
+          text-decoration: underline;
+          transition: color 0.2s;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlavorFusion - Landing Page für eine mobile Rezepte App</title>
+    <link rel="stylesheet" href="../../style.css">
+    <!-- Page-specific overrides to align hero behavior with other projects -->
+    <style>
+      /* Ensure this page's hero uses the intended image and not the global .hero default */
+      .hero.hero-flavorfusion {
+        background: url('../../img/UXUI/FlavorFusion/01f31bcc-fba0-4fba-b249-4b24feb24397.png') center center/cover no-repeat !important;
+      }
+
+      /* Prevent global main margin-top (100vh) from creating a second blank hero-sized gap */
+      main { margin-top: 0 !important; }
+    </style>
+    <link rel="icon" type="image/jpeg" href="../../Logo-01.jpg">
+  <style>
+    a {
+      color: #ffb800;
+    }
+  </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-to-main">Zum Hauptinhalt springen</a>
+    <!-- Header wird dynamisch geladen -->
+    <div id="header-placeholder"></div>
+    
+    <!-- Hero Section -->
+  <section class="hero hero-flavorfusion" style="position: relative; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; margin: 0; padding: 0; box-sizing: border-box; z-index: 0;">
+    <div class="hero-content" style="background:rgba(0,0,0,0.32);color:#fff;max-width:700px;padding:3.5rem 3.5rem 3rem 3.5rem;text-align:center;margin:0 auto;">
+      <h1 style="font-size:2.8rem;font-weight:800;margin:0 0 0.2em 0;line-height:1.5;">FlavorFusion</h1>
+      <h2 style="font-size:1.8rem;font-weight:600;margin:0 0 1.2em 0;line-height:1.5;">Landing Page für eine mobile Rezepte App</h2>
+            <div style="font-size:0.95rem;letter-spacing:0.1em;margin-bottom:1.2em;line-height:1.5;">UX/UI-DESIGN | LANDING PAGE</div>
+        </div>
+  </section>
+  <main id="main-content">
+
+        <!-- Projektinfos wie in P1_... -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:3rem 80px 3rem 80px;display:flex;flex-wrap:wrap;gap:2.5rem 3.5rem;justify-content:flex-start;box-sizing:border-box;">
+            <div style="flex:1 1 0;min-width:180px;">
+                <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">MEINE ROLLE</div>
+                <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                <div style="font-weight:400;font-size:16px;">UX/UI-Designer</div>
+            </div>
+            <div style="flex:1 1 0;min-width:180px;">
+                <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">AUFGABE</div>
+                <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                <div style="font-weight:400;font-size:16px;">End-to-End-Designprozess: vom Problem bis zum High-Fidelity-Prototypen einer Landingpage (UX-Research, UI-Design, Prototyping)</div>
+            </div>
+            <div style="flex:1 1 0;min-width:180px;">
+                <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">PROJEKTZEITRAUM & -RAHMEN</div>
+                <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                <div style="font-weight:400;font-size:16px;">Juni 2025: Intensiver 20 Stunden Design-Sprint mit aktivem Einsatz von generativer KI wie Gemini und Chat GPT im Rahmen des UX/UI-Bootcamps bei neuefische</div>
+            </div>
+            <div style="flex:1 1 0;min-width:180px;">
+                <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">TOOLS</div>
+                <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                <div style="font-weight:400;font-size:16px;">Figma, FigJam, Notion, ChatGPT, Gemini</div>
+            </div>
+    </section>
+
+        <!-- Two Column Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">01 Problem</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Die Herausforderung bestand darin, in nur 20 Stunden und mit einem unklaren Briefing eine wirksame Landing Page zu konzipieren. Es fehlte ein digitaler Anlaufpunkt, der potenzielle Nutzer nicht nur informiert, sondern vor allem emotional abholt und Vertrauen schafft. Ohne eine überzeugende Brücke zwischen Interesse und Handlung drohte das Download-Potenzial der App ungenutzt zu bleiben. Die Kernfragen waren also, wie man den Mehrwert klar kommuniziert, Begehrlichkeit weckt und Nutzer gezielt zum Download führt.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Two Column Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">02 Lösung</h2>
+                </div>
+                <div style="flex:1;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Eine nutzerzentrierte Landing Page, die als strategisches Fundament für die Markteinführung der App von FlavorFusion dient. Durch emotionales Storytelling und ein klares Design wird der Mehrwert der App erlebbar gemacht, was eine direkte Verbindung zur Marke schafft. Eine intuitive Nutzerführung und überzeugende Call-to-Actions leiten die User wie selbstverständlich zum App-Download. So entstand eine Seite, die nicht nur die Markenidentität stärkt, sondern auch Vertrauen aufbaut und für zukünftige Erweiterungen skalierbar ist.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Single Column Quote Section -->
+        <section style="background:#E0D7C7;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;text-align:center;">
+                <p style="font-size:1.8rem;line-height:1.5;color:#fff;margin:0;font-style:italic;font-weight:bold;">FlavorFusion ist mehr als eine Rezepte-App, sie ist eine Einladung zum Genuss. Die Landing Page wurde speziell entwickelt, um ambitionierte Hobbyköche durch eine authentische und inspirierende Erfahrung direkt zur App zu leiten, wo sie ihre Kochleidenschaft vertiefen können. Einfach, emotional und unwiderstehlich.</p>
+            </div>
+        </section>
+
+        <!-- Dritte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">03 UX-Research</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vierte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">Desktop Research</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Ich analysierte 5 Rezepte-Apps und dessen App-Landing-Pages und deckte häufige Schwächen wie unklare Call-to-Actions, eine überladene Informationsarchitektur und fehlendes Storytelling auf. Daraus leitete ich klare Chancen ab, um die Landing Page durch einen prägnanten Fokus auf den Download, eine saubere visuelle Hierarchie und den Einsatz von App-Bewertungen positiv abzuheben. Die zentralen Hypothesen besagen, dass App-Vorschauen, interaktive Elemente und eine emotionale Nutzeransprache das Vertrauen und Engagement signifikant steigern. Das Ziel ist somit die Gestaltung einer klar strukturierten, vertrauenswürdigen Seite, die den Nutzer intuitiv und überzeugend zum Download führt.</p>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Research Insights Additional Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">Research Insights</h2>
+                </div>
+                <div style="flex:1;">
+                </div>
+            </div>
+
+            <!-- Full-width button container -->
+            <div style="margin-top:2rem;display:flex;gap:2rem;justify-content:space-between;width:100%;">
+                <!-- Insight 1 -->
+                <div style="flex:1;text-align:center;">
+                    <div style="width:240px;height:240px;border-radius:50%;background:#94A293;margin:0 auto 1rem auto;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:1.5rem;">
+                        <div style="font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:1rem;height:1.6rem;display:flex;align-items:center;">Insight 1</div>
+                        <div style="font-size:1.3rem;font-weight:600;color:#fff;line-height:1.5;">Klarer Download-Fokus</div>
+                    </div>
+                    <p style="font-size:1.1rem;font-weight:600;color:#94A293;margin:0;line-height:1.5;">→ Landing Page muss Download-Aufforderung<br>deutlich hervorheben.</p>
+                </div>
+
+                <!-- Insight 2 -->
+                <div style="flex:1;text-align:center;">
+                    <div style="width:240px;height:240px;border-radius:50%;background:#94A293;margin:0 auto 1rem auto;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:1.5rem;">
+                        <div style="font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:1rem;height:1.6rem;display:flex;align-items:center;">Insight 2</div>
+                        <div style="font-size:1.3rem;font-weight:600;color:#fff;line-height:1.5;">Struktur schafft Klarheit</div>
+                    </div>
+                    <p style="font-size:1.1rem;font-weight:600;color:#94A293;margin:0;line-height:1.5;">→ Saubere visuelle Hierarchie führt<br>intuitiv durch Informationen.</p>
+                </div>
+
+                <!-- Insight 3 -->
+                <div style="flex:1;text-align:center;">
+                    <div style="width:240px;height:240px;border-radius:50%;background:#94A293;margin:0 auto 1rem auto;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:1.5rem;">
+                        <div style="font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:1rem;height:1.6rem;display:flex;align-items:center;">Insight 3</div>
+                        <div style="font-size:1.3rem;font-weight:600;color:#fff;line-height:1.5;">Vertrauen durch Emotion & Vorschau</div>
+                    </div>
+                    <p style="font-size:1.1rem;font-weight:600;color:#94A293;margin:0;line-height:1.5;">→ Vorschauen, Interaktion und Bewertungen<br>steigern Engagement.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Desktop Research Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">How might we...?</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Wie kann ich die Landing Page so gestalten, dass Nutzer*innen durch eine persönliche und vertrauensvolle Geschichte emotional begeistert werden und der App-Download sich für sie wie der einzig logische und intuitive nächste Schritt anfühlt?</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sechste Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">04 Struktur & Fluss</h2>
+                </div>
+                <div style="flex:2;">
+                </div>
+            </div>
+
+            <!-- Sitemap Heading -->
+            <div style="width:100%;text-align:center;margin:3rem 0 1rem 0;">
+                <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:0 0 2rem 0;">Sitemap</h3>
+            </div>
+
+            <!-- Full-width Image Container -->
+            <div style="width:50%;margin:0 auto;">
+                <img src="../../img/UXUI/FlavorFusion/Sitemap.jpg" alt="Struktur & Fluss - Sitemap" style="width:100%;height:auto;max-width:100%;display:block;" loading="lazy" decoding="async">
+            </div>
+        </section>
+
+        <!-- User Flow Image Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <!-- User Flow Heading -->
+            <div style="width:100%;text-align:center;margin:0 0 1rem 0;">
+                <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:0 0 2rem 0;">User Flow</h3>
+            </div>
+
+            <div style="width:50%;margin:0 auto;">
+                <img src="../../img/UXUI/FlavorFusion/User Flow.jpg" alt="User Flow" style="width:100%;height:auto;max-width:100%;display:block;" loading="lazy" decoding="async">
+            </div>
+        </section>
+
+        <!-- Siebte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">05 Zielgruppe & Persona</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Ambitionierte Hobbyköch:innen, Genießer:innen,Wissenshungrig im Alter von 30 bis 45 Jahren, die Freude daran haben, Neues auszuprobieren und ihre Kochfähigkeiten stetig weiterzuentwickeln. Sie legen Wert auf frische Zutaten, saisonale Vielfalt und Rezepte, die sowohl alltagstauglich als auch inspirierend sind. Gleichzeitig schätzen sie digitale Unterstützung, die ihnen Orientierung bietet, ohne das kreative Kocherlebnis einzuschränken. Für sie ist Kochen nicht nur Nahrungszubereitung, sondern ein genussvolles Ritual und Ausdruck von Lebensqualität.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Persona Image Section -->
+        <section style="background:#94A293;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;text-align:left;margin-bottom:2rem;">
+                <h2 style="font-size:2rem;font-weight:700;color:#fff;line-height:1.5;margin:0 0 2rem 0;">Persona</h2>
+            </div>
+            <div style="width:100%;">
+                <img src="../../img/UXUI/FlavorFusion/Persona_Hanna_Hobbybaeckerin.png" alt="Persona Hanna - Zielgruppe & Persona" style="width:100%;height:auto;max-width:100%;display:block;" loading="lazy" decoding="async">
+            </div>
+        </section>
+
+        <!-- Neunte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;text-align:left;">
+                <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">06 UI-Design</h2>
+            </div>
+        </section>
+
+        <!-- UI-Design Research Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;text-align:left;margin-bottom:3rem;">
+                <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">Designprinzipien</h2>
+            </div>
+            
+            <!-- Design Principles Grid -->
+            <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:3rem;width:100%;margin-top:2rem;">
+                
+                <!-- Principle 1 -->
+                <div style="display:flex;align-items:center;gap:2rem;">
+                    <div style="width:120px;height:120px;border-radius:50%;background:#94A293;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <span style="font-size:2.5rem;font-weight:700;color:#fff;">1</span>
+                    </div>
+                    <div style="flex:1;">
+                        <h3 style="font-size:1.5rem;font-weight:700;color:#333;margin:0 0 0.5rem 0;">Natürlichkeit</h3>
+                        <p style="font-size:1rem;line-height:1.5;color:#666;margin:0 0 2rem 0;">Die Landing Page soll sich wie ein guter Küchentipp von einer Freundin anfühlen: warm, authentisch und lebensnah. Dieses persönliche Gefühl wird durch natürliche Farben, nahbare Bilder und eine zugängliche Sprache erzeugt. Gepaart mit einer intuitiven Nutzerführung entsteht so ein vertrautes Erlebnis, das die sinnliche Freude am Kochen widerspiegelt.</p>
+                    </div>
+                </div>
+                
+                <!-- Principle 2 -->
+                <div style="display:flex;align-items:center;gap:2rem;">
+                    <div style="width:120px;height:120px;border-radius:50%;background:#94A293;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <span style="font-size:2.5rem;font-weight:700;color:#fff;">2</span>
+                    </div>
+                    <div style="flex:1;">
+                        <h3 style="font-size:1.5rem;font-weight:700;color:#333;margin:0 0 0.5rem 0;">Klarheit</h3>
+                        <p style="font-size:1rem;line-height:1.5;color:#666;margin:0 0 2rem 0;">Die Landing Page ist wie ein gutes Rezept: ein klarer Fahrplan, der Nutzern mühelose Orientierung bietet. Ein sauberes Raster, gute Lesbarkeit und eindeutige Bedienelemente wie Buttons und Icons garantieren eine intuitive Führung. So bleibt der Weg zum Ziel immer verständlich und klar ersichtlich.</p>
+                    </div>
+                </div>
+                
+                <!-- Principle 3 -->
+                <div style="display:flex;align-items:center;gap:2rem;">
+                    <div style="width:120px;height:120px;border-radius:50%;background:#94A293;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <span style="font-size:2.5rem;font-weight:700;color:#fff;">3</span>
+                    </div>
+                    <div style="flex:1;">
+                        <h3 style="font-size:1.5rem;font-weight:700;color:#333;margin:0 0 0.5rem 0;">Leidenschaft</h3>
+                        <p style="font-size:1rem;line-height:1.5;color:#666;margin:0 0 2rem 0;">Essen ist ein emotionales Erlebnis voller Kreativität und Freude. Die Landing Page fängt diese Leidenschaft durch inspirierende Inhalte, persönliche Community-Elemente und liebevolle Mikrointeraktionen ein. So wird nicht nur informiert, sondern die pure Freude am Kochen geweckt und geteilt.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- UI-Foundation Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;text-align:left;margin-bottom:3rem;">
+                <h2 style="font-size:2rem;font-weight:700;color:#000;line-height:1.5;margin:0 0 2rem 0;">UI-Foundation</h2>
+            </div>
+            
+            <!-- UI Foundation Image -->
+            <div style="width:100%;margin-bottom:4rem;">
+                <img src="../../img/UXUI/FlavorFusion/Moodboard.png" alt="UI-Foundation - FlavorFusion" style="width:100%;height:auto;max-width:100%;display:block;" loading="lazy" decoding="async">
+            </div>
+            
+            <!-- UI Foundation Text Blocks - Two Column Layout: Heading Left, Text Right -->
+            <div style="display:grid;grid-template-columns:200px 1fr;gap:2rem 3rem;width:100%;max-width:1200px;">
+                <!-- Farbwelt -->
+                <h3 style="font-size:1.5rem;font-weight:700;color:#000;margin:0;align-self:start;">Farbwelt</h3>
+                <p style="font-size:1.1rem;line-height:1.5;color:#000;margin:0 0 2rem 0;">Die Farbwelt schafft eine natürliche und warme Atmosphäre, indem sie einen beruhigenden Grünton als Primärfarbe verwendet. Diese wird durch erdige Beige- und Brauntöne ergänzt, während ein appetitanregendes Rot als Akzentfarbe dient, um wichtige Aktionen hervorzuheben und die Leidenschaft für das Kochen zu unterstreichen.</p>
+                
+                <!-- Schriftarten -->
+                <h3 style="font-size:1.5rem;font-weight:700;color:#000;margin:0;align-self:start;">Schriftarten</h3>
+                <p style="font-size:1.1rem;line-height:1.5;color:#000;margin:0 0 2rem 0;">Für die Überschriften und die Buttons wird die moderne und freundliche "Poppins" und für den Fließtext die sehr gut lesbaren "Nunito Sans" verwendet, um für eine klare visuelle Hierarchie, gute Lesbarkeit und eine zugängliche, moderne Ästhetik zu ermöglichen.</p>
+                
+                <!-- Ikonographie -->
+                <h3 style="font-size:1.5rem;font-weight:700;color:#000;margin:0;align-self:start;">Ikonographie</h3>
+                <p style="font-size:1.1rem;line-height:1.5;color:#000;margin:0 0 2rem 0;">Klare, minimalistische Linien-Icons unterstützen eine intuitive Nutzerführung und sorgen für eine aufgeräumte Benutzeroberfläche.</p>
+                
+                <!-- Ton of Voice -->
+                <h3 style="font-size:1.5rem;font-weight:700;color:#000;margin:0;align-self:start;">Ton of Voice</h3>
+                <p style="font-size:1.1rem;line-height:1.5;color:#000;margin:0 0 2rem 0;">Der Ton ist warm, nahbar und inspirierend wie ein Tipp von einem Freund und vermittelt mit einfacher Sprache die Leidenschaft am Kochen.</p>
+                
+                <!-- Komponenten -->
+                <h3 style="font-size:1.5rem;font-weight:700;color:#000;margin:0;align-self:start;">Komponenten</h3>
+                <p style="font-size:1.1rem;line-height:1.5;color:#000;margin:0 0 2rem 0;">Definierte Komponenten wie kontrastreiche Buttons, Testimonial-Karten und aufklappbare FAQs strukturieren die Inhalte und leiten den Nutzer.</p>
+                
+                <!-- Visuelle Sprache -->
+                <h3 style="font-size:1.5rem;font-weight:700;color:#000;margin:0;align-self:start;">Visuelle Sprache</h3>
+                <p style="font-size:1.1rem;line-height:1.5;color:#000;margin:0 0 2rem 0;">Die Bildsprache ist warm und authentisch; sie fokussiert sich auf das sinnliche Kocherlebnis statt auf sterile Perfektion.</p>
+                
+                <!-- Konsistenz -->
+                <h3 style="font-size:1.5rem;font-weight:700;color:#000;margin:0;align-self:start;">Konsistenz</h3>
+                <p style="font-size:1.1rem;line-height:1.5;color:#000;margin:0 0 2rem 0;">Die durchgängige Anwendung von Farben, Schriften und Icons sowie ein klares Layout sorgen für ein stimmiges und vorhersehbares Nutzererlebnis.</p>
+            </div>
+        </section>
+
+        <!-- Zehnte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;text-align:left;margin-bottom:3rem;">
+                <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">Logo</h2>
+            </div>
+            
+            <!-- Logo Description Text -->
+            <div style="width:100%;margin-bottom:3rem;">
+                <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Am Anfang stand ein kreativer Prozess mit generativer KI, um die Essenz von FlavorFusion visuell zu erfassen. Ziel war es, die Kernwerte der Marke – Natürlichkeit, Handwerk und Genuss – in einem einzigen Symbol zu vereinen, das sowohl die Leidenschaft fürs Kochen als auch die Wertschätzung für frische Zutaten widerspiegelt. Die dabei entstandenen Entwürfe dienten als entscheidende Inspiration für die finale Ausarbeitung des Logos.</p>
+            </div>
+            
+            <!-- Logo Development Process Image -->
+            <div style="width:100%;margin-bottom:4rem;">
+                <img src="../../img/UXUI/FlavorFusion/Logoprozessentwicklung.png" alt="Logo Entwicklungsprozess" style="width:100%;height:auto;border-radius:8px;" loading="lazy" decoding="async">
+            </div>
+            
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <div style="width:100%;height:100%;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#f5f5f5;">
+                        <img src="../../img/UXUI/FlavorFusion/assets-task_01jw8vzwzefhza3d3q01b5mf0t-1748349532_img_2.png" alt="Logo von FlavorFusion" style="width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async">
+                    </div>
+                </div>
+                <div style="flex:1;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 1rem 0;">Das Logo von FlavorFusion ist Ausdruck für die Freude am Kochen eine Kombination aus...</p>
+                    <ul style="font-size:1.1rem;line-height:1.5;color:#444;margin:0;padding-left:1.5rem;">
+                        <li>einem roten Kochlöffel, für das leidenschaftliche Handwerk,</li>
+                        <li>zwei grünen Blätter, für die Natürlichkeit frischer Zutaten,</li>
+                        <li>einem Stern, für den kreativen Funke,</li>
+                        <li>ergänzt durch ein Herz, die Liebe zum Detail.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Neue Section für 07 Preview -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">07 Preview</h2>
+                </div>
+                <div style="flex:1;">
+                </div>
+            </div>
+            
+            <!-- Video Container -->
+            <div class="video-container" style="width:100%;margin-top:3rem;">
+                <iframe 
+                    width="100%" 
+                    height="600" 
+                    src="https://www.youtube.com/embed/TtaknL6y0sc" 
+                    title="FlavorFusion App Preview" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen
+                    style="border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,0.13);"
+                    loading="lazy" decoding="async">
+                </iframe>
+            </div>
+        </section>
+
+        <!-- Vierzehnte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">08 Herausforderungen & Learnings</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;"><b> Radikale Priorisierung auf das "Minimum Viable Product" (MVP): </b> Der 20-stündige-Designsprint diente als Katalysator für eine radikale Fokussierung auf die Kernbotschaft und die zentrale Aktion des MVP.<br><br><b> KI als Sparingspartner verstehen: </b> Der gezielte Einsatz von generativer KI ermöglichte die Bewerkstellung der Aufgabe.</p>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;margin-top:4rem;">
+                <div style="flex:1;">
+                    <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:0 0 1rem 0;">Meine persönlichen Learnings</h3>
+                </div>
+                <div style="flex:1;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;"><b> 1. Forschung als Fundament: </b> Der Einsatz von KI kann einen grundlegenden und fundierten User Research vereinfachen und beschleunigen, aber nicht komplett ersetzen.<br><br><b> 2. Iteration als Methode, nicht als Zeitfrage: </b> Ich habe gelernt, dass Iteration keine Frage der verfügbaren Zeit, sondern der Methodik ist. Selbst in kürzesten Sprints sind schnelle Mikro-Iterationen entscheidend, um die Produktqualität kontinuierlich zu verbessern.<br><br><b> 3. Klarheit durch Reduktion: </b> Informationen und Aktionen gezielt und minimal einzusetzen, führt zum besten Nutzerfluss.<br><br><b> 4. Mut zur Entscheidung: </b> Der enge Zeitrahmen hat gezeigt, wie entscheidend der Mut zur schnellen Entscheidung ist. Anstatt auf eine perfekte Datenlage zu warten, ist es effektiver, auf Basis fundierter Hypothesen zügig zu handeln und im Prozess zu lernen.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fünfzehnte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">09 Fazit & Ausblick</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Das Ergebnis des Sprints ist ein strategisches „Minimum Viable Product" (MVP), das die Kernhypothese validiert: Eine klare, emotional ansprechende Erzählung, kombiniert mit radikaler Reduktion, führt gezielt zur Conversion. Dieser in nur 20 Stunden entwickelte Prototyp einer Landing Page dient somit als testbare und fundierte Grundlage für die weitere Produktentwicklung.</p>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;margin-top:4rem;">
+                <div style="flex:1;">
+                    <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:0 0 1rem 0;">Mein Fazit als Designer</h3>
+                </div>
+                <div style="flex:1;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Dieser Designsprint war für mich eine intensive Lektion in Pragmatismus und Effizienz. Mein größtes Learning ist die strategische Integration von KI als Werkzeug zur Beschleunigung, ohne die menschliche, empathische Perspektive zu verlieren. Zudem hat es meine Überzeugung gefestigt, dass die größte Nutzerfreundlichkeit durch mutige, auf Reduktion fokussierte Entscheidungen entsteht.</p>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;margin-top:4rem;">
+                <div style="flex:1;">
+                    <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:0 0 1rem 0;">Nächste Schritte</h3>
+                </div>
+                <div style="flex:1;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;"><b> 1. Testen: </b> Prototyp mit echten Nutzern validieren.<br><br><b> 2. Iterieren: </b> Feedback zur gezielten Verbesserung nutzen.<br><br><b> 3. Umsetzen & Optimieren: </b> Finale Seite bauen und mittels A/B-Tests die Conversion steigern.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation: Letztes/Nächstes Projekt -->
+        <section class="projekt-nav-section">
+            <div class="projekt-nav-row">
+                <div class="projekt-nav-btn projekt-nav-btn-left">
+                    <a href="P6_UXUI_OmNomZen.html" class="btn-secondary projekt-btn" style="display: flex !important; align-items: center !important;">
+                        <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px; flex-shrink: 0;">
+                            <path d="M76 48L20 48M20 48L44 24M20 48L44 72" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        LETZTES PROJEKT
+                    </a>
+                    <div class="projekt-vorschau">
+                        <img src="../../img/UXUI/OmNomZen/7b38899a-5ebc-45eb-8080-a8089353c808 (1).png" alt="OmNomZen Bio-Ashwagandha-Gummibärchen - natürliche Nahrungsergänzung für Stressabbau" loading="lazy" decoding="async">
+                        <div class="projekt-vorschau-title">OmNomZen</div>
+                        <div class="projekt-vorschau-sub">Stressabbau mit Bio-Ashwagandha-Gummibärchen</div>
+                    </div>
+                </div>
+                <div class="projekt-nav-btn projekt-nav-btn-right">
+                    <a href="P8_UXUI_NaturKompass.html" class="btn-secondary projekt-btn" style="display: flex !important; align-items: center !important;">
+                        NÄCHSTES PROJEKT
+                        <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 8px; flex-shrink: 0;">
+                            <path d="M20 48L76 48M76 48L52 24M76 48L52 72" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <div class="projekt-vorschau">
+                        <img src="../../img/UXUI/NaturKompass/WhatsApp Image 2025-09-17 at 11.36.22.jpeg" alt="NaturKompass mobile App - digitaler Begleiter zur Identifikation von Pflanzen und Tieren" loading="lazy" decoding="async">
+                        <div class="projekt-vorschau-title">NaturKompass</div>
+                        <div class="projekt-vorschau-sub">Ihr digitaler Begleiter zur Identifikation von Flora & Fauna und für ein tieferes Naturverständnis.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <section class="contact" id="contact" style="width:100vw;max-width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding-left:80px;padding-right:80px;box-sizing:border-box;">
+      <div class="contact-row" style="display:flex;align-items:center;gap:2.5rem;justify-content:space-between;width:100%;max-width:100%;box-sizing:border-box;">
+        <div class="contact-content" style="margin:0;flex:1;">
+          <h2 style="margin:0;color:#fff;">GET<br>IN<br>TOUCH</h2>
+        </div>
+        <div style="flex:0 0 auto;display:flex;justify-content:flex-end;>">
+          <a href="../contact.html" class="btn-contact round-yellow" aria-label="Kontakt aufnehmen" >
+            <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 48L76 48M76 48L52 24M76 48L52 72" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer" role="contentinfo">
+    <div class="footer-row" style="padding-top:1.2rem;padding-bottom:1.2rem;">
+      <div class="footer-block">
+        <div class="footer-title">VERSION</div>
+        <div>2025 © Edition</div>
+      </div>
+      <div class="footer-block">
+        <div class="footer-title">LOKALE ZEIT</div>
+        <div><span id="local-time"></span></div>
+      </div>
+      <div class="footer-block">
+        <div class="footer-title">SOZIALE NETZWERKE</div>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/in/anika-warncke" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="footer-block">
+        <div class="footer-title">RECHTLICHES</div>
+        <a href="../datenschutz.html">Datenschutz</a>
+        <a href="../impressum.html">Impressum</a>
+      </div>
+    </div>
+  </footer>
+    
+  <script src="../scripts/main.js"></script>
+  <script src="../scripts/mobile-nav.js"></script>
+  <script src="../scripts/header-loader.js"></script>
+  <script>
+    // Lokale Zeit immer aktuell anzeigen
+    function updateLocalTime() {
+      const now = new Date();
+      const options = { hour: '2-digit', minute: '2-digit' };
+      let timeString = now.toLocaleTimeString('de-DE', options) + ' Uhr';
+      // MESZ/MEZ je nach Sommerzeit
+      const isDST = now.getTimezoneOffset() < -60;
+      timeString += isDST ? ' MESZ' : ' MEZ';
+      document.getElementById('local-time').textContent = timeString;
+    }
+    updateLocalTime();
+    setInterval(updateLocalTime, 10000);
+
+    // Note: Header scroll behavior is now handled by header-loader.js
+  </script>
+
+  <button class="back-to-top" aria-label="Nach oben scrollen" role="button" tabindex="0" style="--progress: 0deg">
+    <svg width="24" height="24" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M48 76L48 20M48 20L24 44M48 20L72 44" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <script>
+    // Back to Top Button
+    const backToTopBtn = document.querySelector('.back-to-top');
+    if (backToTopBtn) {
+      let hasShownOnce = false;
+      
+      function updateScrollProgress() {
+        const scrollTop = window.pageYOffset;
+        const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = Math.max(0, Math.min(100, (scrollTop / documentHeight) * 100));
+        
+        const easedPercent = scrollPercent < 50 ? 
+          2 * scrollPercent * scrollPercent / 100 :
+          1 - Math.pow(-2 * scrollPercent + 2, 3) / 2;
+        
+        const progressDeg = (easedPercent / 100) * 360;
+        backToTopBtn.style.setProperty('--progress', `${progressDeg}deg`);
+        
+        // Hero-Bereich als Threshold nutzen
+        const hero = document.querySelector('.hero');
+        const heroHeight = hero ? hero.offsetHeight : window.innerHeight * 0.8;
+        
+        if (scrollTop > heroHeight) {
+          if (!backToTopBtn.classList.contains('visible')) {
+            backToTopBtn.classList.add('visible');
+            
+            if (!hasShownOnce) {
+              hasShownOnce = true;
+              backToTopBtn.classList.add('first-show');
+              setTimeout(() => {
+                backToTopBtn.classList.remove('first-show');
+              }, 600);
+            }
+          }
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      }
+      
+      backToTopBtn.addEventListener('click', () => {
+        const startTime = performance.now();
+        const startPos = window.pageYOffset;
+        const duration = Math.min(1200, Math.max(600, startPos / 3));
+        
+        backToTopBtn.style.pointerEvents = 'none';
+        backToTopBtn.style.opacity = '0.7';
+        
+        function scrollStep(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const ease = 1 - Math.pow(1 - progress, 4);
+          
+          window.scrollTo(0, startPos * (1 - ease));
+          
+          if (progress < 1) {
+            requestAnimationFrame(scrollStep);
+          } else {
+            backToTopBtn.style.pointerEvents = '';
+            backToTopBtn.style.opacity = '';
+          }
+        }
+        
+        requestAnimationFrame(scrollStep);
+      });
+      
+      let isScrolling = false;
+      function handleScroll() {
+        if (!isScrolling) {
+          requestAnimationFrame(() => {
+            updateScrollProgress();
+            isScrolling = false;
+          });
+          isScrolling = true;
+        }
+      }
+      
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      
+      backToTopBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          backToTopBtn.click();
+        }
+        if (e.key === 'Escape') {
+          backToTopBtn.blur();
+        }
+      });
+      
+      updateScrollProgress();
+    }
+  </script>
+</body>
+</html>

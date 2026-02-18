@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NaturKompass | UX/UI Design | Anika Warncke</title>
+    <meta name="description" content="Entdecken Sie das UX/UI Design-Projekt NaturKompass von Anika Warncke: Eine innovative App für naturverbundene Menschen, entwickelt mit Fokus auf Nutzerzentrierung, Research und kreativem Design.">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="icon" type="image/jpeg" href="../../Logo-01.jpg">
+    <style>
+        /* Skip to main content link for accessibility */
+        .skip-to-main {
+            position: absolute;
+            top: -200px;
+            left: 20px;
+            z-index: 9999;
+            padding: 12px 24px;
+            background: #ffb800;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: top 0.3s;
+        }
+        .skip-to-main:focus {
+            top: 6px;
+        }
+        
+        /* Modern responsive padding system - override inline styles */
+        main#main-content > section {
+            padding-left: clamp(20px, 4vw, 80px) !important;
+            padding-right: clamp(20px, 4vw, 80px) !important;
+        }
+        
+        /* Exceptions: Full-bleed sections (no horizontal padding) */
+        main#main-content > section.moodboard-section {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+        
+        /* Projektinfos Section - ensure consistent padding on all screen sizes */
+        main#main-content > section[style*="padding:3rem 80px"] {
+            padding-left: clamp(20px, 4vw, 80px) !important;
+            padding-right: clamp(20px, 4vw, 80px) !important;
+        }
+        
+        .btn-secondary {
+            background: #ffb800;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s, color 0.2s;
+            cursor: pointer;
+            display: inline-block;
+            margin: 0;
+        }
+        .btn-secondary:hover, .btn-secondary:focus {
+            background: linear-gradient(135deg, rgba(255, 153, 0, 0.95) 0%, rgba(255, 140, 0, 0.95) 100%);
+            color: #fff;
+            transform: scale(1.08);
+            box-shadow: 0 4px 18px rgba(255, 184, 0, 0.13);
+        }
+        .projekt-btn {
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 1.02rem;
+            font-weight: 700;
+            border-radius: 2rem;
+            box-shadow: 0 2px 8px rgba(255,184,0,0.10);
+            padding: 0.8rem 2.2rem;
+            transition: background 0.2s, color 0.2s, box-shadow 0.18s, transform 0.18s;
+            outline: none;
+            border: none;
+            background: #ffb800;
+            color: #fff;
+            display: inline-block;
+        }
+        .projekt-btn:hover, .projekt-btn:focus {
+            background: linear-gradient(135deg, rgba(255, 153, 0, 0.95) 0%, rgba(255, 140, 0, 0.95) 100%);
+            color: #fff;
+            transform: scale(1.08);
+            box-shadow: 0 4px 18px rgba(255,184,0,0.13);
+        }
+        .main-header {
+            position: absolute !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            transition: background 0.2s, color 0.2s;
+            background: transparent;
+        }
+        .main-header.scrolled {
+            position: fixed !important;
+            background: #fff !important;
+            color: #222 !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        }
+        .main-header.scrolled .logo,
+        .main-header.scrolled nav a,
+        .main-header.scrolled nav a:visited {
+            color: #222 !important;
+        }
+        .main-header.scrolled .hamburger-line {
+            background-color: #222 !important;
+        }
+        .main-header .logo,
+        .main-header nav a,
+        .main-header nav a:visited {
+            color: #fff !important;
+        }
+        .main-header .hamburger-line {
+            background-color: #fff;
+        }
+    </style>
+    <style>
+    .main-header nav ul li a {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .main-header nav ul li a.active {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }        .main-header .logo {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Footer-Links immer weiß */
+        .main-footer a,
+        .main-footer a:visited,
+        .main-footer a:active,
+        .main-footer a:hover {
+          color: #fff !important;
+          text-decoration: underline;
+          transition: color 0.2s;
+        }
+    </style>
+    <style>
+        main {
+            margin-top: 0;
+            background: #fff;
+        }
+
+        /* Mobile: Contact & Footer Standardisierung */
+        @media (max-width: 768px) {
+          .main-footer {
+            padding: 2rem 1.5rem;
+          }
+          .footer-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2rem;
+            text-align: left;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .btn-contact.round-yellow {
+            width: 160px !important;
+            height: 160px !important;
+          }
+          .footer-row {
+            flex-direction: column !important;
+            gap: 1.25rem !important;
+          }
+          .footer-row > div[style*='display:flex'] {
+            flex-direction: column !important;
+            gap: 1rem !important;
+            flex: 1 1 100% !important;
+          }
+          .footer-block {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 0.3rem !important;
+            width: 100% !important;
+          }
+          .main-footer {
+            padding-bottom: calc(1.2rem + env(safe-area-inset-bottom, 0px) + 68px) !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .main-footer {
+            padding: 1.5rem 1rem;
+          }
+          .footer-row {
+            gap: 1.5rem;
+          }
+        }
+
+        @media (max-width: 375px) {
+          .btn-contact.round-yellow {
+            width: 144px !important;
+            height: 144px !important;
+          }
+        }
+    </style>
+
+  <style>
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 184, 0, 0.95) 0%, rgba(255, 153, 0, 0.95) 100%);
+      backdrop-filter: blur(12px) saturate(1.2);
+      -webkit-backdrop-filter: blur(12px) saturate(1.2);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 
+        0 8px 32px rgba(255, 184, 0, 0.16),
+        0 1px 4px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1) rotate(0deg);
+      z-index: 1000;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      will-change: transform, opacity;
+    }
+    
+    .back-to-top::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: xor;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      pointer-events: none;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1) rotate(0deg);
+    }
+    
+    .back-to-top:hover {
+      background: linear-gradient(135deg, rgba(255, 153, 0, 0.95) 0%, rgba(255, 140, 0, 0.95) 100%);
+      transform: translateY(-6px) scale(1.08);
+      box-shadow: 
+        0 16px 48px rgba(255, 184, 0, 0.24),
+        0 4px 16px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    
+    .back-to-top:active {
+      transform: translateY(-3px) scale(1.02);
+      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 
+        0 8px 28px rgba(255, 184, 0, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .back-to-top:focus {
+      outline: none;
+      box-shadow: 
+        0 8px 32px rgba(255, 184, 0, 0.16),
+        0 1px 4px rgba(0, 0, 0, 0.08),
+        0 0 0 3px rgba(255, 184, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .back-to-top::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg, 
+        transparent 0deg, 
+        rgba(255, 184, 0, 0.8) var(--progress, 0deg),
+        rgba(255, 255, 255, 0.3) calc(var(--progress, 0deg) + 2deg),
+        transparent calc(var(--progress, 0deg) + 4deg)
+      );
+      opacity: 0;
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: -1;
+      filter: blur(0.5px);
+    }
+    
+    .back-to-top.visible::before {
+      opacity: 1;
+    }
+    
+    .back-to-top svg {
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .back-to-top:hover svg {
+      transform: translateY(-1px);
+    }
+    
+    .back-to-top.visible.first-show {
+      animation: backToTopPulse 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    @keyframes backToTopPulse {
+      0% { transform: translateY(0) scale(1) rotate(0deg); }
+      50% { transform: translateY(-2px) scale(1.1) rotate(1deg); }
+      100% { transform: translateY(0) scale(1) rotate(0deg); }
+    }
+    
+    @media (max-width: 700px) {
+      .back-to-top {
+        width: 52px;
+        height: 52px;
+        bottom: 2rem;
+        right: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .back-to-top {
+        bottom: 1.5rem;
+        right: 1rem;
+        width: 48px;
+        height: 48px;
+      }
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      .back-to-top, .back-to-top svg, .back-to-top::before {
+        transition: opacity 0.2s ease;
+      }
+      .back-to-top:hover {
+        transform: none;
+      }
+      .back-to-top.visible.first-show {
+        animation: none;
+      }
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      .back-to-top {
+        background: linear-gradient(135deg, rgba(255, 184, 0, 0.9) 0%, rgba(255, 153, 0, 0.9) 100%);
+        border-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(16px) saturate(1.4);
+      }
+    }
+    
+    /* Responsive Design für Projektseiten */
+    @media (max-width: 1200px) {
+      /* Vertical padding only, horizontal handled by clamp() */
+      section[style*="padding:5rem 80px"], section[style*="padding: 5rem 80px"] { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+      section[style*="padding:3rem 80px"], section[style*="padding: 3rem 80px"] { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+    }
+    @media (max-width: 900px) {
+      /* Mobile Header Layout */
+      .main-header nav { display: flex !important; justify-content: space-between !important; align-items: center !important; padding-left: 16px !important; padding-right: 16px !important; }
+      .main-header .logo { order: 1 !important; padding-left: 0 !important; margin-left: 0 !important; }
+      .main-header .mobile-nav-toggle { order: 2 !important; margin-left: auto !important; }
+      .main-header nav ul { order: 3 !important; }
+      .hamburger-line { background-color: #fff; transition: background-color 0.25s; }
+      .main-header.scrolled .hamburger-line { background-color: #222; }
+      
+      /* Vertical padding only, horizontal handled by clamp() */
+      section[style*="padding:5rem"], section[style*="padding:4rem"], section[style*="padding:3rem"] { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+      section[style*="gap:2.5rem 3.5rem"], section[style*="gap:3rem 4rem"] { gap: 2rem 2.5rem !important; }
+    }
+    @media (max-width: 768px) {
+      /* Vertical padding only, horizontal handled by clamp() */
+      section[style*="padding"] { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+      .hero-content[style*="padding:3.5rem"] { padding: 2.5rem 2rem 2rem 2rem !important; max-width: 90% !important; }
+      section[style*="display:flex;flex-wrap:wrap"] { flex-direction: column !important; gap: 1.5rem !important; }
+      h1 { font-size: 2.2rem !important; } h2 { font-size: 1.8rem !important; } h3 { font-size: 1.4rem !important; }
+    }
+    @media (max-width: 480px) {
+      /* Mobile Header Tighter Padding */
+      .main-header nav { padding-left: 12px !important; padding-right: 12px !important; }
+      
+      /* Vertical padding only, horizontal handled by clamp() */
+      section[style*="padding"] { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+      .hero-content[style*="padding"] { padding: 2rem 1.5rem 1.5rem 1.5rem !important; max-width: 95% !important; }
+      div[style*="min-width:180px"] { min-width: auto !important; font-size: 0.9rem !important; padding: 0.8rem 1.2rem !important; }
+      h1 { font-size: 2.2rem !important; } h2 { font-size: 1.45rem !important; } h3 { font-size: 1.2rem !important; }
+      /* Hero-specific sizing to ensure clear hierarchy */
+      .hero .hero-content h1 { font-size: 2.6rem !important; }
+      .hero .hero-content div[style*="font-size:1.8rem"] { font-size: 1.4rem !important; }
+      .main-header nav ul { flex-direction: column !important; gap: 0.5rem !important; }
+    }
+    @media (max-width: 375px) {
+      .hero .hero-content h1 { font-size: 2.4rem !important; }
+      .hero .hero-content div[style*="font-size:1.8rem"] { font-size: 1.3rem !important; }
+    }
+    @media (max-width: 360px) {
+      /* Vertical padding only, horizontal handled by clamp() */
+      section[style*="padding"] { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+      .hero-content[style*="padding"] { padding: 1.5rem 1rem 1rem 1rem !important; }
+      h1 { font-size: 2.0rem !important; } h2 { font-size: 1.3rem !important; } h3 { font-size: 1.1rem !important; }
+      .hero .hero-content h1 { font-size: 2.2rem !important; }
+      .hero .hero-content div[style*="font-size:1.8rem"] { font-size: 1.2rem !important; }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      section {
+        padding: 3rem 40px !important;
+      }
+      [style*="grid-template-columns:1fr 1fr"],
+      [style*="grid-template-columns:repeat(3, 1fr)"] {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+      }
+      [style*="grid-template-columns:1fr 1fr"] > div {
+        flex: none !important;
+      }
+      h2 {
+        font-size: 2rem !important;
+      }
+      h3 {
+        font-size: 1.5rem !important;
+      }
+      p {
+        font-size: 1rem !important;
+      }
+      .btn-secondary, .projekt-btn {
+        padding: 0.6rem 1.5rem !important;
+        font-size: 0.9rem !important;
+      }
+      
+      /* Sitemap image: full-bleed on mobile */
+      div[style*="width:100vw"][style*="margin-left:-80px"] {
+        margin-left: calc(-50vw + 50%) !important;
+        margin-right: calc(-50vw + 50%) !important;
+        width: 100vw !important;
+      }
+    }
+
+    /* Mobile Navigation Button - hidden by default */
+    .mobile-nav-toggle { 
+      display: none; 
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Mobile Menu Styles */
+    @media (max-width: 900px) {
+      /* Mobile Header Layout */
+      .main-header nav { display: flex !important; justify-content: space-between !important; align-items: center !important; padding-left: 16px !important; padding-right: 16px !important; }
+      .main-header .logo { order: 1 !important; padding-left: 0 !important; margin-left: 0 !important; }
+      .main-header .mobile-nav-toggle { order: 2 !important; margin-left: auto !important; }
+      .main-header nav ul { order: 3 !important; }
+      
+      .mobile-nav-toggle { display: flex; width: 48px; height: 48px; background: transparent; border: none; cursor: pointer; z-index: 1002; align-items: center; justify-content: center; }
+      .hamburger-line { display: block; width: 28px; height: 3px; background-color: #fff; border-radius: 2px; transition: transform 0.25s, opacity 0.25s, background-color 0.25s; }
+      .main-header.scrolled .hamburger-line { background-color: #222; }
+      .hamburger-line:not(:last-child) { margin-bottom: 5px; }
+      .mobile-nav-toggle.active .hamburger-line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      .mobile-nav-toggle.active .hamburger-line:nth-child(2) { opacity: 0; }
+      .mobile-nav-toggle.active .hamburger-line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+      
+      .main-header nav ul { 
+        position: fixed; top: 0; right: -100%; width: 300px; max-width: 80vw; height: 100vh; 
+        background: rgba(0,0,0,0.97); backdrop-filter: blur(20px); flex-direction: column; justify-content: center; align-items: center; 
+        gap: 2rem; padding: 2rem; z-index: 1001; transition: right 0.3s ease; margin: 0; 
+      }
+      .main-header nav ul.active { right: 0; }
+      .main-header nav ul li { width: 100%; text-align: center; }
+      .main-header nav ul li a { color: #fff !important; font-size: 1.4rem; display: block; padding: 0.8rem 1rem; }
+      
+      section[style*="padding:5rem"], section[style*="padding:4rem"], section[style*="padding:3rem"] { padding: 3rem 40px !important; }
+    }
+  </style>
+  <style>
+    a {
+      color: #ffb800;
+    }
+  </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-to-main">Zum Hauptinhalt springen</a>
+    <div id="header-placeholder"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero hero-naturkompass" style="background: url('../../img/UXUI/NaturKompass/WhatsApp Image 2025-09-17 at 11.36.22.jpeg') center center/cover no-repeat; height:100vh; width:100vw; display:flex; align-items:center; justify-content:center; position:relative; margin:0; padding:0; box-sizing:border-box;">
+        <div class="hero-content" style="background:rgba(0,0,0,0.32);color:#fff;max-width:700px;padding:3.5rem 3.5rem 3rem 3.5rem;text-align:center;margin:0 auto;">
+            <h1 style="font-size:2.8rem;font-weight:800;margin:0 0 0.2em 0;line-height:1.5;">NaturKompass</h1>
+            <div style="font-size:1.8rem;font-weight:600;margin-bottom:1.2em;line-height:1.5;">Ihr digitaler Begleiter zur Identifikation von Flora & Fauna und für ein tieferes Naturverständnis.</div>
+            <div style="font-size:0.95rem;letter-spacing:0.1em;margin-bottom:1.2em;line-height:1.5;">UX/UI-DESIGN | MOBILE APP</div>
+        </div>
+    </section>
+
+    <main id="main-content" style="background:#fff;width:100vw;max-width:100vw;padding-left:0;padding-right:0;box-sizing:border-box;margin:0;position:relative;">
+        <!-- Projektinfos wie in P5_... -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:3rem 80px 3rem 80px;display:flex;flex-wrap:wrap;gap:2.5rem 3.5rem;justify-content:flex-start;box-sizing:border-box;">
+            <div style="flex:1 1 0;min-width:180px;">
+                <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">MEINE ROLLE & TEAM</div>
+                <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                <div style="font-weight:400;font-size:16px;">UX/UI-Designer im 2-Personen-Team mit Michael Jakob</div>
+            </div>
+            <div style="flex:1 1 0;min-width:180px;">
+                <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">AUFGABE</div>
+                <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                <div style="font-weight:400;font-size:16px;">End-to-End-Designprozess: vom Problem bis zum High-Fidelity-Prototypen einer mobilen App (UX-Research, UI-Design, Prototyping (& Testing))</div>
+            </div>
+            <div style="flex:1 1 0;min-width:180px;">
+                <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">PROJEKTZEITRAUM & -RAHMEN</div>
+                <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                <div style="font-weight:400;font-size:16px;">Juni - Juli 2025: Intensiver 4-wöchiger Design-Sprint im Rahmen des UX/UI-Bootcamps bei neuefische</div>
+            </div>
+            <div style="flex:1 1 0;min-width:180px;">
+                <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">TOOLS</div>
+                <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                <div style="font-weight:400;font-size:16px;">Figma, FigJam, Notion, ChatGPT, Gemini, DaVinci Resolve</div>
+            </div>
+        </section>
+
+        <!-- Two Column Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">01 Problem</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Naturbegeisterte stehen oft vor einer frustrierenden Wahl: Entweder nutzen sie eine Vielzahl überladener, unzuverlässiger oder nur online funktionierender Spezial-Apps, oder sie verzichten auf wertvolle Informationen. Es fehlt ein zentrales, intuitives und offline verfügbares Werkzeug, das beim Entdecken hilft, ohne das Naturerlebnis selbst zu stören. Wichtige Zusatzinformationen wie Pollenflug oder Wetterwarnungen fehlen oft und es gibt keine einfache Möglichkeit, selbst zum Umweltschutz beizutragen.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Two Column Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">02 Lösung</h2>
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Unsere Lösung ist NaturKompass: Ein digitaler Begleiter, der als "Schweizer Taschenmesser" für das Naturerlebnis fungiert. Die App kombiniert zuverlässige Offline-Identifikation von Pflanzen und Tieren mit nützlichen Informationen wie Pollenflug und Wetterwarnungen. Funktionen wie ein digitales Natur-Tagebuch und eine Müllmelde-Option fördern eine tiefere, nachhaltige Verbindung zur Umwelt.</p>
+                </div>
+                <div style="flex:1;">
+                    <h3 style="font-size:1.5rem;font-weight:600;color:#333;line-height:1.5;margin:0 0 2rem 0;">Projektziele</h3>
+                    <ul style="list-style:none;padding:0;margin:0 0 2rem 0;">
+                        <li style="font-size:1.1rem;line-height:1.5;color:#444;margin-bottom:1rem;position:relative;padding-left:1.5rem;">
+                            <span style="position:absolute;left:0;color:#94a293;font-weight:bold;">•</span>
+                            Ein intuitives, visuell unterstütztes Tool entwickeln.
+                        </li>
+                        <li style="font-size:1.1rem;line-height:1.5;color:#444;margin-bottom:1rem;position:relative;padding-left:1.5rem;">
+                            <span style="position:absolute;left:0;color:#94a293;font-weight:bold;">•</span>
+                            Die Zeit zur zuverlässigen Bestimmung von Flora & Fauna reduzieren.
+                        </li>
+                        <li style="font-size:1.1rem;line-height:1.5;color:#444;margin-bottom:1rem;position:relative;padding-left:1.5rem;">
+                            <span style="position:absolute;left:0;color:#94a293;font-weight:bold;">•</span>
+                            Die Sicherheit bei der Unterscheidung von essbaren und giftigen Pilzen erhöhen.
+                        </li>
+                        <li style="font-size:1.1rem;line-height:1.5;color:#444;margin-bottom:0;position:relative;padding-left:1.5rem;">
+                            <span style="position:absolute;left:0;color:#94a293;font-weight:bold;">•</span>
+                            Eine hohe Nutzerbindung durch eine Tagebuch-Funktion erreichen.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Single Column Quote Section -->
+        <section style="background:#94A293;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="max-width:1200px;margin:0 auto;text-align:center;">
+                <p style="font-size:1.8rem;line-height:1.5;color:#fff;margin:0;font-style:italic;font-weight:bold;">NaturKompass ist eine mobile App, die Naturerlebnisse vertieft, ohne von ihnen abzulenken. Sie hilft Nutzern, Flora und Fauna zu identifizieren, stärkt die Naturverbundenheit und fördert ein bewusstes Outdoor-Erlebnis.</p>
+            </div>
+        </section>
+
+        <!-- Dritte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">03 UX-Research</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vierte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">Desktop Research</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Wir analysierten 20 Erkennungs-, Umwelt- und Pollenapps wie z.B. "BirdNET" und "Flora Incognita". Manche überzeugten optisch durch ihre visuelle Gestaltung, die meisten jedoch nicht. Viele Apps sind zu überladen, sie sind nicht intuitiv, sind nicht zuverlässig, sind offline nicht nutzbar und liefern Fehlergebnisse und alle Apps deckten immer nur einen bis zwei Teilaspekte ab. Wir erkannten die Chance, eine Art "Schweizer Taschenmesser" für Naturerlebnisse zu entwickeln, die die präzise Erkennung spezialisierter Apps mit einer überlegenen, ganzheitlichen User Experience verbindet, die als zuverlässiges, offline nutzbares Tool dient.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fünfte Zweispalten-Section -->
+        <section class="quantitative-insights-section" style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">Quantitative Insights</h2>
+                </div>
+                <div style="flex:2;">
+                    <div class="quantitative-insights-badges" style="display:flex;gap:1rem;flex-wrap:nowrap;justify-content:flex-end;">
+                        <div style="background:#94A293;color:#fff;padding:1rem 1.5rem;border-radius:8px;font-size:1rem;font-weight:600;text-align:center;min-width:180px;white-space:nowrap;">50 Online Befragungen</div>
+                        <div style="background:#94A293;color:#fff;padding:1rem 1.5rem;border-radius:8px;font-size:1rem;font-weight:600;text-align:center;min-width:180px;white-space:nowrap;">Altersgruppen: 20-80 Jahre</div>
+                        <div style="background:#94A293;color:#fff;padding:1rem 1.5rem;border-radius:8px;font-size:1rem;font-weight:600;text-align:center;min-width:180px;white-space:nowrap;">Du & Dein Naturerlebnis</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donut Charts Section -->
+        <section class="donut-charts-section" style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;">
+                <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:3rem;width:100%;">
+                    <!-- Chart 1 -->
+                    <div style="text-align:center;">
+                        <div style="width:150px;height:150px;border-radius:50%;margin:0 auto 1rem auto;position:relative;background:conic-gradient(#94A293 0% 60%, #f5f5f5 60% 100%);display:flex;align-items:center;justify-content:center;">
+                            <div style="width:110px;height:110px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                                <span style="color:#94A293;font-size:1.2rem;font-weight:700;">60%</span>
+                            </div>
+                        </div>
+                        <div>
+                            <ul style="font-size:0.9rem;color:#666;margin:0;padding-left:1.2rem;text-align:left;display:inline-block;line-height:1.5;">
+                                <li>täglich/mehrmals pro Woche in der Natur & fester Teil ihres Alltags</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Chart 2 -->
+                    <div style="text-align:center;">
+                        <div style="width:150px;height:150px;border-radius:50%;margin:0 auto 1rem auto;position:relative;background:conic-gradient(#94A293 0% 88%, #f5f5f5 88% 100%);display:flex;align-items:center;justify-content:center;">
+                            <div style="width:110px;height:110px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                                <span style="color:#94A293;font-size:1.2rem;font-weight:700;">88%</span>
+                            </div>
+                        </div>
+                        <div>
+                            <ul style="font-size:0.9rem;color:#666;margin:0 0 0.5rem 0;padding-left:1.2rem;text-align:left;display:inline-block;line-height:1.5;">
+                                <li>Naturaufenthalt zur Entspannung und zum Stressabbau</li>
+                            </ul>
+                            <p style="font-size:0.9rem;color:#94A293;margin:0;line-height:1.5;font-weight:600;">→ Bedürfnis des unaufgeregten und ruhigen Naturerlebnisses</p>
+                        </div>
+                    </div>
+
+                    <!-- Chart 3 -->
+                    <div style="text-align:center;">
+                        <div style="width:150px;height:150px;border-radius:50%;margin:0 auto 1rem auto;position:relative;background:conic-gradient(#94A293 0% 56%, #f5f5f5 56% 100%);display:flex;align-items:center;justify-content:center;">
+                            <div style="width:110px;height:110px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                                <span style="color:#94A293;font-size:1.2rem;font-weight:700;">56%</span>
+                            </div>
+                        </div>
+                        <div>
+                            <ul style="font-size:0.9rem;color:#666;margin:0 0 0.5rem 0;padding-left:1.2rem;text-align:left;display:inline-block;line-height:1.5;">
+                                <li>Naturaufenthalt zum Beobachten und Entdecken</li>
+                            </ul>
+                            <p style="font-size:0.9rem;color:#94A293;margin:0;line-height:1.5;font-weight:600;">→ Bedürfnis nach Wissensaneignung in der Natur</p>
+                        </div>
+                    </div>
+
+                    <!-- Chart 4 -->
+                    <div style="text-align:center;">
+                        <div style="width:150px;height:150px;border-radius:50%;margin:0 auto 1rem auto;position:relative;background:conic-gradient(#94A293 0% 42%, #f5f5f5 42% 100%);display:flex;align-items:center;justify-content:center;">
+                            <div style="width:110px;height:110px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                                <span style="color:#94A293;font-size:1.2rem;font-weight:700;">42%</span>
+                            </div>
+                        </div>
+                        <div>
+                            <ul style="font-size:0.9rem;color:#666;margin:0 0 0.5rem 0;padding-left:1.2rem;text-align:left;display:inline-block;line-height:1.5;">
+                                <li>interessieren sich aufgrund ihrer Allergien für den Pollenflug</li>
+                            </ul>
+                            <p style="font-size:0.9rem;color:#94A293;margin:0;line-height:1.5;font-weight:600;">→ Integration eines Pollenradars</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Text Block -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:1rem 80px 4rem 80px;box-sizing:border-box;">
+            <div style="width:100%;text-align:left;">
+                <p style="font-size:1rem;font-weight:700;color:#333;margin:0 0 1rem 0;line-height:1.5;">
+                    → Freitextantworten bestätigen das Bedürfnis nach mehr Wissen und Begleitung in der Natur
+                </p>
+                <p style="font-size:1rem;font-weight:700;color:#333;margin:0;line-height:1.5;">
+                    → Die Aussage, dass 42 % der Befragten Müll als Frustrationsfaktor nannten, inspirierte uns zur Integration der 'Müllmelde'-Funktion, um Nutzern ein Gefühl von Handlungsfähigkeit ('Agency') zu geben.
+                </p>
+            </div>
+        </section>
+
+        <!-- Qualitative Insights Section -->
+        <section class="qualitative-insights-section" style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">Qualitative Insights</h2>
+                </div>
+                <div style="flex:2;">
+                    <div class="qualitative-insights-badges" style="display:flex;gap:1rem;flex-wrap:nowrap;justify-content:flex-end;">
+                        <div style="background:#94A293;color:#fff;padding:1rem 1.5rem;border-radius:8px;font-size:1rem;font-weight:600;text-align:center;min-width:180px;white-space:nowrap;">5 Interviews</div>
+                        <div style="background:#94A293;color:#fff;padding:1rem 1.5rem;border-radius:8px;font-size:1rem;font-weight:600;text-align:center;min-width:180px;white-space:nowrap;">Altersgruppen: 20-60 Jahre</div>
+                        <div style="background:#94A293;color:#fff;padding:1rem 1.5rem;border-radius:8px;font-size:1rem;font-weight:600;text-align:center;min-width:180px;white-space:nowrap;">Du & Dein Naturerlebnis</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Qualitative Insights Quotes Section -->
+        <section class="qualitative-insights-quotes" style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:1rem 80px 4rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <div style="background:#94A293;padding:1.5rem;border-radius:8px;margin:0 0 1rem 0;">
+                        <p style="font-size:1.1rem;font-style:italic;color:#fff;margin:0 0 2rem 0;line-height:1.5;">
+                            "<strong>Ich wünsche mir kleine Infotafeln</strong> – aber bitte nicht alles vollpflastern."
+                        </p>
+                        <p style="font-size:1rem;font-weight:600;color:#fff;margin:0;line-height:1.5;">
+                            → Bedürfnis nach reduzierter und häppchenweiser Wissensaneignung
+                        </p>
+                    </div>
+                </div>
+                <div style="flex:1;">
+                    <div style="background:#94A293;padding:1.5rem;border-radius:8px;margin:0 0 1rem 0;">
+                        <p style="font-size:1.1rem;font-style:italic;color:#fff;margin:0 0 2rem 0;line-height:1.5;">
+                            "<strong>Ich will wissen, was es genau ist</strong> – nicht 33 Vorschläge."
+                        </p>
+                        <p style="font-size:1rem;font-weight:600;color:#fff;margin:0;line-height:1.5;">
+                            → Bedürfnis nach treffsicherer Bestimmungsfunktion
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Insights Additional Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">Research Insights</h2>
+                </div>
+                <div style="flex:1;">
+                </div>
+            </div>
+
+            <!-- Full-width button container -->
+            <div class="research-insights-container" style="margin-top:2rem;display:flex;gap:2rem;justify-content:space-between;width:100%;">
+                <!-- Insight 1 -->
+                <div style="flex:1;text-align:center;">
+                    <div style="width:240px;height:240px;border-radius:50%;background:#94A293;margin:0 auto 1rem auto;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:1.5rem;">
+                        <div style="font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:0.5rem;">Insight 1</div>
+                        <div style="font-size:1.3rem;font-weight:600;color:#fff;line-height:1.5;">Der unterschätze Wunsch nach Wissen</div>
+                    </div>
+                    <p style="font-size:1.1rem;font-weight:600;color:#94A293;margin:0;line-height:1.5;">→ Natur nicht nur erleben,<br>sondern auch verstehen.</p>
+                </div>
+
+                <!-- Insight 2 -->
+                <div style="flex:1;text-align:center;">
+                    <div style="width:240px;height:240px;border-radius:50%;background:#94A293;margin:0 auto 1rem auto;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:1.5rem;">
+                        <div style="font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:0.5rem;">Insight 2</div>
+                        <div style="font-size:1.3rem;font-weight:600;color:#fff;line-height:1.5;">Weniger ist mehr</div>
+                    </div>
+                    <p style="font-size:1.1rem;font-weight:600;color:#94A293;margin:0;line-height:1.5;">→ Informationen auf Bedarf,<br>aber unaufdringlich.</p>
+                </div>
+
+                <!-- Insight 3 -->
+                <div style="flex:1;text-align:center;">
+                    <div style="width:240px;height:240px;border-radius:50%;background:#94A293;margin:0 auto 1rem auto;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:1.5rem;">
+                        <div style="font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:0.5rem;">Insight 3</div>
+                        <div style="font-size:1.3rem;font-weight:600;color:#fff;line-height:1.5;">Gamification: ein Balanceakt</div>
+                    </div>
+                    <p style="font-size:1.1rem;font-weight:600;color:#94A293;margin:0;line-height:1.5;">→ Einige mögen es,<br>andere nicht.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Desktop Research Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">How might we...?</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 1rem 0;"><strong>Wie können wir Menschen dabei unterstützen...</strong></p>
+                    <ul style="font-size:1.1rem;line-height:1.5;color:#444;margin:0;padding-left:1.5rem;">
+                        <li style="margin-bottom:0.5rem;">die Natur weltweit, neugierig und aufmerksam zu erleben –</li>
+                        <li style="margin-bottom:0.5rem;">mit einem zuverlässigen, jederzeit einsatzbereiten und unaufdringlichen digitalen Naturbegleiter,</li>
+                        <li>der informiert, ohne abzulenken oder zu überfordern?</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sechste Zweispalten-Section -->
+        <section style="background:#2D3531;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#fff;line-height:1.5;margin:0 0 2rem 0;">04 Struktur & Fluss</h2>
+                </div>
+                <div style="flex:2;">
+                </div>
+            </div>
+
+            <!-- Full-width Image Container -->
+            <div style="width:100vw;margin-left:-80px;margin-right:-80px;margin-top:2rem;">
+                <img src="../../img/UXUI/NaturKompass/Sitemap.png" alt="Struktur & Fluss - Sitemap" style="width:100%;height:auto;max-width:100%;display:block;" loading="lazy" decoding="async">
+            </div>
+        </section>
+
+        <!-- User Flow Image Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;">
+                <img src="../../img/UXUI/NaturKompass/User Flow.png" alt="User Flow" style="width:100%;height:auto;max-width:100%;display:block;" loading="lazy" decoding="async">
+            </div>
+        </section>
+
+        <!-- Siebte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">05 Zielgruppe & Persona</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Die Hauptzielgruppe besteht aus Naturinteressierten Entdeckern (30-55 Jahre), oft in urbanen Gebieten lebend, die in ihrer Freizeit bewusst die Natur zur Erholung und Wissenserweiterung aufsuchen. Sie sind technikaffin, aber suchen in der Natur einen Ausgleich zur digitalen Welt. (Dies fasst "Natur-Enthusiasten", "Wissenssuchende" und "Stadtbewohner" zusammen).<br><br>Weitere Zielgruppen sind Familien, die lehrreiche Ausflüge gestalten möchten sowie Wandergruppen, die ihre Touren mit interaktiven Elementen anreichern wollen.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Persona Image Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;text-align:left;margin-bottom:2rem;">
+                <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">Persona</h2>
+            </div>
+            <div style="width:100%;">
+                <img src="../../img/UXUI/NaturKompass/Persona Julia.png" alt="Persona Julia - Zielgruppe & Persona" style="width:100%;height:auto;max-width:100%;display:block;" loading="lazy" decoding="async">
+            </div>
+        </section>
+
+        <!-- Contact Background Section with Full-Width Image -->
+        <section style="background:#94A293;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;text-align:left;margin-bottom:2rem;">
+            </div>
+            <div style="width:100%;">
+                <img src="../../img/UXUI/NaturKompass/User Journey Map.png" alt="User Journey Map - NaturKompass" style="width:100%;height:auto;max-width:100%;display:block;" loading="lazy" decoding="async">
+            </div>
+        </section>
+
+        <!-- Neunte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;text-align:left;">
+                <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">06 UI-Design</h2>
+            </div>
+        </section>
+
+        <!-- UI-Design Image Container -->
+        <section class="moodboard-section" style="background:#555B57;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:0;box-sizing:border-box;">
+            <div style="width:100%;">
+                <img src="../../img/UXUI/NaturKompass/Moodboard.png" alt="UI-Design Moodboard - NaturKompass" style="width:100%;height:auto;max-width:100%;display:block;" loading="lazy" decoding="async">
+            </div>
+        </section>
+
+        <!-- UI-Design Research Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;text-align:left;margin-bottom:3rem;">
+                <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">Designprinzipien</h2>
+            </div>
+            
+            <!-- Design Principles Grid -->
+            <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:3rem;width:100%;margin-top:2rem;">
+                
+                <!-- Principle 1 -->
+                <div class="design-principle" style="display:flex;align-items:center;gap:2rem;">
+                    <div style="width:120px;height:120px;border-radius:50%;background:#94A293;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <span style="font-size:2.5rem;font-weight:700;color:#fff;">1</span>
+                    </div>
+                    <div style="flex:1;">
+                        <h3 style="font-size:1.5rem;font-weight:700;color:#333;margin:0 0 0.5rem 0;">Zurückhaltende Begleitung</h3>
+                        <p style="font-size:1rem;line-height:1.5;color:#666;margin:0 0 2rem 0;">Durch den Einsatz des 'Frosted Glass'-Effekts und dem minimalistischen Einsatz von Bedienelementen bleibt der Fokus auf dem Naturerlebnis und lenkt nicht davon ab.</p>
+                    </div>
+                </div>
+                
+                <!-- Principle 2 -->
+                <div class="design-principle" style="display:flex;align-items:center;gap:2rem;">
+                    <div style="width:120px;height:120px;border-radius:50%;background:#94A293;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <span style="font-size:2.5rem;font-weight:700;color:#fff;">2</span>
+                    </div>
+                    <div style="flex:1;">
+                        <h3 style="font-size:1.5rem;font-weight:700;color:#333;margin:0 0 0.5rem 0;">Zugängliche Gestaltung</h3>
+                        <p style="font-size:1rem;line-height:1.5;color:#666;margin:0 0 2rem 0;">Eine klare Navigation, eine hohe Lesbarkeit sowie strukturierte Elemente und Komponenten sorgen für eine einfache Nutzung.</p>
+                    </div>
+                </div>
+                
+                <!-- Principle 3 -->
+                <div class="design-principle" style="display:flex;align-items:center;gap:2rem;">
+                    <div style="width:120px;height:120px;border-radius:50%;background:#94A293;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <span style="font-size:2.5rem;font-weight:700;color:#fff;">3</span>
+                    </div>
+                    <div style="flex:1;">
+                        <h3 style="font-size:1.5rem;font-weight:700;color:#333;margin:0 0 0.5rem 0;">Inspirierende Wissensvermittlung</h3>
+                        <p style="font-size:1rem;line-height:1.5;color:#666;margin:0 0 2rem 0;">Das Wissen wird präzise, verständlich und neugierig machend in kleinen Häppchen vermittelt.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- UI-Foundation Section -->
+        <section style="background:#363E3B;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;text-align:left;margin-bottom:3rem;">
+                <h2 style="font-size:2rem;font-weight:700;color:#fff;line-height:1.5;margin:0 0 2rem 0;">UI-Foundation</h2>
+            </div>
+            
+            <!-- UI Foundation Image -->
+            <div style="width:100%;margin-bottom:4rem;">
+                <img src="../../img/UXUI/NaturKompass/UI Foundation.png" alt="UI-Foundation - NaturKompass" style="width:100%;height:auto;max-width:100%;display:block;" loading="lazy" decoding="async">
+            </div>
+            
+            <!-- UI Foundation Text Blocks -->
+            <div style="display:flex;flex-direction:column;gap:3rem;width:100%;">
+                <!-- Row 1: Farbwelt -->
+                <div class="design-system-row" style="display:flex;gap:4rem;width:100%;align-items:flex-start;">
+                    <div style="flex:1;">
+                        <h3 style="font-size:1.5rem;font-weight:700;color:#fff;margin:0 0 2rem 0;">Farbwelt</h3>
+                    </div>
+                    <div style="flex:2;">
+                        <p style="font-size:1.1rem;line-height:1.5;color:#e0e0e0;margin:0 0 2rem 0;">Grüntöne und authentische Naturfotos erzeugen in Kombination mit weißen Schriftzüge und Icons eine ruhige, natürliche Atmosphäre mit hohem Kontrast.</p>
+                    </div>
+                </div>
+                
+                <!-- Row 2: Schriftarten -->
+                <div class="design-system-row" style="display:flex;gap:4rem;width:100%;align-items:flex-start;">
+                    <div style="flex:1;">
+                        <h3 style="font-size:1.5rem;font-weight:700;color:#fff;margin:0 0 2rem 0;">Schriftarten</h3>
+                    </div>
+                    <div style="flex:2;">
+                        <p style="font-size:1.1rem;line-height:1.5;color:#e0e0e0;margin:0 0 2rem 0;">Merriweather als Headline und Inter als Body kombinieren klassische Eleganz mit moderner Lesbarkeit für eine klare Hierarchie.</p>
+                    </div>
+                </div>
+                
+                <!-- Row 3: Ikonographie -->
+                <div class="design-system-row" style="display:flex;gap:4rem;width:100%;align-items:flex-start;">
+                    <div style="flex:1;">
+                        <h3 style="font-size:1.5rem;font-weight:700;color:#fff;margin:0 0 2rem 0;">Ikonographie</h3>
+                    </div>
+                    <div style="flex:2;">
+                        <p style="font-size:1.1rem;line-height:1.5;color:#e0e0e0;margin:0 0 2rem 0;">Die Tabler & Phosphor Icons sind klar, fokussiert und funktional.</p>
+                    </div>
+                </div>
+                
+                <!-- Row 4: Ton of Voice -->
+                <div class="design-system-row" style="display:flex;gap:4rem;width:100%;align-items:flex-start;">
+                    <div style="flex:1;">
+                        <h3 style="font-size:1.5rem;font-weight:700;color:#fff;margin:0 0 2rem 0;">Ton of Voice</h3>
+                    </div>
+                    <div style="flex:2;">
+                        <p style="font-size:1.1rem;line-height:1.5;color:#e0e0e0;margin:0 0 2rem 0;">informativ, ruhig, freundlich und verlässlich</p>
+                    </div>
+                </div>
+                
+                <!-- Row 5: Komponenten -->
+                <div class="design-system-row" style="display:flex;gap:4rem;width:100%;align-items:flex-start;">
+                    <div style="flex:1;">
+                        <h3 style="font-size:1.5rem;font-weight:700;color:#fff;margin:0 0 2rem 0;">Komponenten</h3>
+                    </div>
+                    <div style="flex:2;">
+                        <p style="font-size:1.1rem;line-height:1.5;color:#e0e0e0;margin:0 0 2rem 0;">Die reduzierte Buttons und strukturierte Karten ermöglichen eine einfache, intuitive Bedienung.</p>
+                    </div>
+                </div>
+                
+                <!-- Row 6: Visuelle Sprache -->
+                <div class="design-system-row" style="display:flex;gap:4rem;width:100%;align-items:flex-start;">
+                    <div style="flex:1;">
+                        <h3 style="font-size:1.5rem;font-weight:700;color:#fff;margin:0 0 2rem 0;">Visuelle Sprache</h3>
+                    </div>
+                    <div style="flex:2;">
+                        <p style="font-size:1.1rem;line-height:1.5;color:#e0e0e0;margin:0 0 2rem 0;">Sie ist ruhig, klar und reduziert, unterstützt somit das Naturerlebnis und hält den Fokus auf dem Naturerlebnis. Die Schriftgrößen, Wahl der Schriftarten und die Höhe des Kontrast zwischen Text und Hintergrund ermöglichen eine gute und schnelle Bedienung.</p>
+                    </div>
+                </div>
+                
+                <!-- Row 7: Konsistenz -->
+                <div class="design-system-row" style="display:flex;gap:4rem;width:100%;align-items:flex-start;">
+                    <div style="flex:1;">
+                        <h3 style="font-size:1.5rem;font-weight:700;color:#fff;margin:0 0 2rem 0;">Konsistenz</h3>
+                    </div>
+                    <div style="flex:2;">
+                        <p style="font-size:1.1rem;line-height:1.5;color:#e0e0e0;margin:0 0 2rem 0;">Die festgelegte Farbpalette, die zwei Schriftarten und die strukturierten gestalteten Karten sorgen dafür, dass alle Screens visuell einheitlich/konsistent wirken, selbst wenn großformatige Hintergründe und Kameraansichten variieren.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Zehnte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <h2 style="font-size:2rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">Logo</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <div style="width:100%;height:100%;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#f5f5f5;">
+                        <img src="../../img/UXUI/NaturKompass/Logo.png" alt="Logo des Naturkompasses" style="width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async">
+                    </div>
+                </div>
+                <div style="flex:1;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 1rem 0;">Das Logo des Naturkompasses ist eine Kombination aus...</p>
+                    <ul style="font-size:1.1rem;line-height:1.5;color:#444;margin:0;padding-left:1.5rem;">
+                        <li>einem Kompass, der für Orientierung steht,</li>
+                        <li>dem Blatt im Zentrum als Symbol für das Naturerlebnis,</li>
+                        <li>ergänzt durch die Versalien "N" für die Natur und "K" für den Kompass.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Zwölfte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">07 Das finale Design</h2>
+                    
+                    <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:2rem 0 1rem 0;">Onboarding</h3>
+                    <div class="finale-design-screens" style="display:flex;justify-content:space-around;gap:1rem;margin-bottom:1rem;">
+                        <img src="../../img/UXUI/NaturKompass/Onboarding 01.png" alt="Onboarding Screen 1" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/NaturKompass/Onboarding 02.png" alt="Onboarding Screen 2" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/NaturKompass/Onboarding 03.png" alt="Onboarding Screen 3" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/NaturKompass/Onboarding 04.png" alt="Onboarding Screen 4" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                    </div>
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Das <strong>Onboarding</strong> des <strong>NaturKompass</strong> begrüßt neue Nutzer und führt sie direkt in die <strong>Kernfunktionen</strong> der App ein. Um eine <strong>personalisierte Nutzung</strong> zu ermöglichen, fragt das Onboarding <strong>standortbezogene Daten</strong> ab – für präzisere <strong>Artenbestimmung</strong> und standortspezifische Ergebnisse. <strong>Push-Benachrichtigungen</strong> informieren über <strong>Pollenflug</strong> und Ereignisse. Zudem liefert die Abfrage von <strong>Allergien</strong> maßgeschneiderte Informationen und <strong>Warnungen</strong>, optimal auf die individuellen Bedürfnisse zugeschnitten.</p>
+                    
+                    <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:2rem 0 1rem 0;">Hauptfunktion</h3>
+                    <div class="finale-design-screens" style="display:flex;justify-content:space-around;gap:1rem;margin-bottom:1rem;">
+                        <img src="../../img/UXUI/NaturKompass/Hauptfunktion 01.png" alt="Hauptfunktion Screen 1" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/NaturKompass/Hauptfunktion 02.png" alt="Hauptfunktion Screen 2" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/NaturKompass/Hauptfunktion 03.png" alt="Hauptfunktion Screen 3" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/NaturKompass/Hauptfunktion 04.png" alt="Hauptfunktion Screen 4" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                    </div>
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Die <strong>Hauptfunktion</strong> der App, das <strong>Bestimmen von Spezies</strong>, wird durch einen intuitiven <strong>Scan-Prozess</strong> realisiert. Nutzer können ihre <strong>Kamera</strong> auf z.B. eine Pflanze richten, um eine schnelle <strong>Identifikation</strong> zu erhalten. Nach dem Scan werden <strong>detaillierte Informationen</strong> zur identifizierten Art präsentiert, inklusive <strong>Bildern</strong> und wissenswerten <strong>Fakten</strong>. Mit jedem Fund, sammelt der Nutzer <strong>Punkte</strong>, was spielerisch zur weiteren Nutzung und zum <strong>Sammeln von Wissen</strong> anregt. Dieser Prozess ist darauf ausgelegt, das <strong>Entdecken und Lernen</strong> in der Natur einfach und interaktiv zu gestalten.</p>
+                    
+                    <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:2rem 0 1rem 0;">Nebenfunktionen</h3>
+                    <div class="finale-design-screens" style="display:flex;justify-content:space-around;gap:1rem;margin-bottom:1rem;">
+                        <img src="../../img/UXUI/NaturKompass/Nebenfunktionen 01.png" alt="Nebenfunktionen Screen 1" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/NaturKompass/Nebenfunktionen 02.png" alt="Nebenfunktionen Screen 2" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/NaturKompass/Nebenfunktionen 03.png" alt="Nebenfunktionen Screen 3" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                        <img src="../../img/UXUI/NaturKompass/Nebenfunktionen 04.png" alt="Nebenfunktionen Screen 4" style="width:200px;height:432px;object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                    </div>
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Neben der Kernfunktion des Bestimmens bietet <strong>NaturKompass</strong> eine Reihe von <strong>Nebenfunktionen</strong>, die das Naturerlebnis erweitern und vertiefen. Der <strong>"Entdecken"</strong>-Bereich schlägt <strong>Wanderrouten</strong>, <strong>Sehenswürdigkeiten</strong> und lokale <strong>Challenges</strong> vor, um die Umgebung aktiv zu erkunden. Unter <strong>"Wissen"</strong> können Nutzer ihr Verständnis durch interaktive <strong>Lerneinheiten</strong> und detaillierte <strong>Steckbriefe</strong> vertiefen. Das <strong>"Profil"</strong> personalisiert die App, indem es den <strong>Fortschritt</strong> des Nutzers visualisiert und gesammelte <strong>Naturpunkte</strong> anzeigt. Eine weitere wichtige Funktion ist der <strong>"Müllmelder"</strong>, der es Nutzern ermöglicht, <strong>Umweltverschmutzung</strong> zu melden und so aktiv zum <strong>Naturschutz</strong> beizutragen, indem sie Funde von Müll lokalisieren und zur Abholung markieren.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dreizehnte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">08 Tests & Iterationen</h2>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                        <div style="flex:1;">
+                            <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:0 0 1rem 0;">Erhaltenes Feedback</h3>
+                        </div>
+                        <div style="flex:1;">
+                            <ul style="font-size:1.1rem;line-height:1.5;color:#444;margin:0;padding-left:1.5rem;">
+                                <li>Übersichtlich, schöne Icons, Nices Dark Frostet Glas, Logo</li>
+                                <li>Nutzer empfanden die 11 Onboarding-Screens inklusiver Textlänge als zu langwierig</li>
+                                <li>Nutzer empfanden den Secondary Button präsenter als den Primary Button, sodass die Bedienung gestört war und eine klare Hierachie nicht zu erkennen war.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vorher vs. Nachher: Onboarding Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:0 0 1rem 0;">Vorher vs. Nachher: Onboarding</h3>
+            
+            <!-- Image Container with section padding only (80px) -->
+            <div style="width:100%;margin-bottom:2rem;">
+                <img src="../../img/UXUI/NaturKompass/Onboarding vorher - nachher.png" alt="Onboarding Vorher vs Nachher Vergleich" style="width:100%;height:auto;max-width:100%;display:block;" loading="lazy" decoding="async">
+            </div>
+            
+            <div class="vorher-nachher-text" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;margin-top:2rem;">
+                <div style="flex:1;">
+                    <h4 style="font-size:1.4rem;font-weight:700;color:#333;margin:0 0 0.5rem 0;">Vorher</h4>
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Nutzer empfanden den Splash Screen und die 11 Onboarding-Screens als zu langwierig.</p>
+                </div>
+                <div style="flex:1;">
+                    <h4 style="font-size:1.4rem;font-weight:700;color:#333;margin:0 0 0.5rem 0;">Nachher</h4>
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Die Anzahl der Onboarding Screens wurde auf neun reduziert, indem drei der vorherigen Screens in einen scrollbaren reduzierten Screen gefasst wurden. Zudem fand auch eine Überarbeitung und Kürzung der einzelnen Textelemente sowie der Überarbeitung des Footermenüs statt.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vorher vs. Nachher: Button-Hierachie Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:0 0 2rem 0;">Vorher vs. Nachher: Button-Hierachie</h3>
+            <div class="button-hierarchy-images" style="display:flex;justify-content:center;gap:1.2rem;margin-bottom:2.5rem;align-items:flex-start;flex-wrap:nowrap;">
+                <img src="../../img/UXUI/NaturKompass/Iteration Buttons_Vorher 1.png" alt="Button Iteration Vorher 1" class="hierarchy-img" style="object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                <img src="../../img/UXUI/NaturKompass/Iteration Buttons_Vorher 2.png" alt="Button Iteration Vorher 2" class="hierarchy-img" style="object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                <div class="hierarchy-center" style="border:4px solid #94A293;padding:4px;background:#fff;border-radius:8px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(148,162,147,0.3);">
+                  <img src="../../img/UXUI/NaturKompass/Iteration Buttons.png" alt="Button Iteration Vergleich" class="hierarchy-img" style="border-radius:4px;display:block;" loading="lazy" decoding="async">
+                </div>
+                <img src="../../img/UXUI/NaturKompass/Iteration Buttons_Nachher 1.png" alt="Button Iteration Nachher 1" class="hierarchy-img" style="object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+                <img src="../../img/UXUI/NaturKompass/Iteration Buttons_Nachher 2.png" alt="Button Iteration Nachher 2" class="hierarchy-img" style="object-fit:contain;border-radius:8px;" loading="lazy" decoding="async">
+            </div>
+            <div class="vorher-nachher-text" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;width:100%;margin-top:0;">
+                <div>
+                    <h4 style="font-size:1.5rem;font-weight:700;color:#94A293;margin:0 0 0.8rem 0;">Vorher</h4>
+                    <p style="font-size:1.05rem;line-height:1.5;color:#555;margin:0 0 2rem 0;">Nutzer empfanden den Secondary Button präsenter als den Primary Button, sodass die Bedienung gestört war und eine klare Hierachie nicht zu erkennen war.</p>
+                </div>
+                <div>
+                    <h4 style="font-size:1.5rem;font-weight:700;color:#94A293;margin:0 0 0.8rem 0;">Nachher</h4>
+                    <p style="font-size:1.05rem;line-height:1.5;color:#555;margin:0 0 2rem 0;">Invertierung der Farben des Primary Buttons führt zur klaren hierachischen Struktur der Buttons und somit zur gewünschten intuitiven Bedienung.</p>
+                </div>
+            </div>
+        </section>
+        <style>
+          /* Button-Hierarchie Images: Desktop default */
+          .button-hierarchy-images img {
+            width: 200px;
+            height: 432px;
+            object-fit: contain;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+          }
+          .button-hierarchy-images img:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
+          }
+          .button-hierarchy-images .hierarchy-center {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex-shrink: 0;
+          }
+          .button-hierarchy-images .hierarchy-center:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(148,162,147,0.4) !important;
+          }
+          .button-hierarchy-images .hierarchy-center img {
+            width: 200px;
+            height: 432px;
+            object-fit: contain;
+          }
+          
+          /* Button-Hierarchie Images: Mobile layout - all 5 visible without scrolling */
+          @media (max-width: 768px) {
+            .button-hierarchy-images { 
+              flex-wrap: nowrap !important;
+              justify-content: space-between !important;
+              gap: 0.4rem !important;
+              max-width: 100% !important;
+              margin-bottom: 2rem !important;
+              overflow-x: visible !important;
+            }
+            .button-hierarchy-images img { 
+              width: 18% !important; 
+              height: auto !important; 
+              max-height: none !important;
+              object-fit: contain !important;
+              flex-shrink: 1 !important;
+            }
+            .button-hierarchy-images .hierarchy-center {
+              flex-shrink: 1 !important;
+              width: 18% !important;
+              max-width: none !important;
+            }
+            .button-hierarchy-images .hierarchy-center img {
+              max-width: 100% !important;
+              max-height: none !important;
+              width: 100% !important;
+            }
+          }
+          @media (max-width: 480px) {
+            .button-hierarchy-images { 
+              gap: 0.3rem !important;
+            }
+          }
+          @media (max-width: 375px) {
+            .button-hierarchy-images { 
+              gap: 0.25rem !important;
+            }
+          }
+          
+          /* Finale Design Screens: Mobile layout - all 4 screens visible */
+          @media (max-width: 768px) {
+            .finale-design-screens {
+              flex-wrap: nowrap !important;
+              justify-content: space-between !important;
+              gap: 0.4rem !important;
+              overflow-x: visible !important;
+            }
+            .finale-design-screens img {
+              width: 23% !important;
+              height: auto !important;
+              max-height: none !important;
+              flex-shrink: 1 !important;
+            }
+          }
+          @media (max-width: 480px) {
+            .finale-design-screens {
+              gap: 0.3rem !important;
+            }
+          }
+          @media (max-width: 375px) {
+            .finale-design-screens {
+              gap: 0.25rem !important;
+            }
+          }
+          
+          /* Vorher/Nachher Text: Single column on mobile */
+          @media (max-width: 768px) {
+            .vorher-nachher-text {
+              grid-template-columns: 1fr !important;
+              gap: 2rem !important;
+            }
+          }
+          
+          /* Design System Rows: Single column on mobile */
+          @media (max-width: 768px) {
+            .design-system-row {
+              flex-direction: column !important;
+              gap: 1rem !important;
+            }
+            .design-system-row > div {
+              flex: none !important;
+            }
+          }
+          
+          /* Design Principles: Stack vertically on mobile with centered circle */
+          @media (max-width: 768px) {
+            .design-principle {
+              flex-direction: column !important;
+              align-items: center !important;
+              text-align: center !important;
+              gap: 1.5rem !important;
+            }
+            .design-principle > div:first-child {
+              width: 100px !important;
+              height: 100px !important;
+            }
+            .design-principle > div:first-child span {
+              font-size: 2rem !important;
+            }
+          }
+          
+          /* Moodboard: Full width on mobile without padding */
+          @media (max-width: 768px) {
+            .moodboard-section {
+              padding: 0 !important;
+            }
+          }
+          
+          /* Research Insights: Stack vertically on mobile */
+          @media (max-width: 768px) {
+            .research-insights-container {
+              flex-direction: column !important;
+              gap: 3rem !important;
+            }
+            .research-insights-container > div {
+              flex: 1 1 100% !important;
+              max-width: 100% !important;
+            }
+            .research-insights-container > div > div[style*="width:240px"] {
+              width: 200px !important;
+              height: 200px !important;
+            }
+            .research-insights-container > div > div[style*="width:240px"] > div[style*="font-size:1.6rem"] {
+              font-size: 1.4rem !important;
+            }
+            .research-insights-container > div > div[style*="width:240px"] > div[style*="font-size:1.3rem"] {
+              font-size: 1.15rem !important;
+            }
+          }
+          
+          /* Qualitative Insights: Stack badges and quotes vertically on mobile */
+          @media (max-width: 768px) {
+            .qualitative-insights-section > div {
+              grid-template-columns: 1fr !important;
+              gap: 2rem !important;
+            }
+            .qualitative-insights-badges {
+              flex-direction: column !important;
+              gap: 0.8rem !important;
+              justify-content: flex-start !important;
+            }
+            .qualitative-insights-badges > div {
+              width: 100% !important;
+              min-width: auto !important;
+              white-space: normal !important;
+            }
+            .qualitative-insights-quotes > div {
+              grid-template-columns: 1fr !important;
+              gap: 2rem !important;
+            }
+          }
+          
+          /* Quantitative Insights: Stack badges and donut charts vertically on mobile */
+          @media (max-width: 768px) {
+            .quantitative-insights-section > div {
+              grid-template-columns: 1fr !important;
+              gap: 2rem !important;
+            }
+            .quantitative-insights-badges {
+              flex-direction: column !important;
+              gap: 0.8rem !important;
+              justify-content: flex-start !important;
+            }
+            .quantitative-insights-badges > div {
+              width: 100% !important;
+              min-width: auto !important;
+              white-space: normal !important;
+            }
+            .donut-charts-section > div > div {
+              grid-template-columns: 1fr !important;
+              gap: 2.5rem !important;
+            }
+          }
+        </style>
+
+        <!-- Neue Section für 09 Preview -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">09 Preview</h2>
+                </div>
+                <div style="flex:1;">
+                </div>
+            </div>
+        </section>
+
+        <!-- YouTube Video Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:2rem 80px 5rem 80px;box-sizing:border-box;">
+            <div style="width:100%;display:flex;justify-content:center;">
+                <iframe class="preview-video" width="100%" height="600" src="https://www.youtube.com/embed/_Weccn01Gi8" title="NaturKompass App Preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius:8px;max-width:100%;min-height:600px;"></iframe>
+            </div>
+        </section>
+        <style>
+          /* Video responsive height */
+          @media (max-width: 768px) {
+            .preview-video { height: 400px !important; min-height: 400px !important; }
+          }
+          @media (max-width: 480px) {
+            .preview-video { height: 300px !important; min-height: 300px !important; }
+          }
+          @media (max-width: 375px) {
+            .preview-video { height: 250px !important; min-height: 250px !important; }
+          }
+        </style>
+
+        <!-- Vierzehnte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">10 Herausforderungen & Learnings</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;"><b>Fokus durch Zeitdruck:</b> Der 4-Wochen-Sprint zwang uns zu einer radikalen Fokussierung auf das MVP. Das half uns, den Kern-Flow zu perfektionieren.<br><br><b>KI als Werkzeug verstehen:</b> Der gezielte Einsatz von generativer KI sparte Zeit, erforderte aber auch eine kritische Prüfung der Ergebnisse.</p>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;margin-top:4rem;">
+                <div style="flex:1;">
+                    <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:0 0 1rem 0;">Meine persönlichen Learnings</h3>
+                </div>
+                <div style="flex:1;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;"><b>1. Forschung als Fundament:</b> Tiefgehende Nutzerforschung ist die Basis für jede gute Designentscheidung.<br><br><b>2. Die Kraft der Iteration:</b> Frühes und kontinuierliches Testen ist der schnellste Weg zu einem wirklich intuitiven Design.<br><br><b>3. Weniger ist mehr:</b> Informationen und Aktionen gezielt und minimal einzusetzen, führt zum besten Nutzerfluss.<br><br><b>4. Entwicklung von Interviewkompetenzen:</b> Ich habe gelernt, durch offene Fragen und aktives Zuhören eine vertrauensvolle Atmosphäre zu schaffen, um unverfälschte Einblicke zu gewinnen.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fünfzehnte Zweispalten-Section -->
+        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:5rem 80px;box-sizing:border-box;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;">
+                <div style="flex:1;">
+                    <h2 style="font-size:2.5rem;font-weight:700;color:#333;line-height:1.5;margin:0 0 2rem 0;">11 Fazit & Ausblick</h2>
+                </div>
+                <div style="flex:2;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">NaturKompass ist ein Prototyp, der eine zentrale Lücke im Markt schließt: Er bereichert das Naturerlebnis durch Wissen, ohne digital abzulenken. Durch einen konsequent nutzerzentrierten Prozess wurde ein Konzept entwickelt, das den Menschen und seine Bedürfnisse in den Mittelpunkt stellt.</p>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;margin-top:4rem;">
+                <div style="flex:1;">
+                    <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:0 0 1rem 0;">Mein Fazit als Designer</h3>
+                </div>
+                <div style="flex:1;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;">Eine fundierte UI-Foundation ist das direkte Ergebnis tiefgehender UX-Forschung. Exzellentes Design entsteht nicht durch Zufall, sondern durch einen disziplinierten Prozess: radikales Zuhören, konsequente Iteration und die klare Fokussierung auf die Menschen, für die wir gestalten.</p>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;width:100%;margin-top:4rem;">
+                <div style="flex:1;">
+                    <h3 style="font-size:1.8rem;font-weight:600;color:#333;margin:0 0 1rem 0;">Nächste Schritte</h3>
+                </div>
+                <div style="flex:1;">
+                    <p style="font-size:1.1rem;line-height:1.5;color:#444;margin:0 0 2rem 0;"><b>1. Ausbau des MVPs:</b> Fehlende Screens und die Müllmelder-Funktion fertigstellen.<br><br><b>2. Feldtests durchführen:</b> Den Prototypen mit echten Nutzern unter realen Bedingungen testen.<br><br><b>3. Entwickler-Kollaboration:</b> Die Umsetzung der mobilen App in die Wege leiten.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation: Letztes/Nächstes Projekt -->
+        <section class="projekt-nav-section">
+            <div class="projekt-nav-row">
+                <div class="projekt-nav-btn projekt-nav-btn-left">
+                    <a href="P7_UXUI_FlavorFusion.html" class="btn-secondary projekt-btn" style="display: flex !important; align-items: center !important;">
+                        <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px; flex-shrink: 0;">
+                            <path d="M76 48L20 48M20 48L44 24M20 48L44 72" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        LETZTES PROJEKT
+                    </a>
+                    <div class="projekt-vorschau">
+                        <img src="../../img/UXUI/FlavorFusion/01f31bcc-fba0-4fba-b249-4b24feb24397.png" alt="FlavorFusion Rezepte-App Landing Page - moderne mobile App für kulinarische Inspiration" loading="lazy" decoding="async">
+                        <div class="projekt-vorschau-title">FlavorFusion</div>
+                        <div class="projekt-vorschau-sub">Landing Page für eine mobile Rezepte App</div>
+                    </div>
+                </div>
+                <div class="projekt-nav-btn projekt-nav-btn-right">
+                    <a href="P1_IA_Weserkoje.html" class="btn-secondary projekt-btn" style="display: flex !important; align-items: center !important;">
+                        NÄCHSTES PROJEKT
+                        <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 8px; flex-shrink: 0;">
+                            <path d="M20 48L76 48M76 48L52 24M76 48L52 72" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <div class="projekt-vorschau">
+                        <img src="../../img/IA/Weserkoje/Ansicht-3jpg.png" alt="Weserkoje multifunktionale Herberge - moderne Tagungszentrum-Architektur an der Weser" loading="lazy" decoding="async">
+                        <div class="projekt-vorschau-title">Weserkoje</div>
+                        <div class="projekt-vorschau-sub">Multifunktionale Herberge mit Tagungszentrum</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <style>
+            .projekt-nav-section {
+                width: 100vw;
+                position: relative;
+                left: 50%;
+                right: 50%;
+                margin-left: -50vw;
+                margin-right: -50vw;
+                background: #fff;
+                padding: 4rem 80px 4rem 80px;
+                box-sizing: border-box;
+            }
+            .projekt-nav-row {
+                display: flex;
+                justify-content: space-between;
+                gap: 2rem;
+            }
+            .projekt-nav-btn {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                min-width: 220px;
+            }
+            .projekt-nav-btn-right {
+                align-items: flex-end;
+            }
+            .projekt-vorschau {
+                display: none;
+                position: absolute;
+                left: 0;
+                bottom: 110%;
+                background: #fff;
+                border-radius: 1.2rem;
+                box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+                padding: 1rem;
+                width: 260px;
+                z-index: 10;
+                text-align: left;
+            }
+            .projekt-nav-btn-right .projekt-vorschau {
+                left: 0;
+                right: auto;
+                text-align: left;
+            }
+            .projekt-nav-btn:hover .projekt-vorschau {
+                display: block;
+            }
+            .projekt-vorschau img {
+                width: 100%;
+                border-radius: 0.7rem;
+                margin-bottom: 0.7em;
+            }
+            .projekt-vorschau-title {
+                font-weight: 700;
+                font-size: 1.1rem;
+            }
+            .projekt-vorschau-sub {
+                font-size: 0.98rem;
+                color: #888;
+            }
+            @media (max-width: 900px) {
+                .projekt-nav-section {
+                    padding-left: 24px;
+                    padding-right: 24px;
+                }
+                .projekt-nav-row {
+                    flex-direction: column;
+                    gap: 1.5rem;
+                    align-items: stretch;
+                }
+                .projekt-nav-btn, .projekt-nav-btn-right {
+                    align-items: flex-start !important;
+                }
+                .projekt-nav-btn-right .projekt-vorschau {
+                    right: auto;
+                    left: 0;
+                    text-align: left;
+                }
+            }
+        </style>
+
+    <!-- Kontaktbereich wie auf index.html -->
+    <section class="contact" id="contact" aria-label="Kontakt" style="width:100vw;max-width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding-left:80px;padding-right:80px;box-sizing:border-box;">
+      <div class="contact-row" style="display:flex;align-items:center;gap:2.5rem;justify-content:space-between;width:100%;max-width:100%;box-sizing:border-box;">
+        <div class="contact-content" style="margin:0;flex:1;">
+          <h2 style="margin:0;color:#fff;">GET<br>IN<br>TOUCH</h2>
+        </div>
+        <div style="flex:0 0 auto;display:flex;justify-content:flex-end;>">
+          <a href="contact.html" class="btn-contact round-yellow" aria-label="Kontakt aufnehmen" >
+            <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 48L76 48M76 48L52 24M76 48L52 72" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+    </main>
+    <style>
+      .btn-contact.round-yellow {
+        width: 192px;
+        height: 192px;
+        border-radius: 50%;
+        background: #ffb800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+        border: none;
+        transition: background 0.2s, box-shadow 0.2s;
+        padding: 0;
+      }
+      .btn-contact.round-yellow::after { display: none; }
+      .btn-contact.round-yellow:hover, .btn-contact.round-yellow:focus {
+        background: #e6a600;
+        box-shadow: 0 12px 48px rgba(0,0,0,0.16);
+      }
+      .btn-contact.round-yellow svg { width: 96px; height: 96px; display: block; }
+      .btn-contact.round-yellow svg path { stroke: #fff; }
+      
+      /* Mobile: GET IN TOUCH larger than desktop */
+      @media (max-width: 900px) {
+        .contact-content h2 { font-size: 4rem !important; line-height: 1.1 !important; }
+      }
+      @media (max-width: 768px) {
+        .contact-content h2 { font-size: 3.5rem !important; line-height: 1.1 !important; }
+      }
+      @media (max-width: 480px) {
+        .contact-content h2 { font-size: 3rem !important; line-height: 1.1 !important; }
+        .btn-contact.round-yellow { width: 160px !important; height: 160px !important; }
+      }
+      @media (max-width: 375px) {
+        .contact-content h2 { font-size: 2.5rem !important; line-height: 1.1 !important; }
+        .btn-contact.round-yellow { width: 144px !important; height: 144px !important; }
+      }
+    </style>
+  </main>
+
+  <footer class="main-footer" role="contentinfo">
+    <div class="footer-row" style="padding-top:1.2rem;padding-bottom:1.2rem;">
+      <div class="footer-block">
+          <div class="footer-title">VERSION</div>
+          <div>2025 © Edition</div>
+        </div>
+        <div class="footer-block">
+          <div class="footer-title">LOKALE ZEIT</div>
+          <div><span id="local-time"></span></div>
+        </div>
+        <div class="footer-block">
+          <div class="footer-title">SOZIALE NETZWERKE</div>
+          <div class="footer-socials">
+            <a href="https://www.linkedin.com/in/anika-warncke" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+        <div class="footer-block">
+          <div class="footer-title">RECHTLICHES</div>
+          <a href="datenschutz.html">Datenschutz</a>
+          <a href="impressum.html">Impressum</a>
+        </div>
+      </div>
+    </footer>
+    <style>
+      /* Footer mobile: stack blocks and add safe-area padding */
+      @media (max-width: 600px) {
+        .footer-row { flex-direction: column !important; gap: 1.25rem !important; }
+        .footer-row > div[style*='display:flex'] { flex-direction: column !important; gap: 1rem !important; flex: 1 1 100% !important; }
+        .footer-block { display: flex !important; flex-direction: column !important; gap: 0.3rem !important; width: 100% !important; }
+        .main-footer { padding-bottom: calc(1.2rem + env(safe-area-inset-bottom, 0px) + 68px) !important; }
+      }
+    </style>
+
+  <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('.main-header');
+            const hero = document.querySelector('.hero');
+            window.addEventListener('scroll', function() {
+                const heroHeight = hero.offsetHeight;
+                if(window.scrollY > heroHeight - 60) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Lokale Zeit immer aktuell anzeigen
+            function updateLocalTime() {
+                const now = new Date();
+                const options = { hour: '2-digit', minute: '2-digit' };
+                let timeString = now.toLocaleTimeString('de-DE', options) + ' Uhr';
+                // MESZ/MEZ je nach Sommerzeit
+                const isDST = now.getTimezoneOffset() < -60;
+                timeString += isDST ? ' MESZ' : ' MEZ';
+                document.getElementById('local-time').textContent = timeString;
+            }
+            updateLocalTime();
+            setInterval(updateLocalTime, 10000);
+        });
+  </script>
+
+  <script src="../scripts/back-to-top.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function updateLocalTime() {
+        const now = new Date();
+        const options = { hour: '2-digit', minute: '2-digit' };
+        let timeString = now.toLocaleTimeString('de-DE', options) + ' Uhr';
+        const isDST = now.getTimezoneOffset() < -60;
+        timeString += isDST ? ' MESZ' : ' MEZ';
+        const el = document.getElementById('local-time');
+        if (el) el.textContent = timeString;
+      }
+      updateLocalTime();
+      setInterval(updateLocalTime, 10000);
+    });
+  </script>
+
+  <button class="back-to-top" aria-label="Nach oben scrollen" role="button" tabindex="0" style="--progress: 0deg">
+    <svg width="24" height="24" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M48 76L48 20M48 20L24 44M48 20L72 44" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Back to Top Button
+      const backToTopBtn = document.querySelector('.back-to-top');
+      if (backToTopBtn) {
+        let hasShownOnce = false;
+        
+        function updateScrollProgress() {
+          const scrollTop = window.pageYOffset;
+          const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const scrollPercent = Math.max(0, Math.min(100, (scrollTop / documentHeight) * 100));
+          
+          const easedPercent = scrollPercent < 50 ? 
+            2 * scrollPercent * scrollPercent / 100 :
+            1 - Math.pow(-2 * scrollPercent + 2, 3) / 2;
+          
+          const progressDeg = (easedPercent / 100) * 360;
+          backToTopBtn.style.setProperty('--progress', `${progressDeg}deg`);
+          
+          // Hero-Bereich als Threshold nutzen
+          const hero = document.querySelector('.hero');
+          const heroHeight = hero ? hero.offsetHeight : window.innerHeight * 0.8;
+          
+          if (scrollTop > heroHeight) {
+            if (!backToTopBtn.classList.contains('visible')) {
+              backToTopBtn.classList.add('visible');
+              
+              if (!hasShownOnce) {
+                hasShownOnce = true;
+                backToTopBtn.classList.add('first-show');
+                setTimeout(() => {
+                  backToTopBtn.classList.remove('first-show');
+                }, 600);
+              }
+            }
+          } else {
+            backToTopBtn.classList.remove('visible');
+          }
+        }
+        
+        backToTopBtn.addEventListener('click', () => {
+          const startTime = performance.now();
+          const startPos = window.pageYOffset;
+          const duration = Math.min(1200, Math.max(600, startPos / 3));
+          
+          backToTopBtn.style.pointerEvents = 'none';
+          backToTopBtn.style.opacity = '0.7';
+          
+          function scrollStep(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 4);
+            
+            window.scrollTo(0, startPos * (1 - ease));
+            
+            if (progress < 1) {
+              requestAnimationFrame(scrollStep);
+            } else {
+              backToTopBtn.style.pointerEvents = '';
+              backToTopBtn.style.opacity = '';
+            }
+          }
+          
+          requestAnimationFrame(scrollStep);
+        });
+        
+        let isScrolling = false;
+        function handleScroll() {
+          if (!isScrolling) {
+            requestAnimationFrame(() => {
+              updateScrollProgress();
+              isScrolling = false;
+            });
+            isScrolling = true;
+          }
+        }
+        
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        
+        backToTopBtn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            backToTopBtn.click();
+          }
+          if (e.key === 'Escape') {
+            backToTopBtn.blur();
+          }
+        });
+        
+        updateScrollProgress();
+      }
+    });
+
+    // Mobile Navigation (Burger + Off-Canvas)
+    (function() {
+      const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+      const navMenu = document.querySelector('nav ul');
+      const navLinks = document.querySelectorAll('nav ul li a');
+      if (mobileNavToggle && navMenu) {
+        mobileNavToggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const isExpanded = this.getAttribute('aria-expanded') === 'true';
+          this.setAttribute('aria-expanded', (!isExpanded).toString());
+          this.classList.toggle('active');
+          navMenu.classList.toggle('mobile-menu-open');
+          document.body.classList.toggle('mobile-menu-active');
+        });
+        document.addEventListener('click', function(e) {
+          if (!mobileNavToggle.contains(e.target) && !navMenu.contains(e.target)) {
+            navMenu.classList.remove('mobile-menu-open');
+            document.body.classList.remove('mobile-menu-active');
+            mobileNavToggle.classList.remove('active');
+            mobileNavToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+        navLinks.forEach(link => link.addEventListener('click', () => {
+          navMenu.classList.remove('mobile-menu-open');
+          document.body.classList.remove('mobile-menu-active');
+          mobileNavToggle.classList.remove('active');
+          mobileNavToggle.setAttribute('aria-expanded', 'false');
+        }));
+      }
+    })();
+  </script>
+  
+  <script src="../scripts/mobile-nav.js" defer></script>
+  <script src="../scripts/header-loader.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/jpeg" href="../../Logo-01.jpg">
+  <style>
+    .main-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: transparent;
+      margin-bottom: 0;
+      padding-bottom: 16px;
+      transition: background 0.3s;
+    }
+    
+    .main-header.scrolled {
+      background: #fff;
+    }
+    
+    .main-header .logo,
+    .main-header nav a {
+      color: #333;
+      transition: color 0.3s;
+    }
+    
+    .main-header.scrolled .logo,
+    .main-header.scrolled nav a {
+      color: #333;
+    }
+    
+    .main-header nav ul li a {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .main-header nav ul li a.active {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .main-header .logo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+    }
+
+    /* Hide mobile toggle on desktop */
+    .mobile-nav-toggle {
+      display: none;
+    }
+
+    /* Desktop Navigation Layout (match projekte.html) */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      position: relative;
+    }
+    
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      color: #333;
+      text-decoration: none;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    
+    nav ul li a { 
+      color: inherit; 
+    }
+
+    /* Footer-Links immer weiß */
+    .main-footer a,
+    .main-footer a:visited,
+    .main-footer a:active,
+    .main-footer a:hover {
+      color: #fff !important;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+
+    /* Skip Link - unsichtbar außer bei Fokus */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 6px;
+      background: #ffb800;
+      color: white;
+      padding: 8px;
+      text-decoration: none;
+      z-index: 9999;
+      border-radius: 4px;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 6px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+
+  <style>
+    /* Mobile header: force white background and black text from the start */
+    @media (max-width: 768px) {
+      .main-header { background: #fff !important; }
+      .main-header .logo, .main-header nav a { color: #000 !important; }
+    }
+    /* Hamburger icon must be visible on mobile */
+    @media (max-width: 768px) {
+      .hamburger-line,
+      .mobile-nav-toggle .hamburger-line,
+      .main-header .hamburger-line,
+      .main-header .mobile-nav-toggle .hamburger-line {
+        background-color: #222 !important;
+        display: block !important;
+      }
+    }
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 184, 0, 0.95) 0%, rgba(255, 153, 0, 0.95) 100%);
+      backdrop-filter: blur(12px) saturate(1.2);
+      -webkit-backdrop-filter: blur(12px) saturate(1.2);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 
+        0 8px 32px rgba(255, 184, 0, 0.16),
+        0 1px 4px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1) rotate(0deg);
+      z-index: 1000;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      will-change: transform, opacity;
+    }
+    
+    .back-to-top::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: xor;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      pointer-events: none;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1) rotate(0deg);
+    }
+    
+    .back-to-top:hover {
+      background: linear-gradient(135deg, rgba(255, 153, 0, 0.95) 0%, rgba(255, 140, 0, 0.95) 100%);
+      transform: translateY(-6px) scale(1.08);
+      box-shadow: 
+        0 16px 48px rgba(255, 184, 0, 0.24),
+        0 4px 16px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    
+    .back-to-top:active {
+      transform: translateY(-3px) scale(1.02);
+      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 
+        0 8px 28px rgba(255, 184, 0, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .back-to-top:focus {
+      outline: none;
+      box-shadow: 
+        0 8px 32px rgba(255, 184, 0, 0.16),
+        0 1px 4px rgba(0, 0, 0, 0.08),
+        0 0 0 3px rgba(255, 184, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .back-to-top::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg, 
+        transparent 0deg, 
+        rgba(255, 184, 0, 0.8) var(--progress, 0deg),
+        rgba(255, 255, 255, 0.3) calc(var(--progress, 0deg) + 2deg),
+        transparent calc(var(--progress, 0deg) + 4deg)
+      );
+      opacity: 0;
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: -1;
+      filter: blur(0.5px);
+    }
+    
+    .back-to-top.visible::before {
+      opacity: 1;
+    }
+    
+    .back-to-top svg {
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .back-to-top:hover svg {
+      transform: translateY(-1px);
+    }
+    
+    .back-to-top.visible.first-show {
+      animation: backToTopPulse 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    @keyframes backToTopPulse {
+      0% { transform: translateY(0) scale(1) rotate(0deg); }
+      50% { transform: translateY(-2px) scale(1.1) rotate(1deg); }
+      100% { transform: translateY(0) scale(1) rotate(0deg); }
+    }
+    
+    @media (max-width: 700px) {
+      .back-to-top {
+        width: 52px;
+        height: 52px;
+        bottom: 2rem;
+        right: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .back-to-top {
+        bottom: 1.5rem;
+        right: 1rem;
+        width: 48px;
+        height: 48px;
+      }
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      .back-to-top, .back-to-top svg, .back-to-top::before {
+        transition: opacity 0.2s ease;
+      }
+      .back-to-top:hover {
+        transform: none;
+      }
+      .back-to-top.visible.first-show {
+        animation: none;
+      }
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      .back-to-top {
+        background: linear-gradient(135deg, rgba(255, 184, 0, 0.9) 0%, rgba(255, 153, 0, 0.9) 100%);
+        border-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(16px) saturate(1.4);
+      }
+    }
+
+    /* Mobile Navigation - Override global CSS completely */
+    @media (max-width: 768px) {
+      /* Force header styles */
+      body .main-header {
+        background: #fff !important;
+        padding-bottom: 1rem !important;
+        margin-bottom: 1.5rem !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 1000 !important;
+      }
+      
+      body main {
+        margin-top: 0 !important;
+        padding-top: 1.5rem !important;
+      }
+      
+      /* Force nav layout */
+      body .main-header nav,
+      body nav {
+        display: flex !important;
+        padding: 1rem !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        position: relative !important;
+      }
+      
+      /* Force logo positioning - compact width and aligned top */
+      body .main-header .logo,
+      body nav .logo,
+      body .logo { 
+        order: 1 !important; 
+        padding: 0 !important; 
+        margin: 0 !important;
+        color: #000 !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        width: auto !important;
+        flex: none !important;
+        white-space: nowrap !important;
+        line-height: 1 !important;
+        font-size: 1rem !important;
+      }
+      
+      /* Hide desktop menu on mobile */
+      body .main-header nav ul,
+      body nav ul {
+        display: none !important;
+      }
+      
+      /* Force hamburger visibility with highest specificity and aligned top */
+      body .main-header nav .mobile-nav-toggle,
+      body .main-header .mobile-nav-toggle,
+      body nav .mobile-nav-toggle,
+      body .mobile-nav-toggle { 
+        display: flex !important; 
+        visibility: visible !important;
+        opacity: 1 !important;
+        order: 2 !important;
+        margin-left: auto !important;
+        width: 48px !important; 
+        height: 48px !important; 
+        background: transparent !important; 
+        border: none !important; 
+        cursor: pointer !important; 
+        z-index: 1002 !important; 
+        align-items: center !important; 
+        justify-content: center !important;
+        flex-direction: column !important;
+        flex-shrink: 0 !important;
+        padding: 0 !important;
+        position: relative !important;
+      }
+      
+      /* Force hamburger lines visibility */
+      body .main-header .mobile-nav-toggle .hamburger-line,
+      body .mobile-nav-toggle .hamburger-line,
+      body .hamburger-line { 
+        display: block !important; 
+        width: 28px !important; 
+        height: 3px !important; 
+        background-color: #000 !important; 
+        border-radius: 2px !important; 
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; 
+      }
+      
+      body .main-header.scrolled .hamburger-line { 
+        background-color: #000 !important; 
+      }
+      
+      body .hamburger-line:not(:last-child) { 
+        margin-bottom: 5px !important; 
+      }
+      
+      /* Hamburger animation when menu is active */
+      body .mobile-nav-toggle.active .hamburger-line:nth-child(1),
+      body .main-header .mobile-nav-toggle.active .hamburger-line:nth-child(1) { 
+        transform: translateY(8px) rotate(45deg) !important; 
+        background-color: #fff !important;
+      }
+      
+      body .mobile-nav-toggle.active .hamburger-line:nth-child(2),
+      body .main-header .mobile-nav-toggle.active .hamburger-line:nth-child(2) { 
+        opacity: 0 !important; 
+      }
+      
+      body .mobile-nav-toggle.active .hamburger-line:nth-child(3),
+      body .main-header .mobile-nav-toggle.active .hamburger-line:nth-child(3) { 
+        transform: translateY(-8px) rotate(-45deg) !important; 
+        background-color: #fff !important;
+      }
+      
+      /* Mobile menu slide-in panel */
+      body .main-header nav ul,
+      body nav ul { 
+        position: fixed !important; 
+        top: 0 !important; 
+        right: 0 !important; 
+        width: min(280px, 75vw) !important; 
+        height: 100vh !important; 
+        background: #9ba89c !important; 
+        display: flex !important;
+        flex-direction: column !important; 
+        justify-content: flex-start !important; 
+        align-items: stretch !important; 
+        gap: 0 !important; 
+  padding: 72px 0 20px 0 !important; 
+        margin: 0 !important; 
+        transform: translateX(100%) !important; 
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; 
+        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.25) !important; 
+        z-index: 1001 !important; 
+        overflow-y: auto !important; 
+        list-style: none !important; 
+        pointer-events: auto !important; 
+      }
+      
+      /* Show menu when opened */
+      body .main-header nav ul.active,
+      body .main-header nav ul.mobile-menu-open,
+      body nav ul.active,
+      body nav ul.mobile-menu-open { 
+        transform: translateX(0) !important; 
+        pointer-events: auto !important;
+      }
+      
+      /* Mobile menu items */
+      body .main-header nav ul li,
+      body nav ul li { 
+        width: 100% !important; 
+        margin: 0 !important; 
+        display: block !important; 
+      }
+      
+      body .main-header nav ul li a,
+      body nav ul li a { 
+        width: 100% !important;
+        padding: 1.2rem 2rem !important; 
+        color: #fff !important; 
+        font-size: 1.2rem !important; 
+        font-weight: 500 !important;
+        text-align: left !important; 
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important; 
+        display: block !important; 
+        background: transparent !important; 
+        text-decoration: none !important; 
+        cursor: pointer !important; 
+        transition: background-color 0.2s ease, color 0.2s ease !important; 
+      }
+      
+      body .main-header nav ul li a:hover,
+      body .main-header nav ul li a:focus,
+      body nav ul li a:hover,
+      body nav ul li a:focus { 
+        background: rgba(255, 255, 255, 0.08) !important; 
+        color: #fff !important; 
+      }
+      
+      body .main-header nav ul li a:active,
+      body nav ul li a:active { 
+        background: rgba(255, 255, 255, 0.16) !important; 
+      }
+      
+      body .main-header nav ul li a.active,
+      body nav ul li a.active { 
+        background: rgba(255, 255, 255, 0.12) !important; 
+        color: #fff !important; 
+        font-weight: 700 !important; 
+      }
+      
+      body.mobile-menu-active { overflow: hidden !important; }
+      body.mobile-menu-active::before {
+        content: '';
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+      }
+    }    @media (max-width: 480px) {
+      nav { padding: 0.75rem !important; }
+    }
+
+    /* Mobile Contact Section - Match index.html */
+    @media (max-width: 900px) {
+      section.contact#contact, 
+      .contact {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+        padding-top: 3rem !important;
+        padding-bottom: 2rem !important;
+      }
+      
+      .contact-row {
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 1.5rem !important;
+        width: 100% !important;
+        justify-content: space-between !important;
+      }
+      
+      .contact-content {
+        flex: 1 !important;
+      }
+      
+      .contact-content h2 {
+        font-size: clamp(3.5rem, 12vw, 6rem) !important;
+        line-height: 1 !important;
+        letter-spacing: 0.02em !important;
+        margin-bottom: 0 !important;
+        font-weight: 900 !important;
+        color: #fff !important;
+      }
+      
+      .contact .btn-contact.round-yellow,
+      .btn-contact {
+        width: 72px !important;
+        height: 72px !important;
+        border-radius: 50% !important;
+        border: none !important;
+        outline: none !important;
+        box-shadow: 0 4px 20px rgba(255,153,0,0.2) !important;
+        margin-top: 0 !important;
+      }
+      
+      .contact .btn-contact.round-yellow svg,
+      .btn-contact svg {
+        width: 28px !important;
+        height: 28px !important;
+      }
+      
+      .contact-row > div:last-child {
+        width: auto !important;
+        flex: 0 0 auto !important;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      section.contact#contact,
+      .contact {
+        padding: 2rem clamp(15px, 3vw, 20px) !important;
+      }
+      
+      .contact-content h2 {
+        font-size: clamp(2.8rem, 10vw, 4.5rem) !important;
+        line-height: 1 !important;
+        letter-spacing: 0.02em !important;
+        font-weight: 900 !important;
+      }
+    }
+
+    /* Mobile Footer - Match index.html */
+    @media (max-width: 768px) {
+      .main-footer {
+        padding: 2rem 1.5rem !important;
+        padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px) + 68px) !important;
+      }
+      
+      .footer-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 2rem !important;
+        text-align: left !important;
+      }
+      
+      /* Stack the inner wrapper that contains VERSION, LOKALE ZEIT, SOZIALE NETZWERKE */
+      .footer-row > div[style*="display:flex"] {
+        flex-direction: column !important;
+        gap: 2rem !important;
+        width: 100% !important;
+      }
+      
+      .footer-block {
+        align-items: flex-start !important;
+        text-align: left !important;
+        width: 100% !important;
+        padding-bottom: 1rem !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+        gap: 0 !important;
+        display: grid !important;
+        grid-auto-flow: row !important;
+        grid-auto-rows: min-content !important;
+        row-gap: 0 !important;
+      }
+      
+      .footer-block:last-child {
+        border-bottom: none !important;
+      }
+      
+      .footer-block a {
+        line-height: 0.9 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+      }
+      
+      .footer-title {
+        margin-bottom: 0.8rem !important;
+        font-size: 1rem !important;
+      }
+      
+      .footer-socials {
+        justify-content: flex-start !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0 !important;
+      }
+      
+      .footer-socials a {
+        line-height: 0.9 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main-footer {
+        padding: 1.5rem 1rem !important;
+        padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px) + 68px) !important;
+      }
+      
+      .footer-row {
+        gap: 1.5rem !important;
+      }
+      
+      .footer-title {
+        font-size: 0.95rem !important;
+        margin-bottom: 0.6rem !important;
+      }
+      
+      .footer-block {
+        font-size: 0.9rem !important;
+        gap: 0 !important;
+        display: grid !important;
+        grid-auto-flow: row !important;
+        grid-auto-rows: min-content !important;
+        row-gap: 0 !important;
+      }
+      
+      .footer-block a {
+        line-height: 0.9 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+      }
+    }
+  </style>
+  <style>
+    a {
+      color: #ffb800;
+    }
+  </style>
+  <style>
+    /* Align mobile paddings with about/datenschutz and cancel full-bleed */
+    @media (max-width: 768px) {
+      section.contact#contact {
+        left: 0 !important;
+        right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: clamp(2.5rem, 7vw, 3.5rem) !important;
+        padding-right: clamp(2.5rem, 7vw, 3.5rem) !important;
+      }
+      .contact { padding: 3rem clamp(2.5rem, 7vw, 3.5rem) !important; }
+    }
+    @media (max-width: 600px) {
+      .contact { padding: 2rem clamp(2.5rem, 7vw, 3.5rem) !important; }
+    }
+    @media (max-width: 480px) {
+      section.contact#contact {
+        padding-left: 2.25rem !important;
+        padding-right: 2.25rem !important;
+      }
+    }
+    
+    /* Legal content padding parity; cancel full-bleed on mobile */
+    @media (max-width: 900px) {
+      .legal-wrapper {
+        left: 0 !important;
+        right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: clamp(2.5rem, 7vw, 3.5rem) !important;
+        padding-right: clamp(2.5rem, 7vw, 3.5rem) !important;
+      }
+    }
+    @media (max-width: 480px) {
+      .legal-wrapper {
+        padding-left: 2.25rem !important;
+        padding-right: 2.25rem !important;
+      }
+    }
+
+    /* Ensure footer side paddings match */
+    @media (max-width: 768px) {
+      footer.main-footer.u-mobile-sidepad {
+        padding-left: clamp(2.5rem, 7vw, 3.5rem) !important;
+        padding-right: clamp(2.5rem, 7vw, 3.5rem) !important;
+      }
+    }
+    @media (max-width: 480px) {
+      footer.main-footer.u-mobile-sidepad {
+        padding-left: 2.25rem !important;
+        padding-right: 2.25rem !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <title>Impressum – Anika Warncke | Rechtliche Angaben</title>
+  <meta name="description" content="Impressum von Anika Warncke. Rechtliche Angaben, Kontaktdaten und Informationen gemäß § 5 DDG für anika-warncke.de.">
+  <meta name="keywords" content="Impressum, Anika Warncke, Kontakt, Rechtliche Angaben, DDG, Lüneburg, Innenarchitektur, UX/UI Design, Haftungsausschluss, Urheberrecht">
+  <meta name="robots" content="noindex, follow">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Impressum",
+    "description": "Rechtliche Angaben und Kontaktinformationen",
+    "isPartOf": {
+      "@type": "WebSite", 
+      "name": "Anika Warncke",
+      "url": "https://anika-warncke.de"
+    },
+    "about": {
+      "@type": "LegalService",
+      "name": "Impressum",
+      "description": "Impressum"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Anika Warncke",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Wallstraße 12", 
+        "postalCode": "21335",
+        "addressLocality": "Lüneburg",
+        "addressCountry": "DE"
+      },
+      "email": "hallo@anika-warncke.de"
+    }
+  }
+  </script>
+  <a href="#main" class="skip-link">Zum Inhalt springen</a>
+  <header class="main-header">
+    <nav>
+      <a href="../../index.html" class="logo test-hover" style="outline: none !important; border: none !important; box-shadow: none !important; -webkit-text-stroke: none !important;">ANIKA WARNCKE</a>
+      <button class="mobile-nav-toggle" aria-label="Navigation öffnen" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <ul>
+        <li><a href="projekte.html">Projekte</a></li>
+        <li><a href="about.html">Über mich</a></li>
+        <li><a href="contact.html">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main id="main" style="margin-top: 0 !important; padding-top: 0;">
+    <section class="legal-wrapper" style="width:100vw;max-width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding-left:80px;padding-right:80px;padding-top:0;padding-bottom:3rem;box-sizing:border-box;">
+      <h1>Impressum</h1>
+      <p>Anika Warncke<br>
+      Wallstraße 12<br>
+      21335 Lüneburg<br><br>
+      <strong>Kontakt</strong><br>
+      E-Mail: hallo@anika-warncke.de<br><br><br>
+      <strong>Berufsbezeichnung und berufsrechtliche Regelungen</strong><br><br>
+      Berufsbezeichnung:<br>
+      Innenarchitektur M.A., UX/UI Designerin (zertifiziert)<br><br><br>
+      <strong>Redaktionell Verantwortlicher</strong><br><br>
+      Anika Warncke<br>
+      (gleiche Anschrift wie oben)<br><br><br>
+      <strong>Verbraucherstreitbeilegung/Universalschlichtungsstelle</strong><br>
+      Ich bin nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.<br><br><br>
+      <strong style="font-size: 1.2em;">Haftungsausschluss</strong><br><br>
+      <strong>Haftung für Inhalte</strong><br>
+      Als Diensteanbieter bin ich gemäß § 7 Abs.1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG bin ich als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werde ich diese Inhalte umgehend entfernen.<br><br><br>
+      <strong>Haftung für Links</strong><br>
+      Mein Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss habe. Deshalb kann ich für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werde ich derartige Links umgehend entfernen.<br><br><br>
+      <strong>Urheberrecht</strong><br>
+      Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitte ich um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werde ich derartige Inhalte umgehend entfernen.<br><br><br>
+      <strong>Quelle:</strong><br>
+      <a href="https://www.e-recht24.de" target="_blank" rel="noopener">eRecht24</a>
+      </p>
+    </section>
+  </main>
+  <section class="contact u-mobile-sidepad" id="contact" aria-label="Kontakt" style="width:100vw;max-width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding-left:80px;padding-right:80px;box-sizing:border-box;">
+    <div class="contact-row" style="display:flex;align-items:center;gap:2.5rem;justify-content:space-between;width:100%;max-width:100%;box-sizing:border-box;">
+      <div class="contact-content" style="margin:0;flex:1;">
+        <h2 style="margin:0;color:#fff;">GET<br>IN<br>TOUCH</h2>
+      </div>
+      <div style="flex:0 0 auto;display:flex;justify-content:flex-end;>">
+        <a href="contact.html" class="btn-contact round-yellow" aria-label="Kontakt aufnehmen" >
+          <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 48L76 48M76 48L52 24M76 48L52 72" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <style>
+      .btn-contact.round-yellow {
+        width: 192px;
+        height: 192px;
+        border-radius: 50%;
+        background: #FFB800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+        border: none;
+        transition: background 0.2s, box-shadow 0.2s;
+        padding: 0;
+      }
+      .btn-contact.round-yellow::after {
+        display: none;
+      }
+      .btn-contact.round-yellow:hover, .btn-contact.round-yellow:focus {
+        background: #e6a600;
+        box-shadow: 0 12px 48px rgba(0,0,0,0.16);
+      }
+      .btn-contact.round-yellow svg {
+        width: 96px;
+        height: 96px;
+        display: block;
+      }
+      .btn-contact.round-yellow svg path {
+        stroke: #fff;
+      }
+      @media (max-width: 700px) {
+        section.contact#contact,
+        main section {
+          padding-left: 10vw !important;
+          padding-right: 10vw !important;
+        }
+      }
+    </style>
+  </section>
+  <footer class="main-footer u-mobile-sidepad">
+    <div class="footer-row" style="padding-top:1.2rem;padding-bottom:1.2rem;display:flex;gap:3rem;justify-content:space-between;">
+      <div style="display:flex;gap:3rem;flex:1;">
+        <div class="footer-block">
+          <div class="footer-title">VERSION</div>
+          <div>2025 © Edition</div>
+        </div>
+        <div class="footer-block">
+          <div class="footer-title">LOKALE ZEIT</div>
+          <div><span id="local-time"></span></div>
+        </div>
+        <div class="footer-block">
+          <div class="footer-title">SOZIALE NETZWERKE</div>
+          <div class="footer-socials">
+            <a href="https://www.linkedin.com/in/anika-warncke" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/dein_instagram" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-block" style="flex:0 0 auto;">
+        <div class="footer-title">RECHTLICHES</div>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+      </div>
+    </div>
+  </footer>
+  
+  <button class="back-to-top" aria-label="Nach oben scrollen" role="button" tabindex="0" style="--progress: 0deg">
+    <svg width="24" height="24" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M48 76L48 20M48 20L24 44M48 20L72 44" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <script>
+    // Lokale Zeit immer aktuell anzeigen
+    function updateLocalTime() {
+      const now = new Date();
+      const options = { hour: '2-digit', minute: '2-digit' };
+      let timeString = now.toLocaleTimeString('de-DE', options) + ' Uhr';
+      // MESZ/MEZ je nach Sommerzeit
+      const isDST = now.getTimezoneOffset() < -60;
+      timeString += isDST ? ' MESZ' : ' MEZ';
+      var localTimeElem = document.getElementById('local-time');
+      if(localTimeElem) localTimeElem.textContent = timeString;
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      updateLocalTime();
+      setInterval(updateLocalTime, 10000);
+    });
+
+    // Back to Top Button
+    const backToTopBtn = document.querySelector('.back-to-top');
+    if (backToTopBtn) {
+      let hasShownOnce = false;
+      
+      function updateScrollProgress() {
+        const scrollTop = window.pageYOffset;
+        const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = Math.max(0, Math.min(100, (scrollTop / documentHeight) * 100));
+        
+        const easedPercent = scrollPercent < 50 ? 
+          2 * scrollPercent * scrollPercent / 100 : 
+          1 - Math.pow(-2 * scrollPercent + 2, 3) / 2;
+        
+        const progressDeg = (easedPercent / 100) * 360;
+        backToTopBtn.style.setProperty('--progress', `${progressDeg}deg`);
+        
+        // Verwende 100px als Threshold für bessere Sichtbarkeit
+        const threshold = 100;
+        
+        if (scrollTop > threshold) {
+          if (!backToTopBtn.classList.contains('visible')) {
+            backToTopBtn.classList.add('visible');
+            
+            if (!hasShownOnce) {
+              hasShownOnce = true;
+              backToTopBtn.classList.add('first-show');
+              setTimeout(() => {
+                backToTopBtn.classList.remove('first-show');
+              }, 600);
+            }
+          }
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      }
+      
+      backToTopBtn.addEventListener('click', () => {
+        const startTime = performance.now();
+        const startPos = window.pageYOffset;
+        const distance = startPos;
+        const duration = Math.min(Math.max(distance / 3, 400), 1000);
+        
+        backToTopBtn.style.pointerEvents = 'none';
+        backToTopBtn.style.opacity = '0.7';
+        
+        function easeInOutCubic(t) {
+          return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+        }
+        
+        function animateScroll(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = easeInOutCubic(progress);
+          
+          window.scrollTo(0, startPos * (1 - eased));
+          
+          if (progress < 1) {
+            requestAnimationFrame(animateScroll);
+          } else {
+            backToTopBtn.style.pointerEvents = '';
+            backToTopBtn.style.opacity = '';
+          }
+        }
+        
+        requestAnimationFrame(animateScroll);
+      });
+      
+      let isScrolling = false;
+      function handleScroll() {
+        if (!isScrolling) {
+          requestAnimationFrame(() => {
+            updateScrollProgress();
+            isScrolling = false;
+          });
+          isScrolling = true;
+        }
+      }
+      
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      
+      backToTopBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          backToTopBtn.click();
+        }
+        if (e.key === 'Escape') {
+          backToTopBtn.blur();
+        }
+      });
+    }
+    
+    // Header für Seiten ohne Hero-Bereich immer im "scrolled" Zustand
+    const header = document.querySelector('.main-header');
+    if (header) {
+      header.classList.add('scrolled');
+    }
+  </script>
+
+  <script src="../scripts/mobile-nav.js"></script>
+  
+</body>
+</html>

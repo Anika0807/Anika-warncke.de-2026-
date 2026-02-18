@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weserkoje – Multifunktionale Herberge</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="icon" type="image/jpeg" href="../../Logo-01.jpg">
+    <style>
+        .btn-secondary {
+            background: #ffb800;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s, color 0.2s;
+            cursor: pointer;
+            display: inline-block;
+            margin: 0;
+        }
+        .btn-secondary:hover, .btn-secondary:focus {
+            background: linear-gradient(135deg, rgba(255, 153, 0, 0.95) 0%, rgba(255, 140, 0, 0.95) 100%);
+            color: #fff;
+            transform: scale(1.08);
+            box-shadow: 0 4px 18px rgba(255, 184, 0, 0.13);
+        }
+        .projekt-btn {
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 1.02rem;
+            font-weight: 700;
+            border-radius: 2rem;
+            box-shadow: 0 2px 8px rgba(255,184,0,0.10);
+            padding: 0.8rem 2.2rem;
+            transition: background 0.2s, color 0.2s, box-shadow 0.18s, transform 0.18s;
+            outline: none;
+            border: none;
+            background: #ffb800;
+            color: #fff;
+            display: inline-block;
+        }
+        .projekt-btn:hover, .projekt-btn:focus {
+            background: linear-gradient(135deg, rgba(255, 153, 0, 0.95) 0%, rgba(255, 140, 0, 0.95) 100%);
+            color: #fff;
+            transform: scale(1.08);
+            box-shadow: 0 4px 18px rgba(255,184,0,0.13);
+        }
+        .main-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            transition: background 0.2s, color 0.2s;
+        }
+        .main-header.scrolled {
+            position: fixed;
+            background: #fff !important;
+            color: #222 !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        }
+        .main-header.scrolled .logo,
+        .main-header.scrolled nav a,
+        .main-header.scrolled nav a:visited {
+            color: #222 !important;
+        }
+        .main-header.scrolled .mobile-nav-toggle .hamburger-line {
+            background-color: #222 !important;
+        }
+        .main-header .logo,
+        .main-header nav a,
+        .main-header nav a:visited {
+            color: #fff !important;
+        }
+        .main-header .mobile-nav-toggle .hamburger-line {
+            background-color: #fff;
+        }
+    .main-header nav ul li a {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .main-header nav ul li a.active {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }        .main-header .logo {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Footer-Links immer weiß */
+        .main-footer a,
+        .main-footer a:visited,
+        .main-footer a:active,
+        .main-footer a:hover {
+          color: #fff !important;
+          text-decoration: underline;
+          transition: color 0.2s;
+        }
+        .hero-weserkoje {
+            background: url('../../img/IA/Weserkoje/Ansicht-3jpg.png') center center/cover no-repeat;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        main {
+            background: #fff;
+            width: 100vw;
+            max-width: 100vw;
+      padding-left: 0;
+      padding-right: 0;
+            box-sizing: border-box;
+            margin-left: -50vw;
+            left: 50%;
+            position: relative;
+            margin-top: 0;
+        }
+        @media (max-width: 900px) {
+            main {
+        padding-left: 0;
+        padding-right: 0;
+            }
+        }
+        @media (max-width: 600px) {
+            main {
+        padding-left: 0;
+        padding-right: 0;
+            }
+        }
+    </style>
+
+  <style>
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 184, 0, 0.95) 0%, rgba(255, 153, 0, 0.95) 100%);
+      backdrop-filter: blur(12px) saturate(1.2);
+      -webkit-backdrop-filter: blur(12px) saturate(1.2);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 
+        0 8px 32px rgba(255, 184, 0, 0.16),
+        0 1px 4px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1) rotate(0deg);
+      z-index: 1000;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      will-change: transform, opacity;
+    }
+    
+    .back-to-top::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: xor;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      pointer-events: none;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1) rotate(0deg);
+    }
+    
+    .back-to-top:hover {
+      background: linear-gradient(135deg, rgba(255, 153, 0, 0.95) 0%, rgba(255, 140, 0, 0.95) 100%);
+      transform: translateY(-6px) scale(1.08);
+      box-shadow: 
+        0 16px 48px rgba(255, 184, 0, 0.24),
+        0 4px 16px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    
+    .back-to-top:active {
+      transform: translateY(-3px) scale(1.02);
+      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 
+        0 8px 28px rgba(255, 184, 0, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .back-to-top:focus {
+      outline: none;
+      box-shadow: 
+        0 8px 32px rgba(255, 184, 0, 0.16),
+        0 1px 4px rgba(0, 0, 0, 0.08),
+        0 0 0 3px rgba(255, 184, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .back-to-top::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg, 
+        transparent 0deg, 
+        rgba(255, 184, 0, 0.8) var(--progress, 0deg),
+        rgba(255, 255, 255, 0.3) calc(var(--progress, 0deg) + 2deg),
+        transparent calc(var(--progress, 0deg) + 4deg)
+      );
+      opacity: 0;
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: -1;
+      filter: blur(0.5px);
+    }
+    
+    .back-to-top.visible::before {
+      opacity: 1;
+    }
+    
+    .back-to-top svg {
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .back-to-top:hover svg {
+      transform: translateY(-1px);
+    }
+    
+    .back-to-top.visible.first-show {
+      animation: backToTopPulse 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    @keyframes backToTopPulse {
+      0% { transform: translateY(0) scale(1) rotate(0deg); }
+      50% { transform: translateY(-2px) scale(1.1) rotate(1deg); }
+      100% { transform: translateY(0) scale(1) rotate(0deg); }
+    }
+    
+    @media (max-width: 700px) {
+      .back-to-top {
+        width: 52px;
+        height: 52px;
+        bottom: 2rem;
+        right: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .back-to-top {
+        bottom: 1.5rem;
+        right: 1rem;
+        width: 48px;
+        height: 48px;
+      }
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      .back-to-top, .back-to-top svg, .back-to-top::before {
+        transition: opacity 0.2s ease;
+      }
+      .back-to-top:hover {
+        transform: none;
+      }
+      .back-to-top.visible.first-show {
+        animation: none;
+      }
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      .back-to-top {
+        background: linear-gradient(135deg, rgba(255, 184, 0, 0.9) 0%, rgba(255, 153, 0, 0.9) 100%);
+        border-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(16px) saturate(1.4);
+      }
+    }
+    
+    /* Responsive Design für Projektseiten */
+    @media (max-width: 1200px) {
+      /* Große Tablets */
+      section[style*="padding:5rem 80px"]:not(.project-facts),
+      section[style*="padding: 5rem 80px"]:not(.project-facts) {
+        padding: 4rem 0 !important;
+      }
+      section[style*="padding:3rem 80px"]:not(.project-facts),
+      section[style*="padding: 3rem 80px"]:not(.project-facts) {
+        padding: 3rem 0 !important;
+      }
+      section[style*="padding:1rem 80px"]:not(.project-facts),
+      section[style*="padding: 1rem 80px"]:not(.project-facts) {
+        padding: 1rem 0 !important;
+      }
+    }
+    
+    @media (max-width: 900px) {
+      /* Tablets */
+      section[style*="padding:5rem 80px"]:not(.project-facts),
+      section[style*="padding: 5rem 80px"]:not(.project-facts),
+      section[style*="padding:5rem 60px"]:not(.project-facts),
+      section[style*="padding: 5rem 60px"]:not(.project-facts) {
+        padding: 3rem 0 !important;
+      }
+      section[style*="padding:3rem 80px"]:not(.project-facts),
+      section[style*="padding: 3rem 80px"]:not(.project-facts),
+      section[style*="padding:3rem 60px"]:not(.project-facts),
+      section[style*="padding: 3rem 60px"]:not(.project-facts) {
+        padding: 2.5rem 0 !important;
+      }
+      section[style*="padding:1rem 80px"],
+      section[style*="padding: 1rem 80px"],
+      section[style*="padding:1rem 60px"],
+      section[style*="padding: 1rem 60px"] {
+        padding: 1rem 0 !important;
+      }
+      
+      /* Grid Anpassungen */
+      section[style*="gap:2.5rem 3.5rem"] {
+        gap: 2rem 2.5rem !important;
+      }
+      section[style*="gap:3rem 4rem"] {
+        gap: 2rem 2.5rem !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      /* Mobile Landscape */
+      section[style*="padding:5rem"]:not(.project-facts),
+      section[style*="padding: 5rem"]:not(.project-facts),
+      section[style*="padding:4rem"]:not(.project-facts),
+      section[style*="padding: 4rem"]:not(.project-facts),
+      section[style*="padding:3rem"]:not(.project-facts),
+      section[style*="padding: 3rem"]:not(.project-facts) {
+        padding: 2rem 0 !important;
+      }
+      section[style*="padding:1rem"]:not(.project-facts),
+      section[style*="padding: 1rem"]:not(.project-facts) {
+        padding: 1rem 0 !important;
+      }
+      
+      /* Hero Content */
+      .hero-content[style*="padding:3.5rem"] {
+        padding: 2.5rem 2rem 2rem 2rem !important;
+        max-width: 90% !important;
+      }
+      
+      /* Grid zu Stack */
+      section[style*="display:flex;flex-wrap:wrap"] {
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+      }
+      
+      /* Text Größen */
+      h1 { font-size: 2.2rem !important; }
+      h2 { font-size: 1.8rem !important; }
+      h3 { font-size: 1.4rem !important; }
+    }
+    
+    @media (max-width: 480px) {
+      /* Mobile Portrait */
+      section[style*="padding"]:not(.project-facts) { padding: 1.5rem 0 !important; }
+      
+      .hero-content[style*="padding:3.5rem"],
+      .hero-content[style*="padding:2.5rem"] {
+        padding: 1.6rem 1.25rem 1.25rem 1.25rem !important;
+        max-width: 92% !important;
+      }
+      
+      /* Smaller tags/badges */
+      div[style*="min-width:180px"] {
+        min-width: auto !important;
+        font-size: 0.9rem !important;
+        padding: 0.8rem 1.2rem !important;
+      }
+      
+      /* Text Größen Mobile */
+  h1 { font-size: 2.2rem !important; }
+  h2 { font-size: 1.45rem !important; }
+      h3 { font-size: 1.2rem !important; }
+  /* Hero-specific sizing to ensure clear hierarchy */
+  .hero-weserkoje .hero-content h1 { font-size: 2.6rem !important; }
+  .hero-weserkoje .hero-content h2 { font-size: 1.4rem !important; }
+      
+      /* Mobile Navigation */
+      .main-header nav ul {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+      }
+      .main-header nav ul li a {
+        font-size: 0.9rem !important;
+      }
+    }
+    
+    @media (max-width: 360px) {
+      /* Very Small Mobile */
+      section[style*="padding"]:not(.project-facts) {
+        padding: 1rem 15px !important;
+      }
+      
+      .hero-content[style*="padding"] {
+        padding: 1.5rem 1rem 1rem 1rem !important;
+      }
+      
+  h1 { font-size: 2.0rem !important; }
+      h2 { font-size: 1.3rem !important; }
+      h3 { font-size: 1.1rem !important; }
+  .hero-weserkoje .hero-content h1 { font-size: 2.4rem !important; }
+  .hero-weserkoje .hero-content h2 { font-size: 1.3rem !important; }
+    }
+    
+    /* Modern responsive padding für alle Inhalte unter dem Hero (außer project-facts) */
+    main > section:not(.project-facts) {
+      padding-left: clamp(20px, 4vw, 80px) !important;
+      padding-right: clamp(20px, 4vw, 80px) !important;
+      box-sizing: border-box !important;
+      width: 100%;
+    }
+    
+    /* Höhere Spezifität für inline-styled Sektionen (außer project-facts) */
+    main#main-content > section:not(.project-facts) {
+      padding-left: clamp(20px, 4vw, 80px) !important;
+      padding-right: clamp(20px, 4vw, 80px) !important;
+    }
+    
+    /* Contact Section: einheitliche clamp Werte mit main sections */
+    section.contact#contact {
+      padding-left: clamp(20px, 4vw, 80px) !important;
+      padding-right: clamp(20px, 4vw, 80px) !important;
+    }
+    
+    /* CTA Section: einheitliches seitliches padding mit anderen Sektionen */
+    section.cta-section {
+      padding-left: clamp(20px, 4vw, 80px) !important;
+      padding-right: clamp(20px, 4vw, 80px) !important;
+    }
+    
+    /* Full-bleed Helper: lässt ausgewählte Abschnitte am Handy bis zum Rand laufen */
+    @media (max-width: 600px) {
+      main > section.full-bleed { padding-left: 0 !important; padding-right: 0 !important; }
+    }
+
+    /* Mobile: project-facts bekommt GLEICHE Breite wie restlicher Content */
+    @media (max-width: 768px) {
+      main#main-content > section.project-facts {
+        padding-left: clamp(20px, 4vw, 80px) !important;
+        padding-right: clamp(20px, 4vw, 80px) !important;
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+      }
+    }
+    @media (max-width: 480px) {
+      main#main-content > section.project-facts {
+        padding-left: clamp(20px, 4vw, 80px) !important;
+        padding-right: clamp(20px, 4vw, 80px) !important;
+      }
+    }
+
+    /* Desktop: feste 80px Seitenabstände und volle Breite (außer Full-bleed) */
+    @media (min-width: 1024px) {
+      main > section,
+      main#main-content > section,
+      section.contact#contact,
+      section.cta-section {
+        padding-left: 80px !important;
+        padding-right: 80px !important;
+      }
+      /* Full-bleed bleibt randlos auch auf Desktop */
+      main > section.full-bleed,
+      section.full-bleed {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+    }
+  </style>
+  <style>
+    a {
+      color: #ffb800;
+    }
+    
+    /* Skip Link Accessibility */
+    .skip-link:focus {
+      top: 6px !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link" style="position:absolute;top:-40px;left:6px;background:#ffb800;color:#fff;padding:8px;border-radius:4px;text-decoration:none;font-weight:600;z-index:9999;transition:top 0.3s;opacity:0;pointer-events:none;">Zum Hauptinhalt springen</a>
+    
+    <!-- Header wird dynamisch geladen -->
+    <div id="header-placeholder"></div>
+    
+    <!-- Hero-Bereich mit Bild und Titel wie auf index.html -->
+  <section class="hero hero-weserkoje" style="position: relative; width: 100vw; height: 100vh; z-index: 0;">
+    <div class="hero-content" style="background:rgba(0,0,0,0.32);color:#fff;max-width:700px;padding:2.5rem 2.5rem 2rem 2.5rem;text-align:center;margin:0 auto;">
+      <h1 style="font-size:2.8rem;font-weight:800;margin:0 0 0.2em 0;line-height:1.5;">weserkoje</h1>
+      <h2 style="font-size:1.8rem;font-weight:600;margin:0 0 1.2em 0;line-height:1.5;">Multifunktionale Herberge mit integriertem Tagungszentrum</h2>
+            <div style="font-size:0.95rem;letter-spacing:0.1em;margin-bottom:1.2em;line-height:1.5;">INNENARCHITEKTUR | HOSPITALITY</div>
+        </div>
+    </section>
+  <main id="main-content">
+        <!-- Projektinfos -->
+  <section class="project-facts u-mobile-sidepad" style="background:#fff;padding:3rem 80px;display:flex;flex-wrap:wrap;gap:2.5rem 3.5rem;justify-content:flex-start;box-sizing:border-box;">
+            <div style="flex:1 1 0;min-width:180px;">
+                <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">MEINE ROLLE</div>
+                <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                <div style="font-weight:400;font-size:16px;">Innenarchitektur B.A.</div>
+            </div>
+            <div style="flex:1 1 0;min-width:180px;">
+                <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">AUFGABE</div>
+                <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                <div style="font-weight:400;font-size:16px;">Von der Grundlagenermittlung bis zur Ausführungsreife (Grundlagenermittlung, Konzept- und Entwurfsentwicklung, Detaillierung & Darstellung)</div>
+            </div>
+            <div style="flex:1 1 0;min-width:180px;">
+                <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">PROJEKTUMFANG</div>
+                <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                <div style="font-weight:400;font-size:16px;">März - Juli 2017: <a href="https://projekte.g.hawk.de/projekt/5df0c5b8174c8" target="_blank" class="projekt-info-link">Bachelorarbeit</a> an der HAWK - Hochschule für angewandte Künste in Hildesheim</div>
+            </div>
+            <div style="flex:1 1 0;min-width:180px;">
+                <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">TOOLS</div>
+                <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                <div style="font-weight:400;font-size:16px;">Vectorworks, Adobe Suite</div>
+            </div>
+        </section>
+    <!-- Problem & Überblick: Paare (Überschrift + Text) -->
+  <section style="background:#fff;padding:4rem 0;box-sizing:border-box;">
+    <div class="problem-ueberblick" style="display:flex;flex-direction:column;gap:3rem;">
+      <!-- Paar 1: Problem -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+        <h2 style="font-size:2rem;font-weight:800;margin:0 0 2rem 0;">Problem</h2>
+        <p style="margin:0 0 2rem 0;">Der drohende Leerstand der ehemaligen Augenklinik und Urologie in Bremen stellt eine doppelte Herausforderung dar: Einerseits gilt es, den Verfall wertvoller, historischer Bausubstanz in zentraler Lage zu verhindern. Andererseits muss die Chance genutzt werden, das Quartier sozial und wirtschaftlich zu stärken. Gesucht wird daher ein architektonisch angemessenes und wirtschaftlich tragfähiges Nachnutzungskonzept, das einen spürbaren Mehrwert für die Gemeinschaft generiert.</p>
+      </div>
+      <!-- Paar 2: Überblick -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+        <h2 style="font-size:2rem;font-weight:800;margin:0 0 2rem 0;">Überblick</h2>
+        <p style="margin:0 0 2rem 0;">Als passgenaue Lösung für die Nachnutzung der ehemaligen Augenklinik und Urologie wurde das Konzept "weserkoje" entwickelt, das eine multifunktionale Herberge mit integriertem Tagungszentrum vorsieht. Dieses Konzept begegnet der Gefahr des baulichen Verfalls, indem es die markante Außenfassade und große Teile der Raumstruktur erhält und somit den historischen sowie architektonischen Wert des Gebäudes wahrt. Die wirtschaftliche Tragfähigkeit wird durch das duale Konzept aus Beherbergung und Tagungsbetrieb sichergestellt, welches die Vorteile des zentralen Standorts, des großen Flächenpotentials und der idealen Verkehrsanbindung optimal nutzt. Indem die "weserkoje" öffentliche Bereiche wie Restaurant und Bar, moderne Seminarräume sowie vielfältige Übernachtungsmöglichkeiten für unterschiedliche Zielgruppen (von Rucksacktouristen bis zu Geschäftsreisenden) unter einem Dach vereint, schafft sie einen neuen, lebendigen Treffpunkt. Auf diese Weise wird die ungenutzte Chance ergriffen, das Quartier sozial und wirtschaftlich zu beleben und einen nachhaltigen Mehrwert für die Gemeinschaft zu schaffen.</p>
+      </div>
+    </div>
+    <style>
+      @media (max-width: 900px) {
+        .problem-ueberblick > div {
+          grid-template-columns: 1fr !important;
+          gap: 1rem !important;
+        }
+      }
+    </style>
+  </section>
+    <!-- Bildcontainer: vollflächig (full-bleed) und zentriert -->
+    <section class="full-bleed" style="background:#f5f5f5;">
+      <img src="../../img/IA/Weserkoje/Ansicht-West_-1-100_rgb.png" 
+           alt="weserkoje Außenansicht West-Fassade mit charakteristischen Fenstern" 
+           class="no-shadow"
+           loading="lazy"
+           decoding="async">
+    </section>
+        <!-- Konzept Abschnitt -->
+  <section style="background:#fff;padding:2.5rem 0 1.5rem 0;">
+            <div style="display:flex;gap:2.5rem;align-items:flex-start;flex-wrap:wrap;">
+                <div style="flex:1 1 0;min-width:280px;max-width:100%;display:flex;align-items:stretch;height:100%;">
+                  <div class="mobile-full-bleed" style="width:100%;">
+        <img src="../../img/IA/Weserkoje/Funktionsbereiche-isometrie.png" 
+          alt="Isometrische Darstellung der Funktionsbereiche der weserkoje" 
+          style="width:100%;height:100%;object-fit:cover;border-radius:1.2rem;"
+          loading="lazy"
+          decoding="async">
+                  </div>
+                </div>
+                <div style="flex:1 1 0;min-width:280px;max-width:100%;display:flex;flex-direction:column;justify-content:flex-start;">
+                    <h4 style="margin:0 0 0.7em 0;">Das Konzept: Horizontale Erlebniswelten</h4>
+                    <p>Die innere Organisation folgt einer klaren horizontalen Zonierung, die das Gebäude in unterschiedliche funktionale und atmosphärische Ebenen gliedert:</p>
+                    <ul style="margin-bottom:1em;">
+                        <li style="margin:0 0 2rem 0;"><b>Das pulsierende Herz (Untergeschoss):</b> Hier im Souterrain schlägt das öffentliche Leben der Weserkoje. Die offene Gestaltung von Lobby, Restaurant und Bar schafft einen fließenden Raum, der nicht nur Hotelgäste, sondern auch externe Besucher einlädt. Es ist ein Ort des Ankommens und des Austauschs, der bewusst die Grenzen zwischen Rucksacktouristen, Geschäftsreisenden und Bremern auflöst.</li>
+                        <li style="margin:0 0 2rem 0;"><b>Der Raum für Fokus & Kollaboration (Erdgeschoss):</b> Das Erdgeschoss ist als professioneller Tagungs- und Seminarbereich konzipiert. Flexible, hochmodern ausgestattete Räume lassen sich je nach Bedarf anpassen und schaffen eine konzentrierte Arbeitsatmosphäre. Die zentrale, zweigeschossige Lobby fungiert als repräsentatives Entrée und verbindet die geschäftige Dynamik mit dem öffentlichen Leben des Hauses.</li>
+                        <li style="margin:0 0 2rem 0;"><b>Der private Rückzugsort (Obergeschosse):</b> Die oberen Etagen sind dem Wohnen und der persönlichen Entspannung gewidmet. Das Designkonzept differenziert hier klar zwischen den Bedürfnissen verschiedener Reisender: Komfortable Doppelzimmer mit eigenem Bad bieten Geschäftsreisenden einen ruhigen Hafen, während die praktisch-stilvollen Mehrbettzimmer den kommunikativen Geist von Backpackern aufgreifen. Ein zentraler Gemeinschaftsbereich mit Küche und Fitnessraum im ersten Obergeschoss fördert spontane Begegnungen und schafft eine wohnliche, fast familiäre Atmosphäre.</li>
+                    </ul>
+                    <p>Die "Weserkoje" ist somit mehr als eine Herberge – sie ist ein durchdachtes innenarchitektonisches Ökosystem, das den Respekt vor dem Bestand mit einer zukunftsorientierten Vision für gemeinschaftliches Leben und Arbeiten verbindet.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Empfang/Lobby -->
+  <section style="background:#fff;padding:2.5rem 0 1.5rem 0;">
+            <div style="margin-bottom:2.5rem;width:100%;position:relative;border-radius:1.2rem;overflow:hidden;">
+                <img src="../../img/IA/Weserkoje/Ansicht_theke.png" 
+                     alt="Empfangsbereich der weserkoje mit goldenem Thekenelement" 
+                     style="width:100%;height:auto;display:block;border-radius:1.2rem;"
+                     loading="lazy"
+                     decoding="async">
+            </div>
+            <div style="display:flex;gap:2.5rem;align-items:flex-start;flex-wrap:wrap;">
+                <div style="flex:1 1 0;min-width:220px;max-width:100%;display:flex;align-items:flex-start;">
+                    <h3 style="font-size:1.3rem;font-weight:700;margin:0 0 2rem 0;">Die Lobby: Der Ort des Ankommens, des Niederlassens und des Durchatmens.</h3>
+                </div>
+                <div style="flex:1 1 0;min-width:220px;max-width:100%;display:flex;align-items:flex-start;">
+                    <p style="margin:0 0 2rem 0;">Der erste Eindruck der "Weserkoje" wird durch den Empfangsbereich im Untergeschoss geprägt, der den Gast mit einer kraftvollen Geste willkommen heißt. Im Zentrum steht der schwungvolle, goldene Empfangstresen, dessen kurvige Form an die Bögen der Weser angelehnt ist und den Besucher intuitiv in den Raum leitet. Seine Front aus edlem HPL mit Goldtondekor und der hinterleuchtete 3D-Schriftzug setzen ein klares Statement, während ein zurückgesetzter Sockel mit integrierten LED-Bändern dem massiven Korpus eine schwebende Leichtigkeit verleiht. Den Hintergrund bildet eine plastisch geformte Wellenstruktur, die durch gezielte Wandfluter und einen eleganten Kronleuchter eindrucksvoll inszeniert wird. Dieses Zusammenspiel aus Form, Material und Licht schafft ein funktionales und zugleich skulpturales Zentrum, das die Designphilosophie des gesamten Hauses auf den Punkt bringt.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Herzstück/Detail -->
+  <section style="background:#fff;padding:2.5rem 0 1.5rem 0;">
+            <div style="margin-bottom:2.5rem;width:100%;position:relative;border-radius:1.2rem;overflow:hidden;">
+                <img src="../../img/IA/Weserkoje/4_rgb.jpg" 
+                     alt="Lobby-Bereich mit Sitzgruppen und fließenden Formen" 
+                     style="width:100%;height:auto;display:block;border-radius:1.2rem;"
+                     loading="lazy"
+                     decoding="async">
+            </div>
+            <div style="display:flex;gap:2.5rem;align-items:flex-start;flex-wrap:wrap;">
+                <div style="flex:1 1 0;min-width:220px;max-width:100%;display:flex;align-items:flex-start;">
+                    <h3 style="font-size:1.3rem;font-weight:700;margin:0 0 2rem 0;">Das Herzstück im Detail: Die Lobby als fließender Raum</h3>
+                </div>
+                <div style="flex:1 1 0;min-width:220px;max-width:100%;display:flex;align-items:flex-start;">
+                    <p style="margin:0 0 2rem 0;">Die Lobby, das Gesicht der "Weserkoje", erstreckt sich über das Unter- und Erdgeschoss und verkörpert das zentrale Designthema "Schwingung" – inspiriert vom Flusslauf der Weser. Beim Betreten wird der Gast von einem schwungvollen, goldenen Empfangstresen und einer plastisch geformten Wellenstruktur an der Rückwand empfangen. Runde Teppichinseln und ikonische Möbel in Blautönen auf grau geöltem Eichenparkett erzeugen eine harmonische, fließende Atmosphäre, die an brandendes Wasser erinnert.<br>Ein vielschichtiges Lichtkonzept mit einem Mix aus Grundbeleuchtung, einem zentralen Kronleuchter und gemütlichen Lichtinseln über den Sitzgruppen inszeniert den Raum und hebt die geschwungenen Formen hervor.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Navigation wie auf anderen Projektseiten (Platzhalter) -->
+                        <section class="projekt-nav-section">
+                            <div class="projekt-nav-row">
+                                <div class="projekt-nav-btn projekt-nav-left">
+                                    <a href="P8_UXUI_NaturKompass.html" class="btn-secondary projekt-btn" style="display: flex !important; align-items: center !important;">
+                                        <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px; flex-shrink: 0;">
+                                            <path d="M76 48L20 48M20 48L44 24M20 48L44 72" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        LETZTES PROJEKT
+                                    </a>
+                                    <div class="projekt-vorschau">
+                                        <img src="../../img/UXUI/NaturKompass/WhatsApp Image 2025-09-17 at 11.36.22.jpeg" alt="NaturKompass" style="width:100%;border-radius:0.7rem;margin:0 0 2rem 0;">
+                                        <div style="font-weight:700;font-size:1.1rem;">NaturKompass</div>
+                                        <div style="font-size:0.98rem;color:#888;">Ihr digitaler Begleiter zur Identifikation von Flora & Fauna und für ein tieferes Naturverständnis.</div>
+                                    </div>
+                                </div>
+                                <div class="projekt-nav-btn projekt-nav-right">
+                                    <a href="P2_IA_Schlaf.html" class="btn-secondary projekt-btn" style="display: flex !important; align-items: center !important;">
+                                        NÄCHSTES PROJEKT
+                                        <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 8px; flex-shrink: 0;">
+                                            <path d="M20 48L76 48M76 48L52 24M76 48L52 72" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                    <div class="projekt-vorschau">
+                                        <img src="../../img/IA/Schlaf/Konzeptskizze+-01.jpg" alt="Schlaf" style="width:100%;border-radius:0.7rem;margin:0 0 2rem 0;">
+                                        <div style="font-weight:700;font-size:1.1rem;">SCHLAF</div>
+                                        <div style="font-size:0.98rem;color:#888;">Erlebnisausstellung in die Tiefen des Schlafes</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <style>
+            .projekt-nav-section {
+              width: 100%;
+              max-width: 100%;
+              background: #fff;
+              padding: 4rem 0 4rem 0;
+              box-sizing: border-box;
+            }
+            .projekt-nav-row {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              width: 100%;
+              padding-left: 0;
+              padding-right: 0;
+              box-sizing: border-box;
+            }
+                        .projekt-nav-btn {
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                            min-width: 0;
+                        }
+                        .projekt-vorschau {
+                            display: none;
+                            position: absolute;
+                            left: 0;
+                            bottom: 110%;
+                            background: #fff;
+                            border-radius: 1.2rem;
+                            box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+                            padding: 1rem;
+                            width: 260px;
+                            z-index: 10;
+                            text-align: left;
+                        }
+                        /* Vorschau immer linksbündig */
+                        .projekt-nav-btn.projekt-nav-right .projekt-vorschau {
+                            left: 0;
+                            right: auto;
+                            text-align: left;
+                        }
+                        .projekt-nav-btn:hover .projekt-vorschau {
+                            display: block;
+                        }
+                        .projekt-vorschau img {
+                            width: 100%;
+                            border-radius: 0.7rem;
+                            margin-bottom: 0.7em;
+                        }
+                        .projekt-vorschau-title {
+                            font-weight: 700;
+                            font-size: 1.1rem;
+                        }
+                        .projekt-vorschau-sub {
+                            font-size: 0.98rem;
+                            color: #888;
+                        }
+                        .projekt-nav-left {
+                            justify-content: flex-start;
+                        }
+                        .projekt-nav-right {
+                            justify-content: flex-end;
+                        }
+            @media (max-width: 900px) {
+              .projekt-nav-row { padding-left: 0; padding-right: 0; }
+            }
+                        @media (max-width: 600px) {
+              .projekt-nav-row {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding-left: 0;
+                padding-right: 0;
+              }
+                            .projekt-nav-btn {
+                                width: 100%;
+                                justify-content: center !important;
+                            }
+                        }
+                        
+                        /* Touch-optimized button sizing für mobile UX */
+                        .projekt-btn {
+                          min-height: 48px !important; /* WCAG Touch-Target minimum */
+                          min-width: 48px !important;
+                        }
+                        
+                        /* Contact strip: responsive button sizing only */
+                        @media (max-width: 600px) {
+                          .btn-contact.round-yellow { width: 160px !important; height: 160px !important; }
+                        }
+                        @media (max-width: 375px) {
+                          .btn-contact.round-yellow { width: 144px !important; height: 144px !important; }
+                        }
+                        
+                        /* Improved mobile navigation links touch targets */
+                        @media (max-width: 768px) {
+                          nav ul li a {
+                            min-height: 48px !important;
+                            display: flex !important;
+                            align-items: center !important;
+                            padding: 12px 24px !important;
+                          }
+                        }
+
+                        /* Footer mobile: stack blocks and add safe-area padding */
+                          @media (max-width: 600px) {
+                            .footer-row { flex-direction: column !important; gap: 1.25rem !important; }
+                            .footer-row > div[style*='display:flex'] { flex-direction: column !important; gap: 1rem !important; flex: 1 1 100% !important; }
+                            .footer-block { display: flex !important; flex-direction: column !important; gap: 0.3rem !important; width: 100% !important; }
+                            .main-footer { padding-bottom: calc(1.2rem + env(safe-area-inset-bottom, 0px) + 68px) !important; }
+                          }
+                        </style>
+    <!-- Call to Action wie auf anderen Projektseiten -->
+    <section class="cta-section" style="background:#c6b79e;padding:3.5rem 0;text-align:center;">
+      <div style="font-size:1.35rem;font-weight:700;max-width:700px;margin:0 auto 2.5rem auto;color:#fff;">Möchtest du tiefere Einblicke in dieses Projekt und/oder einen Einblick in mein gesamtes Innenarchitekturportfolio haben?</div>
+      <div style="font-size:2.5rem;color:#fff;">&#8595;</div>
+    </section>
+
+    <!-- Kontaktbereich wie auf index.html -->
+    <section class="contact" id="contact" aria-label="Kontakt" style="width:100vw;max-width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;box-sizing:border-box;">
+      <div class="contact-row" style="display:flex;align-items:center;gap:2.5rem;justify-content:space-between;width:100%;max-width:100%;box-sizing:border-box;">
+        <div class="contact-content" style="margin:0;flex:1;">
+          <h2 style="margin:0;color:#fff;">GET<br>IN<br>TOUCH</h2>
+        </div>
+        <div style="flex:0 0 auto;display:flex;justify-content:flex-end;">
+          <a href="contact.html" class="btn-contact round-yellow" aria-label="Kontakt aufnehmen">
+            <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 48L76 48M76 48L52 24M76 48L52 72" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer" role="contentinfo">
+    <div class="footer-row" style="padding-top:1.2rem;padding-bottom:1.2rem;">
+      <div class="footer-block">
+        <div class="footer-title">VERSION</div>
+        <div>2025 © Edition</div>
+      </div>
+      <div class="footer-block">
+        <div class="footer-title">LOKALE ZEIT</div>
+        <div><span id="local-time"></span></div>
+      </div>
+      <div class="footer-block">
+        <div class="footer-title">SOZIALE NETZWERKE</div>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/in/anika-warncke" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.instagram.com/dein_instagram" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div class="footer-block">
+        <div class="footer-title">RECHTLICHES</div>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Nach oben scrollen" role="button" tabindex="0" style="--progress: 0deg">
+    <svg width="24" height="24" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M48 76L48 20M48 20L24 44M48 20L72 44" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <style>
+    .btn-contact.round-yellow {
+      width: 192px;
+      height: 192px;
+      border-radius: 50%;
+      background: #ffb800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+      border: none;
+      transition: background 0.2s, box-shadow 0.2s;
+      padding: 0;
+    }
+    .btn-contact.round-yellow::after { display: none; }
+    .btn-contact.round-yellow:hover, .btn-contact.round-yellow:focus {
+      background: #e6a600;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.16);
+    }
+    .btn-contact.round-yellow svg { width: 96px; height: 96px; display: block; }
+    .btn-contact.round-yellow svg path { stroke: #fff; }
+    
+    /* CTA Section mobile styles - einheitlich mit anderen Sektionen */
+    @media (max-width: 768px) {
+      .cta-section {
+        padding: 3.5rem clamp(20px, 4vw, 80px) !important;
+      }
+    }
+    
+    /* Mobile: GET IN TOUCH larger than desktop */
+    @media (max-width: 900px) {
+      .contact-content h2 { font-size: 4rem !important; line-height: 1.1 !important; }
+    }
+    @media (max-width: 768px) {
+      .contact-content h2 { font-size: 3.5rem !important; line-height: 1.1 !important; }
+    }
+    @media (max-width: 480px) {
+      .contact-content h2 { font-size: 3rem !important; line-height: 1.1 !important; }
+      .btn-contact.round-yellow { width: 160px !important; height: 160px !important; }
+    }
+    @media (max-width: 375px) {
+      .contact-content h2 { font-size: 2.5rem !important; line-height: 1.1 !important; }
+      .btn-contact.round-yellow { width: 144px !important; height: 144px !important; }
+    }
+  </style>
+
+  <script src="../scripts/main.js"></script>
+  <script src="../scripts/mobile-nav.js" defer></script>
+  <script src="../scripts/header-loader.js" defer></script>
+  <script>
+        // Lokale Zeit immer aktuell anzeigen (wie auf index.html)
+        function updateLocalTime() {
+            const now = new Date();
+            const options = { hour: '2-digit', minute: '2-digit' };
+            let timeString = now.toLocaleTimeString('de-DE', options) + ' Uhr';
+            // MESZ/MEZ je nach Sommerzeit
+            const isDST = now.getTimezoneOffset() < -60;
+            timeString += isDST ? ' MESZ' : ' MEZ';
+            var el = document.getElementById('local-time');
+            if (el) el.textContent = timeString;
+        }
+        updateLocalTime();
+        setInterval(updateLocalTime, 10000);
+        
+        // Note: Header scroll behavior and mobile navigation now handled by header-loader.js and mobile-nav.js
+
+        // Back to Top Button
+        const backToTopBtn = document.querySelector('.back-to-top');
+        if (backToTopBtn) {
+          let hasShownOnce = false;
+          
+          function updateScrollProgress() {
+            const scrollTop = window.pageYOffset;
+            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.max(0, Math.min(100, (scrollTop / documentHeight) * 100));
+            
+            const easedPercent = scrollPercent < 50 ? 
+              2 * scrollPercent * scrollPercent / 100 :
+              1 - Math.pow(-2 * scrollPercent + 2, 3) / 2;
+            
+            const progressDeg = (easedPercent / 100) * 360;
+            backToTopBtn.style.setProperty('--progress', `${progressDeg}deg`);
+            
+            // Hero-Bereich als Threshold nutzen
+            const hero = document.querySelector('.hero');
+            const heroHeight = hero ? hero.offsetHeight : window.innerHeight * 0.8;
+            
+            if (scrollTop > heroHeight) {
+              if (!backToTopBtn.classList.contains('visible')) {
+                backToTopBtn.classList.add('visible');
+                
+                if (!hasShownOnce) {
+                  hasShownOnce = true;
+                  backToTopBtn.classList.add('first-show');
+                  setTimeout(() => {
+                    backToTopBtn.classList.remove('first-show');
+                  }, 600);
+                }
+              }
+            } else {
+              backToTopBtn.classList.remove('visible');
+            }
+          }
+          
+          backToTopBtn.addEventListener('click', () => {
+            const startTime = performance.now();
+            const startPos = window.pageYOffset;
+            const duration = Math.min(1200, Math.max(600, startPos / 3));
+            
+            backToTopBtn.style.pointerEvents = 'none';
+            backToTopBtn.style.opacity = '0.7';
+            
+            function scrollStep(currentTime) {
+              const elapsed = currentTime - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              const ease = 1 - Math.pow(1 - progress, 4);
+              
+              window.scrollTo(0, startPos * (1 - ease));
+              
+              if (progress < 1) {
+                requestAnimationFrame(scrollStep);
+              } else {
+                backToTopBtn.style.pointerEvents = '';
+                backToTopBtn.style.opacity = '';
+              }
+            }
+            
+            requestAnimationFrame(scrollStep);
+          });
+          
+          let isScrolling = false;
+          function handleScroll() {
+            if (!isScrolling) {
+              requestAnimationFrame(() => {
+                updateScrollProgress();
+                isScrolling = false;
+              });
+              isScrolling = true;
+            }
+          }
+          
+          window.addEventListener('scroll', handleScroll, { passive: true });
+          
+          backToTopBtn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              backToTopBtn.click();
+            }
+            if (e.key === 'Escape') {
+              backToTopBtn.blur();
+            }
+          });
+          
+          updateScrollProgress();
+        }
+    </script>
+
+  
+</body>
+</html>

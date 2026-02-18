@@ -1,0 +1,274 @@
+/* Portfolio Grid Custom Styles for projekte.html */
+
+.portfolio-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: 2.5rem;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+  .portfolio-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .portfolio-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .portfolio-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+    gap: 1.2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .portfolio-gallery {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.portfolio-item {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.10);
+  transition: box-shadow 0.2s, transform 0.2s;
+  height: auto;
+  position: relative;
+  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 48px rgba(0,0,0,0.16);
+}
+
+@media (hover: none) {
+  .portfolio-item:hover {
+    transform: none;
+  }
+  
+  .portfolio-item:active {
+    transform: scale(0.98);
+  }
+}
+
+.portfolio-thumb {
+  width: 100%;
+  height: clamp(180px, 40vw, 260px);
+  border-radius: 1.5rem 1.5rem 0 0;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 700px) {
+  .portfolio-thumb {
+    height: clamp(140px, 35vw, 180px);
+  }
+}
+
+@media (max-width: 500px) {
+  .portfolio-thumb {
+    height: clamp(160px, 45vw, 200px);
+  }
+  
+  .portfolio-item {
+    border-radius: 1.2rem;
+  }
+}
+
+/* iPhone SE and Small Mobile Optimizations */
+@media (max-width: 375px) {
+  .portfolio-gallery {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0;
+  }
+  
+  .portfolio-item {
+    border-radius: 1rem;
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  .portfolio-thumb {
+    height: clamp(140px, 40vw, 180px);
+    border-radius: 1rem 1rem 0 0;
+  }
+  
+  .portfolio-info {
+    padding: 1rem 0.8rem;
+    border-radius: 0 0 1rem 1rem;
+  }
+  
+  .portfolio-info h3 {
+    font-size: 1rem;
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .portfolio-info p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Hover effects disabled on touch devices */
+  .portfolio-item:hover {
+    transform: none;
+    box-shadow: 0 6px 32px rgba(0,0,0,0.10);
+  }
+  
+  .portfolio-item:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Very small screens (320px and below) */
+@media (max-width: 320px) {
+  .portfolio-gallery {
+    gap: 0.8rem;
+  }
+  
+  .portfolio-thumb {
+    height: clamp(120px, 35vw, 160px);
+  }
+  
+  .portfolio-info {
+    padding: 0.8rem 0.6rem;
+  }
+  
+  .portfolio-info h3 {
+    font-size: 0.95rem;
+  }
+  
+  .portfolio-info p {
+    font-size: 0.8rem;
+  }
+}
+
+/* Filter Button Styles for Mobile — match index readability */
+@media (max-width: 768px) {
+  .work-filter {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+
+  .filter-btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.7rem 1.1rem;
+    font-size: 0.95rem;
+    border-radius: 999px;
+    border: none;
+    background: #f2f2f2;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    text-align: center;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  }
+
+  .filter-btn:hover {
+    background: #efefef;
+    color: #333;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .filter-btn:active {
+    background: #e9e9e9;
+    color: #333;
+  }
+
+  .filter-btn.active {
+    background: #ffb800;
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(255, 184, 0, 0.16);
+  }
+
+  /* Accessible focus state */
+  .filter-btn:focus-visible {
+    outline: 3px solid #ffb800;
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 375px) {
+  .work-filter {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  
+  .filter-btn {
+    padding: 0.7rem 1rem;
+    font-size: 0.8rem;
+    border-radius: 1.5rem;
+    white-space: nowrap;
+    line-height: 1.2;
+    width: 100%;
+  }
+  
+  .filter-btn[data-filter="all"] {
+    width: 100%;
+    margin-bottom: 0.2rem;
+  }
+  
+  .filter-row {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  
+  .filter-row .filter-btn {
+    flex: 1;
+    width: auto;
+  }
+}
+
+@media (max-width: 320px) {
+  .work-filter {
+    gap: 0.5rem;
+  }
+  
+  .filter-btn {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.75rem;
+    border-radius: 1rem;
+    line-height: 1.1;
+  }
+  
+  .filter-btn[data-filter="all"] {
+    margin-bottom: 0.1rem;
+  }
+  
+  .filter-row {
+    gap: 0.4rem;
+  }
+  
+  .filter-row .filter-btn {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.7rem;
+  }
+}

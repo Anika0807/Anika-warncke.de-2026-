@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Mind Studio - Meditations- und Yogastudio mit Café</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="icon" type="image/jpeg" href="../../Logo-01.jpg">
+    <style>
+        .btn-secondary {
+            background: #ffb800;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s, color 0.2s;
+            cursor: pointer;
+            display: inline-block;
+            margin: 0;
+        }
+        .btn-secondary:hover, .btn-secondary:focus {
+            background: linear-gradient(135deg, rgba(255, 153, 0, 0.95) 0%, rgba(255, 140, 0, 0.95) 100%);
+            color: #fff;
+            transform: scale(1.08);
+            box-shadow: 0 4px 18px rgba(255, 184, 0, 0.13);
+        }
+        
+        /* Mobile Button Improvements */
+        @media (max-width: 768px) {
+            .btn-secondary {
+                font-size: 0.9rem;
+                padding: 0.7rem 1.5rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .btn-secondary {
+                font-size: 0.85rem;
+                padding: 0.65rem 1.2rem;
+                text-align: center;
+                justify-content: center;
+            }
+            .btn-text-full {
+                display: none !important;
+            }
+            .btn-text-short {
+                display: inline !important;
+            }
+        }
+        .projekt-btn {
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 1.02rem;
+            font-weight: 700;
+            border-radius: 2rem;
+            box-shadow: 0 2px 8px rgba(255,184,0,0.10);
+            padding: 0.8rem 2.2rem;
+            transition: background 0.2s, color 0.2s, box-shadow 0.18s, transform 0.18s;
+            outline: none;
+            border: none;
+            background: #ffb800;
+            color: #fff;
+            display: inline-block;
+        }
+        .projekt-btn:hover, .projekt-btn:focus {
+            background: linear-gradient(135deg, rgba(255, 153, 0, 0.95) 0%, rgba(255, 140, 0, 0.95) 100%);
+            color: #fff;
+            transform: scale(1.08);
+            box-shadow: 0 4px 18px rgba(255,184,0,0.13);
+        }
+        .main-header {
+            position: absolute !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            transition: background 0.2s, color 0.2s;
+            background: transparent;
+        }
+        .main-header nav {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+        }
+        .main-header .logo {
+            order: 1 !important;
+        }
+        .main-header nav ul {
+            order: 3 !important;
+        }
+        .main-header .mobile-nav-toggle {
+            order: 2 !important;
+            margin-left: auto !important;
+        }
+        .main-header.scrolled {
+            position: fixed !important;
+            background: #fff !important;
+            color: #222 !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        }
+        .main-header.scrolled .logo,
+        .main-header.scrolled nav a,
+        .main-header.scrolled nav a:visited {
+            color: #222 !important;
+        }
+        .main-header.scrolled .mobile-nav-toggle .hamburger-line {
+            background-color: #222 !important;
+        }
+        .main-header .logo,
+        .main-header nav a,
+        .main-header nav a:visited {
+            color: #fff !important;
+        }
+        .main-header .mobile-nav-toggle .hamburger-line {
+            background-color: #fff;
+        }
+    .main-header nav ul li a {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .main-header nav ul li a.active {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }        .main-header .logo {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Footer-Links immer weiß */
+        .main-footer a,
+        .main-footer a:visited,
+        .main-footer a:active,
+        .main-footer a:hover {
+          color: #fff !important;
+          text-decoration: underline;
+          transition: color 0.2s;
+        }
+        main {
+            margin-top: 0;
+            background: #fff;
+        }
+    </style>
+
+  <style>
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 184, 0, 0.95) 0%, rgba(255, 153, 0, 0.95) 100%);
+      backdrop-filter: blur(12px) saturate(1.2);
+      -webkit-backdrop-filter: blur(12px) saturate(1.2);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      box-shadow: 0 8px 32px rgba(255, 184, 0, 0.35);
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1) rotate(0deg);
+      will-change: transform, opacity;
+    }
+    
+    .back-to-top::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: xor;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      pointer-events: none;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1) rotate(0deg);
+    }
+    
+    .back-to-top:hover {
+      background: linear-gradient(135deg, rgba(255, 153, 0, 0.95) 0%, rgba(255, 140, 0, 0.95) 100%);
+      transform: translateY(-6px) scale(1.08);
+      box-shadow: 
+        0 16px 48px rgba(255, 184, 0, 0.24),
+        0 4px 16px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    
+    .back-to-top:active {
+      transform: translateY(-3px) scale(1.02);
+      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 
+        0 8px 28px rgba(255, 184, 0, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .back-to-top:focus {
+      outline: none;
+      box-shadow: 
+        0 8px 32px rgba(255, 184, 0, 0.16),
+        0 1px 4px rgba(0, 0, 0, 0.08),
+        0 0 0 3px rgba(255, 184, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    .back-to-top::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg, 
+        transparent 0deg, 
+        rgba(255, 184, 0, 0.8) var(--progress, 0deg),
+        rgba(255, 255, 255, 0.3) calc(var(--progress, 0deg) + 2deg),
+        transparent calc(var(--progress, 0deg) + 4deg)
+      );
+      opacity: 0;
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: -1;
+      filter: blur(0.5px);
+    }
+    
+    .back-to-top.visible::before {
+      opacity: 1;
+    }
+    
+    .back-to-top svg {
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .back-to-top:hover svg {
+      transform: translateY(-1px);
+    }
+    
+    .back-to-top.visible.first-show {
+      animation: backToTopPulse 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    @keyframes backToTopPulse {
+      0% { transform: translateY(0) scale(1) rotate(0deg); }
+      50% { transform: translateY(-2px) scale(1.1) rotate(1deg); }
+      100% { transform: translateY(0) scale(1) rotate(0deg); }
+    }
+    
+    @media (max-width: 700px) {
+      .back-to-top {
+        width: 52px;
+        height: 52px;
+        bottom: 2rem;
+        right: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .back-to-top {
+        bottom: 1.5rem;
+        right: 1rem;
+        width: 48px;
+        height: 48px;
+      }
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      .back-to-top, .back-to-top svg, .back-to-top::before {
+        transition: opacity 0.2s ease;
+      }
+      .back-to-top:hover {
+        transform: none;
+      }
+      .back-to-top.visible.first-show {
+        animation: none;
+      }
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      .back-to-top {
+        background: linear-gradient(135deg, rgba(255, 184, 0, 0.9) 0%, rgba(255, 153, 0, 0.9) 100%);
+        border-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(16px) saturate(1.4);
+      }
+    }
+    
+    /* Skip Link für Accessibility */
+    .skip-link {
+      position: absolute;
+      top: -200px;
+      left: 6px;
+      background: #000;
+      color: #fff;
+      padding: 8px;
+      text-decoration: none;
+      border-radius: 4px;
+      z-index: 9999;
+      font-size: 14px;
+      transition: top 0.3s;
+    }
+    
+    .skip-link:focus {
+      top: 6px;
+    }
+    
+    /* Modern responsive padding system */
+    main#main-content > section {
+      padding-left: clamp(20px, 4vw, 80px) !important;
+      padding-right: clamp(20px, 4vw, 80px) !important;
+    }
+    
+    main#main-content > section > section {
+      padding-left: clamp(20px, 4vw, 80px) !important;
+      padding-right: clamp(20px, 4vw, 80px) !important;
+    }
+    
+    main#main-content section[style*="padding"] {
+      padding-left: clamp(20px, 4vw, 80px) !important;
+      padding-right: clamp(20px, 4vw, 80px) !important;
+    }
+    
+    /* Responsive Design für Projektseiten */
+    @media (max-width: 1200px) {
+      section[style*="padding:5rem 80px"], section[style*="padding: 5rem 80px"] { padding: 4rem 60px !important; }
+      section[style*="padding:3rem 80px"], section[style*="padding: 3rem 80px"] { padding: 3rem 60px !important; }
+      section[style*="padding:1rem 80px"], section[style*="padding: 1rem 80px"] { padding: 1rem 60px !important; }
+    }
+    @media (max-width: 900px) {
+      section[style*="padding:5rem"], section[style*="padding:4rem"], section[style*="padding:3rem"] { padding: 3rem clamp(20px, 4vw, 80px) !important; }
+      section[style*="padding:1rem"] { padding: 1rem clamp(20px, 4vw, 80px) !important; }
+      section[style*="gap:2.5rem 3.5rem"], section[style*="gap:3rem 4rem"] { gap: 2rem 2.5rem !important; }
+      /* Mobile Header Padding Override - Logo ganz links */
+      .main-header nav {
+        padding-left: clamp(20px, 4vw, 80px) !important;
+        padding-right: clamp(20px, 4vw, 80px) !important;
+      }
+      .main-header .logo {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+      }
+    }
+    @media (max-width: 768px) {
+      section[style*="padding"] { padding: 2rem clamp(20px, 4vw, 80px) !important; }
+      .hero-content[style*="padding:3.5rem"] { padding: 2.5rem clamp(20px, 4vw, 80px) 2rem clamp(20px, 4vw, 80px) !important; max-width: 90% !important; }
+      section[style*="display:flex;flex-wrap:wrap"] { flex-direction: column !important; gap: 1.5rem !important; }
+      h1 { font-size: 2.2rem !important; }
+      h2 { font-size: 1.45rem !important; }
+      h3 { font-size: 1.2rem !important; }
+      /* Hero-specific sizing to ensure clear hierarchy */
+      .hero-content h1 { font-size: 2.6rem !important; }
+      .hero-content h2 { font-size: 1.4rem !important; }
+    }
+    @media (max-width: 480px) {
+      section[style*="padding"] { padding: 1.5rem clamp(20px, 4vw, 80px) !important; }
+      .hero-content[style*="padding"] { padding: 2rem clamp(20px, 4vw, 80px) 1.5rem clamp(20px, 4vw, 80px) !important; max-width: 95% !important; }
+      div[style*="min-width:180px"] { min-width: auto !important; font-size: 0.9rem !important; padding: 0.8rem 1.2rem !important; }
+      h1 { font-size: 1.8rem !important; }
+      h2 { font-size: 1.3rem !important; }
+      h3 { font-size: 1.1rem !important; }
+      /* Hero-specific sizing */
+      .hero-content h1 { font-size: 2.4rem !important; }
+      .hero-content h2 { font-size: 1.3rem !important; }
+      .main-header nav ul { flex-direction: column !important; gap: 0.5rem !important; }
+      .main-header nav {
+        padding-left: clamp(20px, 4vw, 80px) !important;
+        padding-right: clamp(20px, 4vw, 80px) !important;
+      }
+    }
+    @media (max-width: 360px) {
+      section[style*="padding"] { padding: 1rem clamp(20px, 4vw, 80px) !important; }
+      .hero-content[style*="padding"] { padding: 1.5rem clamp(20px, 4vw, 80px) 1rem clamp(20px, 4vw, 80px) !important; }
+      h1 { font-size: 2.0rem !important; }
+      h2 { font-size: 1.3rem !important; }
+      h3 { font-size: 1.1rem !important; }
+      /* Hero-specific sizing */
+      .hero-content h1 { font-size: 2.4rem !important; }
+      .hero-content h2 { font-size: 1.3rem !important; }
+    }
+
+    /* Mobile Navigation Button - hidden by default */
+    .mobile-nav-toggle { 
+      display: none; 
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Mobile Navigation Styles */
+    @media (max-width: 900px) {
+      .mobile-nav-toggle { display: flex; order: 2; width: 48px; height: 48px; background: transparent; border: none; cursor: pointer; z-index: 1002; align-items: center; justify-content: center; }
+      .hamburger-line { display: block; width: 28px; height: 3px; background-color: #fff; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+      .hamburger-line:not(:last-child) { margin-bottom: 5px; }
+      .mobile-nav-toggle.active .hamburger-line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      .mobile-nav-toggle.active .hamburger-line:nth-child(2) { opacity: 0; }
+      .mobile-nav-toggle.active .hamburger-line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+      .main-header nav { display: flex; align-items: center; justify-content: space-between; }
+      .main-header nav ul { 
+        position: fixed; top: 0; right: -100%; width: 300px; max-width: 80vw; height: 100vh; 
+        background: rgba(0,0,0,0.97); backdrop-filter: blur(20px); flex-direction: column; justify-content: center; align-items: center; 
+        gap: 2rem; padding: 2rem; z-index: 1001; transition: right 0.3s ease; margin: 0; 
+      }
+      nav > .mobile-nav-toggle { margin-left: auto; }
+      .main-header nav ul.active { right: 0; }
+      .main-header nav ul li { width: 100%; text-align: center; }
+      .main-header nav ul li a { color: #fff !important; font-size: 1.4rem; display: block; padding: 0.8rem 1rem; }
+    }
+  </style>
+  <style>
+    a {
+      color: #ffb800;
+    }
+  </style>
+</head>
+<body>
+                <!-- Skip Link für Accessibility -->
+                <a href="#main-content" class="skip-link" aria-label="Direkt zum Hauptinhalt springen">Zum Hauptinhalt</a>
+                <!-- Header wird dynamisch geladen -->
+                <div id="header-placeholder"></div>
+                
+  <section class="hero" style="background:url('../../img/IA/MyMindStudio/Seminarraum_Auschnitt.jpg') center center/cover no-repeat; height:100vh; width:100vw; position:absolute; top:0; left:0; z-index:0; display:flex; align-items:center; justify-content:center; margin:0; padding:0; box-sizing:border-box;">
+            <div class="hero-content" style="background:rgba(0,0,0,0.32);color:#fff;max-width:700px;padding:3.5rem 3.5rem 3rem 3.5rem;text-align:center;margin:0 auto;">
+                <h1 style="font-size:2.8rem;font-weight:800;margin:0 0 0.2em 0;line-height:1.5;">My Mind Studio</h1>
+                <h2 style="font-size:1.8rem;font-weight:600;margin:0 0 1.2em 0;line-height:1.5;">Meditations- und Yogastudio mit Café</h2>
+                <div style="font-size:0.95rem;letter-spacing:0.1em;margin-bottom:1.2em;line-height:1.5;">INNENARCHITEKTUR | GASTRONOMIE | UMBAU</div>
+            </div>
+        </section>
+        <main id="main-content" style="margin-top: 100vh;">
+            <!-- Projektinfos -->
+                        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:3rem 80px 3rem 80px;display:flex;flex-wrap:wrap;gap:2.5rem 3.5rem;justify-content:flex-start;box-sizing:border-box;">
+                                <div style="flex:1 1 0;min-width:180px;">
+                                    <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">MEINE ROLLE & TEAM</div>
+                                    <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                                      <div style="font-weight:400;font-size:16px;">Innenarchitektur M.A. im 2-Personen-Team mit Marco Smith</div>
+                                </div>
+                                <div style="flex:1 1 0;min-width:180px;">
+                                    <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">AUFGABE</div>
+                                    <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                                    <div style="font-weight:400;font-size:16px;">Leistungsphasen 01-09</div>
+                                </div>
+                                <div style="flex:1 1 0;min-width:180px;">
+                                    <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">PROJEKTZEITRAUM & -RAHMEN</div>
+                                    <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                                      <div style="font-weight:400;font-size:16px;">Juli 2022-2023 Mitarbeit im Projekt in Lüneburg in Festanstellung bei <a href='https://formwaende.de' target='_blank' class='projekt-info-link'>FORMWÆNDE</a>, Lüneburg</div>
+                                </div>
+                                <div style="flex:1 1 0;min-width:180px;">
+                                    <div style="font-size:14px;color:#888;margin-bottom:0.9em;letter-spacing:0.03em;">TOOLS</div>
+                                    <div style="height:2px;width:100%;background:#e0e0e0;margin-bottom:0.9em;"></div>
+                                      <div style="font-weight:400;font-size:16px;">Vectorworks, Procreate, Adobe Suite</div>
+                                </div>
+                        </section>
+            <!-- Überblick -->
+            <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:4rem 80px 4rem 80px;box-sizing:border-box;">
+                <div style="display:flex;gap:2.5rem;align-items:flex-start;flex-wrap:wrap;width:100%;">
+                    <div style="flex:1 1 0;min-width:220px;max-width:100%;display:flex;align-items:flex-start;">
+                        <h2 style="font-size:2rem;font-weight:800;margin:0 0 2rem 0;">Überblick</h2>
+                    </div>
+                    <div style="flex:1 1 0;min-width:220px;max-width:100%;">
+                        <p style="font-size:1.05rem;line-height:1.5;margin-bottom:1.2em;">Umbau einer leerstehenden Ladenfläche in der Lüneburger Innenstadt zu einem Meditations- und Yogastudio mit Café. Parallel zum Fortschreiten in die Innenräume wir der Fokus des Nutzers zunehmend von Außen nach Innen gerichtet, sodass er von Außen in einer belebten Fußgängerzone in das kleine Café mit Blick nach Außen in einen mittleren Teil einer Art mystischen Tunnel mit angrenzenden Sanitärbereich und Umkleiden Stück für Stück nach innen gerichtet wird und man in einen gedämpften stoffumhüllten Kursraum ganz in seinem Inneren ankommt.</p>
+                        <div style="text-align: right;">
+                            <a href="https://www.formwaende.de/projekte/mymindstudio/" target="_blank" class="btn-secondary" style="display: flex !important; align-items: center !important; flex-wrap: wrap; justify-content: center;">
+                                <span class="btn-text-full" style="display: inline;">MEHR PROJEKTINHALTE UNTER FORMWÆNDE</span>
+                                <span class="btn-text-short" style="display: none;">MEHR UNTER FORMWÆNDE</span>
+                                <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 8px; flex-shrink: 0;">
+                                    <path d="M20 48L76 48M76 48L52 24M76 48L52 72" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ...existing code... -->
+            </section>
+            <!-- Veröffentlichungen und Bilder -->
+            <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:4rem 80px 4rem 80px;box-sizing:border-box;">
+                                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2em;gap:2rem;width:100%;">
+                                    <h3 style="font-size:1.2rem;font-weight:700;margin:0 0 2rem 0;">Veröffentlichung in der AIT 06.2024</h3>
+                                        <div style="display:flex;justify-content:flex-end;">
+                                        <a href="https://ait-xia-dialog.de/wp-content/uploads/leseprobe/ait/Leseprobe/AIT0524_Leseprobe/files/basic-html/page7.html" target="_blank" class="projekt-info-link">→ zur Veröffentlichung</a>
+                                    </div>
+                                </div>
+                <div style="width:100%;margin-bottom:2.5rem;">
+                    <img src="../../img/IA/MyMindStudio/20240507_AIT_202405_Artikel.jpg" alt="AIT Magazin-Artikel über My Mind Studio mit Projektbeschreibung und Innenraumfotografie" style="width:100%;height:auto;display:block;border-radius:1.2rem;" loading="lazy" decoding="async">
+                </div>
+            </section>
+            <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:4rem 80px 4rem 80px;box-sizing:border-box;">
+                      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2em;gap:2rem;width:100%;">
+                          <h3 style="font-size:1.2rem;font-weight:700;margin:0 0 2rem 0;">Veröffentlichung im BDIA-Handbuch 2023/2024</h3>
+                            <div style="display:flex;justify-content:flex-end;">
+                            <a href="https://bdia.de/wp-content/uploads/2024/05/my-mind-studio.pdf" target="_blank" class="projekt-info-link">→ zur Veröffentlichung</a>
+                          </div>
+                      </div>
+                <div style="width:100%;margin-bottom:2.5rem;">
+                    <img src="../../img/IA/MyMindStudio/CAL_bdia24-25_my_mind.jpg" alt="BDIA Handbuch Doppelseite mit My Mind Studio Projektdarstellung und Grundrissen" style="width:100%;height:auto;display:block;border-radius:1.2rem;margin-bottom:2.5rem;" loading="lazy" decoding="async">
+                    <img src="../../img/IA/MyMindStudio/CAL_bdia24-25_my_mind2.jpg" alt="BDIA Handbuch zweite Doppelseite mit Innenraumaufnahmen und Materialkonzept" style="width:100%;height:auto;display:block;border-radius:1.2rem;" loading="lazy" decoding="async">
+                </div>
+            </section>
+                        <section style="background:#fff;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding:4rem 80px 4rem 80px;box-sizing:border-box;">
+                                                                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2em;gap:2rem;width:100%;">
+                                                                        <h3 style="font-size:1.2rem;font-weight:700;margin:0 0 2rem 0;">Veröffentlichung in der db 07/2024</h3>
+                                                                                <div style="display:flex;justify-content:flex-end;">
+                                                                                <a href="https://www.dds-online.de/gestaltung/kaleidoskop-der-innenraeume/?utm_source=chatgpt.com#slider-intro-20" target="_blank" class="projekt-info-link">→ zur Veröffentlichung</a>
+                                                                            </div>
+                                                                </div>
+                                <div style="width:100%;margin-bottom:2.5rem;">
+                                    <img src="../../img/IA/MyMindStudio/Formaaende_dds_09-2024.jpg" alt="db Veröffentlichung" style="width:100%;height:auto;display:block;border-radius:1.2rem;" loading="lazy">
+                                </div>
+                        </section>
+                                                                        <section class="projekt-nav-section">
+                                                                            <div class="projekt-nav-row">
+                                                                                <div class="projekt-nav-btn projekt-nav-btn-left">
+                                                                                    <a href="P2_IA_Schlaf.html" class="btn-secondary projekt-btn" style="display: flex !important; align-items: center !important;">
+                                                                                        <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px; flex-shrink: 0;">
+                                                                                            <path d="M76 48L20 48M20 48L44 24M20 48L44 72" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                                        </svg>
+                                                                                        LETZTES PROJEKT
+                                                                                    </a>
+                                                                                    <div class="projekt-vorschau">
+                                                                                        <img src="../../img/IA/Schlaf/Konzeptskizze+-01.jpg" alt="Konzeptskizze für SCHLAF Ausstellung mit Grundriss und Gestaltungsideen" loading="lazy" decoding="async">
+                                                                                        <div class="projekt-vorschau-title">SCHLAF</div>
+                                                                                        <div class="projekt-vorschau-sub">Eine Erlebnis­ausstellung in die Tiefen des Schlafes</div>
+                                                                                    </div>
+                                                                                </div>
+                                        <div class="projekt-nav-btn projekt-nav-btn-right">
+                                          <a href="P4_IA_KlosterHolzen.html" class="btn-secondary projekt-btn" style="display: flex !important; align-items: center !important;">
+                                            NÄCHSTES PROJEKT
+                                            <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 8px; flex-shrink: 0;">
+                                              <path d="M20 48L76 48M76 48L52 24M76 48L52 72" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                          </a>
+                                          <div class="projekt-vorschau">
+                                            <img src="../../img/IA/KlosterHolzen/Generated Image September 16, 2025 - 8_30PM.png" alt="Festsaal im Klostergasthof mit warmer Beleuchtung und eleganter Innenausstattung für Events" loading="lazy" decoding="async">
+                                            <div class="projekt-vorschau-title">Festsaal im Klostergasthof</div>
+                                            <div class="projekt-vorschau-sub">Veranstaltungsgastronomie für Hochzeiten und Events</div>
+                                          </div>
+                                        </div>
+                                                                            </div>
+                                                                        </section>
+                                                                        <style>
+                                                                            .projekt-nav-section {
+                                                                                width: 100vw;
+                                                                                position: relative;
+                                                                                left: 50%;
+                                                                                right: 50%;
+                                                                                margin-left: -50vw;
+                                                                                margin-right: -50vw;
+                                                                                background: #fff;
+                                                                                padding: 4rem 80px 4rem 80px;
+                                                                                box-sizing: border-box;
+                                                                            }
+                                                                            .projekt-nav-row {
+                                                                        display: flex;
+                                                                        justify-content: space-between;
+                                                                        align-items: stretch;
+                                                                        gap: 0;
+                                                                        box-sizing: border-box;
+                                                                            }
+                                                                            .projekt-nav-btn {
+                                                                                position: relative;
+                                                                                display: flex;
+                                                                                flex-direction: column;
+                                                                                align-items: flex-start;
+                                                                        min-width: 220px;
+                                                                        flex: 0 0 auto;
+                                                                        width: auto;
+                                                                        max-width: none;
+                                                                            }
+                                                                            .projekt-nav-btn-right {
+                                                                        align-items: flex-end;
+                                                                        margin-left: 0;
+                                                                            }
+
+                                                                            .projekt-vorschau {
+                                                                                display: none;
+                                                                                position: absolute;
+                                                                                left: 0;
+                                                                                bottom: 110%;
+                                                                                background: #fff;
+                                                                                border-radius: 1.2rem;
+                                                                                box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+                                                                                padding: 1rem;
+                                                                                width: 260px;
+                                                                                z-index: 10;
+                                                                                text-align: left;
+                                                                            }
+                                                                            .projekt-nav-btn-right .projekt-vorschau {
+                                                                                left: 0;
+                                                                                right: auto;
+                                                                                text-align: left;
+                                                                            }
+                                                                            .projekt-nav-btn:hover .projekt-vorschau {
+                                                                                display: block;
+                                                                            }
+                                                                            .projekt-vorschau img {
+                                                                                width: 100%;
+                                                                                border-radius: 0.7rem;
+                                                                                margin-bottom: 0.7em;
+                                                                            }
+                                                                            .projekt-vorschau-title {
+                                                                                font-weight: 700;
+                                                                                font-size: 1.1rem;
+                                                                            }
+                                                                            .projekt-vorschau-sub {
+                                                                                font-size: 0.98rem;
+                                                                                color: #888;
+                                                                            }
+                                                                            @media (max-width: 900px) {
+                                                                                .projekt-nav-section {
+                                                                                    padding-left: 24px;
+                                                                                    padding-right: 24px;
+                                                                                }
+                                                                                .projekt-nav-row {
+                                                                                    flex-direction: column;
+                                                                                    gap: 1.5rem;
+                                                                                    align-items: stretch;
+                                                                                }
+                                                                                .projekt-nav-btn, .projekt-nav-btn-right {
+                                                                                    align-items: flex-start !important;
+                                                                                }
+                                                                                .projekt-nav-btn-right .projekt-vorschau {
+                                                                                    right: auto;
+                                                                                    left: 0;
+                                                                                    text-align: left;
+                                                                                }
+                                                                            }
+                                                                        </style>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('.main-header');
+            const hero = document.querySelector('.hero');
+            window.addEventListener('scroll', function() {
+                const heroHeight = hero.offsetHeight;
+                if(window.scrollY > heroHeight - 60) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var header = document.querySelector('.main-header');
+        window.addEventListener('scroll', function() {
+            if(window.scrollY > window.innerHeight) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    });
+</script>
+        <script>
+            // Projektvorschau bei Hover anzeigen
+            document.querySelectorAll('.projekt-btn').forEach(function(btn) {
+                var vorschau = btn.parentElement.querySelector('.projekt-vorschau');
+                btn.addEventListener('mouseenter', function() {
+                    if(vorschau) vorschau.style.display = 'block';
+                });
+                btn.addEventListener('mouseleave', function() {
+                    if(vorschau) vorschau.style.display = 'none';
+                });
+                btn.addEventListener('focus', function() {
+                    if(vorschau) vorschau.style.display = 'block';
+                });
+                btn.addEventListener('blur', function() {
+                    if(vorschau) vorschau.style.display = 'none';
+                });
+                // Auch beim Verlassen des Vorschau-Containers ausblenden
+                if(vorschau) {
+                    vorschau.addEventListener('mouseenter', function() {
+                        vorschau.style.display = 'block';
+                    });
+                    vorschau.addEventListener('mouseleave', function() {
+                        vorschau.style.display = 'none';
+                    });
+                }
+            });
+        </script>
+                        <!-- Call to Action -->
+                        <section style="background:#c6b79e;padding:3.5rem 0;text-align:center;">
+                            <div style="font-size:1.35rem;font-weight:700;max-width:700px;margin:0 auto 2.5rem auto;color:#fff;">Möchtest du tiefere Einblicke in dieses Projekt und/oder einen Einblick in mein gesamtes Innenarchitekturportfolio haben?</div>
+                            <div style="font-size:2.5rem;color:#fff;">&#8595;</div>
+                        </section>
+    </main>
+    
+                <section class="contact" id="contact" style="width:100vw;max-width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;padding-left:80px;padding-right:80px;box-sizing:border-box;">
+                    <div class="contact-row" style="display:flex;align-items:center;gap:2.5rem;justify-content:space-between;width:100%;max-width:100%;box-sizing:border-box;">
+                        <div class="contact-content" style="margin:0;flex:1;">
+                            <h2 style="margin:0;color:#fff;">GET<br>IN<br>TOUCH</h2>
+                        </div>
+                        <div style="flex:0 0 auto;display:flex;justify-content:flex-end;">
+                            <a href="contact.html" class="btn-contact round-yellow" aria-label="Kontakt aufnehmen">
+                              <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 48L76 48M76 48L52 24M76 48L52 72" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <style>
+                        .btn-contact.round-yellow {
+                            width: 192px;
+                            height: 192px;
+                            border-radius: 50%;
+                            background: #FFB800;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+                            border: none;
+                            transition: background 0.2s, box-shadow 0.2s;
+                            padding: 0;
+                        }
+                        .btn-contact.round-yellow::after {
+                            display: none;
+                        }
+                        .btn-contact.round-yellow:hover, .btn-contact.round-yellow:focus {
+                            background: #e6a600;
+                            box-shadow: 0 12px 48px rgba(0,0,0,0.16);
+                        }
+                        .btn-contact.round-yellow svg {
+                            width: 96px;
+                            height: 96px;
+                            display: block;
+                        }
+                        .btn-contact.round-yellow svg path {
+                            stroke: #fff;
+                        }
+                        .btn-contact.round-yellow svg {
+                            width: 96px;
+                            height: 96px;
+                            display: block;
+                        }
+                        .btn-contact.round-yellow svg path {
+                            stroke: #fff;
+                        }
+                        
+                        /* Mobile: GET IN TOUCH larger than desktop */
+                        @media (max-width: 900px) {
+                            .contact-content h2 { font-size: 4rem !important; line-height: 1.1 !important; }
+                        }
+                        @media (max-width: 768px) {
+                            .contact-content h2 { font-size: 3.5rem !important; line-height: 1.1 !important; }
+                        }
+
+                        @media (max-width: 480px) {
+                            .contact-content h2 { font-size: 3rem !important; line-height: 1.1 !important; }
+                            .btn-contact.round-yellow { width: 160px !important; height: 160px !important; }
+                        }
+                        @media (max-width: 375px) {
+                            .contact-content h2 { font-size: 2.5rem !important; line-height: 1.1 !important; }
+                            .btn-contact.round-yellow { width: 144px !important; height: 144px !important; }
+                        }
+                    </style>
+                </section>
+            </main>
+
+            <footer class="main-footer" role="contentinfo">
+                <div class="footer-row" style="padding-top:1.2rem;padding-bottom:1.2rem;">
+                    <div class="footer-block">
+                        <div class="footer-title">VERSION</div>
+                        <div>2025 © Edition</div>
+                    </div>
+                    <div class="footer-block">
+                        <div class="footer-title">LOKALE ZEIT</div>
+                        <div><span id="local-time"></span></div>
+                    </div>
+                    <div class="footer-block">
+                        <div class="footer-title">SOZIALE NETZWERKE</div>
+                        <div class="footer-socials">
+                            <a href="https://www.linkedin.com/in/anika-warncke" target="_blank" rel="noopener">LinkedIn</a>
+                            <a href="https://www.instagram.com/dein_instagram" target="_blank" rel="noopener">Instagram</a>
+                        </div>
+                    </div>
+                    <div class="footer-block">
+                        <div class="footer-title">RECHTLICHES</div>
+                        <a href="datenschutz.html">Datenschutz</a>
+                        <a href="impressum.html">Impressum</a>
+                    </div>
+                </div>
+            </footer>
+                
+  <button class="back-to-top" aria-label="Nach oben scrollen" role="button" tabindex="0" style="--progress: 0deg">
+    <svg width="24" height="24" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M48 76L48 20M48 20L24 44M48 20L72 44" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <script src="../scripts/main.js"></script>
+  <script src="../scripts/mobile-nav.js" defer></script>
+  <script src="../scripts/header-loader.js" defer></script>
+
+  <script>
+    // Lokale Zeit immer aktuell anzeigen
+    function updateLocalTime() {
+      const now = new Date();
+      const options = { hour: '2-digit', minute: '2-digit' };
+      let timeString = now.toLocaleTimeString('de-DE', options) + ' Uhr';
+      // MESZ/MEZ je nach Sommerzeit
+      const isDST = now.getTimezoneOffset() < -60;
+      timeString += isDST ? ' MESZ' : ' MEZ';
+      var el = document.getElementById('local-time');
+      if (el) el.textContent = timeString;
+    }
+    updateLocalTime();
+    setInterval(updateLocalTime, 10000);
+
+    // Back to Top Button
+    const backToTopBtn = document.querySelector('.back-to-top');
+    if (backToTopBtn) {
+      let hasShownOnce = false;
+      
+      function updateScrollProgress() {
+        const scrollTop = window.pageYOffset;
+        const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = Math.max(0, Math.min(100, (scrollTop / documentHeight) * 100));
+        
+        const easedPercent = scrollPercent < 50 ? 
+          2 * scrollPercent * scrollPercent / 100 : 
+          1 - Math.pow(-2 * scrollPercent + 2, 3) / 2;
+        
+        const progressDeg = (easedPercent / 100) * 360;
+        backToTopBtn.style.setProperty('--progress', `${progressDeg}deg`);
+        
+        // Verwende 100px als Threshold für bessere Sichtbarkeit
+        const threshold = 100;
+        
+        if (scrollTop > threshold) {
+          if (!backToTopBtn.classList.contains('visible')) {
+            backToTopBtn.classList.add('visible');
+            
+            if (!hasShownOnce) {
+              hasShownOnce = true;
+              backToTopBtn.classList.add('first-show');
+              setTimeout(() => {
+                backToTopBtn.classList.remove('first-show');
+              }, 600);
+            }
+          }
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      }
+      
+      backToTopBtn.addEventListener('click', () => {
+        const startTime = performance.now();
+        const startPos = window.pageYOffset;
+        const distance = startPos;
+        const duration = Math.min(Math.max(distance / 3, 400), 1000);
+        
+        backToTopBtn.style.pointerEvents = 'none';
+        backToTopBtn.style.opacity = '0.7';
+        
+        function easeInOutCubic(t) {
+          return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+        }
+        
+        function animateScroll(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = easeInOutCubic(progress);
+          
+          window.scrollTo(0, startPos * (1 - eased));
+          
+          if (progress < 1) {
+            requestAnimationFrame(animateScroll);
+          } else {
+            backToTopBtn.style.pointerEvents = '';
+            backToTopBtn.style.opacity = '';
+          }
+        }
+        
+        requestAnimationFrame(animateScroll);
+      });
+      
+      let isScrolling = false;
+      function handleScroll() {
+        if (!isScrolling) {
+          requestAnimationFrame(() => {
+            updateScrollProgress();
+            isScrolling = false;
+          });
+          isScrolling = true;
+        }
+      }
+      
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      
+      // Initial call
+      updateScrollProgress();
+    }
+  </script>
+
+  <!-- Mobile Navigation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+      const navUl = document.querySelector('.main-header nav ul');
+      const header = document.querySelector('.main-header');
+      
+      if (mobileNavToggle && navUl) {
+        mobileNavToggle.addEventListener('click', function() {
+          const isActive = navUl.classList.contains('active');
+          navUl.classList.toggle('active');
+          mobileNavToggle.classList.toggle('active');
+          mobileNavToggle.setAttribute('aria-expanded', !isActive);
+          mobileNavToggle.setAttribute('aria-label', isActive ? 'Navigation öffnen' : 'Navigation schließen');
+          document.body.style.overflow = isActive ? '' : 'hidden';
+        });
+
+        navUl.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', function() {
+            navUl.classList.remove('active');
+            mobileNavToggle.classList.remove('active');
+            mobileNavToggle.setAttribute('aria-expanded', 'false');
+            mobileNavToggle.setAttribute('aria-label', 'Navigation öffnen');
+            document.body.style.overflow = '';
+          });
+        });
+      }
+
+      // Header scroll behavior
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    });
+  </script>
+
+  
+</body>
+</html>
