@@ -1125,42 +1125,6 @@
       }
       
       .footer-block {
-        font-size: 0.9rem !important;
-        gap: 0 !important;
-        display: grid !important;
-        grid-auto-flow: row !important;
-        grid-auto-rows: min-content !important;
-        row-gap: 0 !important;
-      }
-      
-      .footer-block a {
-        line-height: 0.9 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        display: block !important;
-      }
-    }
-
-    /* iPhone SE Footer optimizations */
-    @media (max-width: 375px) {
-      /* Moodboard (7 Bilder) – iPhone SE: kompakteres Mosaik */
-      .moodboard-container {
-        height: auto !important;
-        display: grid !important;
-        grid-template-columns: repeat(6, 1fr) !important;
-        grid-auto-rows: 70px !important;
-        gap: 6px !important;
-        padding: 6px !important;
-      }
-      .moodboard-container img { width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 6px !important; }
-      .moodboard-container img:nth-child(1) { grid-column: span 3; grid-row: span 2; }
-      .moodboard-container img:nth-child(2) { grid-column: span 3; grid-row: span 3; }
-      .moodboard-container img:nth-child(3) { grid-column: span 2; grid-row: span 2; }
-      .moodboard-container img:nth-child(4) { grid-column: span 2; grid-row: span 2; }
-      .moodboard-container img:nth-child(5) { grid-column: span 2; grid-row: span 2; }
-      .moodboard-container img:nth-child(6) { grid-column: span 3; grid-row: span 2; }
-      .moodboard-container img:nth-child(7) { grid-column: span 3; grid-row: span 2; }
-      .footer-block {
         gap: 0 !important;
         display: flex !important;
         flex-direction: column !important;
@@ -1495,16 +1459,16 @@
   <a href="#main-content" class="skip-to-main" style="position:absolute;left:-9999px;z-index:999;padding:1rem 1.25rem;background:#ffb800;color:#fff;text-decoration:none;font-weight:700;border-radius:0.5rem;">Zum Hauptinhalt springen</a>
   <header class="main-header" role="banner">
     <nav>
-      <a href="../index.html" class="logo test-hover" style="outline: none !important; border: none !important; box-shadow: none !important; -webkit-text-stroke: none !important;">ANIKA WARNCKE</a>
+      <a href="/index.html" class="logo test-hover" style="outline: none !important; border: none !important; box-shadow: none !important; -webkit-text-stroke: none !important;">ANIKA WARNCKE</a>
       <button class="mobile-nav-toggle" aria-label="Navigation öffnen" aria-expanded="false">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
       </button>
       <ul>
-        <li><a href="../projekte.html">Projekte</a></li>
-        <li><a href="../ueber-mich.html" class="active" aria-current="page">Über mich</a></li>
-        <li><a href="../kontakt.html">Kontakt</a></li>
+        <li><a href="/projekte.html">Projekte</a></li>
+        <li><a href="/ueber-mich.html" class="active" aria-current="page">Über mich</a></li>
+        <li><a href="/kontakt.html">Kontakt</a></li>
       </ul>
     </nav>
   </header>
@@ -1796,7 +1760,7 @@
           <h2 style="margin:0;color:#fff;">GET<br>IN<br>TOUCH</h2>
         </div>
         <div style="flex:0 0 auto;display:flex;justify-content:flex-end;">
-          <a href="contact.html" class="btn-contact round-yellow" aria-label="Kontakt aufnehmen">
+          <a href="/kontakt.html" class="btn-contact round-yellow" aria-label="Kontakt aufnehmen">
             <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M20 48L76 48M76 48L52 24M76 48L52 72" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -1825,8 +1789,8 @@
       </div>
       <div class="footer-block">
         <div class="footer-title">RECHTLICHES</div>
-        <a href="../datenschutz.html">Datenschutz</a>
-        <a href="../impressum.html">Impressum</a>
+        <a href="/datenschutz.html">Datenschutz</a>
+        <a href="/impressum.html">Impressum</a>
       </div>
     </div>
   </footer>
