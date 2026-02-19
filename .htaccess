@@ -1,17 +1,2 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /
-
-    # Projektdetailseiten – deutsche sprechende URLs → echte Dateinamen
-    RewriteRule ^projekte/weserkoje(\.html)?/?$ /projekte/P1_IA_Weserkoje.html [L,QSA]
-    RewriteRule ^projekte/schlaf(\.html)?/?$ /projekte/P2_IA_Schlaf.html [L,QSA]
-    RewriteRule ^projekte/my-mind-studio(\.html)?/?$ /projekte/P3_IA_MyMindStudio.html [L,QSA]
-    RewriteRule ^projekte/kloster-holzen(\.html)?/?$ /projekte/P4_IA_KlosterHolzen.html [L,QSA]
-    RewriteRule ^projekte/planora(\.html)?/?$ /projekte/P5_UXUI_Planora.html [L,QSA]
-    RewriteRule ^projekte/om-nom-zen(\.html)?/?$ /projekte/P6_UXUI_OmNomZen.html [L,QSA]
-    RewriteRule ^projekte/flavor-fusion(\.html)?/?$ /projekte/P7_UXUI_FlavorFusion.html [L,QSA]
-    RewriteRule ^projekte/natur-kompass(\.html)?/?$ /projekte/P8_UXUI_NaturKompass.html [L,QSA]
-</IfModule>
-
 # Opt-out route to user-facing opt-out page
 Redirect 302 /opt-out /opt-out.html
