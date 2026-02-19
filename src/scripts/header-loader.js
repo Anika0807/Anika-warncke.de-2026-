@@ -32,6 +32,18 @@
         
         // Initialize header scroll behavior
         initHeaderScroll();
+
+        // Ensure consent script is loaded on pages that use the header
+        try {
+          if (!document.querySelector('script[src="/scripts/consent.js"]')) {
+            const cs = document.createElement('script');
+            cs.src = '/scripts/consent.js';
+            cs.defer = true;
+            document.head.appendChild(cs);
+          }
+        } catch (e) {
+          console.warn('Could not inject consent script', e);
+        }
       })
       .catch(error => {
         console.error('Error loading header:', error);
