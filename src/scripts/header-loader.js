@@ -15,7 +15,7 @@
       return;
     }
     
-    fetch('../components/project-header.html')
+    fetch('/src/components/project-header.html')
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
