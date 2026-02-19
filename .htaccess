@@ -19,3 +19,6 @@
     RewriteRule ^projekte/flavor-fusion/?$ src/pages/P7_UXUI_FlavorFusion.html [L,QSA]
     RewriteRule ^projekte/natur-kompass/?$ src/pages/P8_UXUI_NaturKompass.html [L,QSA]
 </IfModule>
+
+# Opt-out route to user-facing opt-out page
+Redirect 302 /opt-out /opt-out.html

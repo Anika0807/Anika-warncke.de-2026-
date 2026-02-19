@@ -132,14 +132,24 @@ class AnalyticsManager {
   }
 }
 
-// Initialize Analytics when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  window.analyticsManager = new AnalyticsManager();
-});
+// Initialize Analytics on demand with explicit consent object
+// consent: { ga: boolean, hotjar: boolean }
+window.initAnalyticsManager = function(consent) {
+  try {
+    window.analyticsManager = new AnalyticsManager(consent || {});
+    if (window.analyticsManager && typeof window.analyticsManager.trackPageView === 'function') {
+      window.analyticsManager.trackPageView();
+    }
+  } catch (e) {
+    console.warn('Failed to init analytics manager', e);
+  }
+};
 
 // Function to manually track events
 window.trackAnalyticsEvent = (eventName, parameters) => {
   if (window.analyticsManager) {
     window.analyticsManager.trackEvent(eventName, parameters);
+  } else {
+    console.log('Analytics not initialized; event skipped', eventName, parameters);
   }
 };

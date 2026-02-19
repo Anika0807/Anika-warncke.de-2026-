@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Opt-Out – Anika Warncke</title>
+</head>
+<body>
+  <main style="padding:2rem;font-family:Arial, sans-serif;max-width:720px;margin:2rem auto;">
+    <h1>Opt-Out von Tracking</h1>
+    <p>Du kannst hier alle Tracking-Einstellungen zurücksetzen und Analytics deaktivieren.</p>
+    <button id="optout" style="padding:0.6rem 1rem;background:#ffb800;border:none;border-radius:6px;cursor:pointer">Tracking deaktivieren</button>
+    <p id="status" style="margin-top:1rem;color:#2e7d32"></p>
+    <p style="margin-top:1.5rem"><a href="/">Zurück zur Startseite</a></p>
+  </main>
+  <script>
+    document.getElementById('optout').addEventListener('click', function(){
+      try{
+        // set localStorage pref
+        localStorage.setItem('anika_consent_preferences', JSON.stringify({ga:false,hotjar:false}));
+        // set persistent cookie as fallback
+        document.cookie = 'anika_consent_preferences=denied; path=/; max-age=' + (60*60*24*365) + '; SameSite=Lax';
+        // notify analytics if loaded
+        if (window.analyticsManager && typeof window.analyticsManager.disable === 'function') {
+          try{ window.analyticsManager.disable(); }catch(e){}
+        }
+        document.getElementById('status').textContent = 'Tracking wurde deaktiviert.';
+      }catch(e){ document.getElementById('status').textContent = 'Fehler beim Deaktivieren.'; }
+    });
+  </script>
+</body>
+</html>
